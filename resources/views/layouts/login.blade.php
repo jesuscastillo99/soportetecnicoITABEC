@@ -23,7 +23,7 @@
                       <div class="text-center">
                         <img src="{{ asset('assets/images/logo-itabec.png')}}"
                            alt="logo-itabec" id="img-logo">
-                        <h4 class="mt-5 mb-5 pb-1">Bievenido al Sistema</h4>
+                        <h4 class="mt-5 mb-5 pb-1">Bievenido al Sistema Leo</h4>
                       </div>
                       
                       <form>
