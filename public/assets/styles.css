@@ -6,7 +6,7 @@
     background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(90deg, rgba(171,0,51,1) 10%, rgba(223,185,116,1) 28%, rgba(249,96,96,1) 67%, rgba(171,0,51,1) 91%);;
+    background: linear-gradient( 68.3deg,  rgba(245,177,97,1) 0.4%, rgba(236,54,110,1) 100.2% );
     }
     
 @media (min-width: 768px) {
