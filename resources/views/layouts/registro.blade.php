@@ -1,5 +1,5 @@
 @extends('layouts.landing')
-@section('title', 'Login')
+@section('title', 'Registro')
 @section('content')
     <section class="h-100 gradient-form" style="background-color: #eee;">
         <div class="container py-5 h-100">
@@ -13,34 +13,33 @@
                       <div class="text-center">
                         <img src="{{ asset('assets/images/logo-itabec.png')}}"
                            alt="logo-itabec" id="img-logo">
-                        <h4 class="mt-5 mb-5 pb-1">Bievenido al Sistema</h4>
+                        <h4 class="mt-5 mb-5 pb-1">Bievenido al Registro </h4>
                       </div>
                       
-                      <form method="POST" action="{{ route('login') }}">
+                      <form method="POST" action="{{ route('registro') }}">
                         @csrf
-                        <p>Por favor inicia sesión con tus datos:</p>
+                        <p>Por favor ingresa tus datos para el registro:</p>
       
                         <div class="form-outline mb-4">
                           <input type="text" name="curp" id="inputCurp" class="form-control"
                             placeholder="ABCD1001....." />
-                          <label class="form-label" for="inputCurp">CURP</label>
+                          <label class="form-label" for="inputCurp">Registra tu curp</label>
                         </div>
       
                         <div class="form-outline mb-4">
                           <input type="email" name="correo" id="inputCorreo" class="form-control" 
                             placeholder="correo@mail.com"/>
-                          <label class="form-label" for="inputCorreo">Contraseña</label>
+                          <label class="form-label" for="inputCorreo">Registra tu correo</label>
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 max-width-button" type="button">Log
-                            in</button>
-                          <a class="text-muted" href="#!">Forgot password?</a>
+                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 max-width-button" type="button">REGISTRARSE
+                            </button>
                         </div>
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
-                          <p class="mb-0 me-2">¿No tienes cuenta?</p>
-                          <a href="{{ route('registro') }}" class="btn btn-primary">Crear cuenta</a>
+                          <p class="mb-0 me-2">¿Ya tienes cuenta?</p>
+                          <a href="{{ route('login') }}" class="btn btn-primary">Iniciar sesión</a>
                         </div>
       
                       </form>

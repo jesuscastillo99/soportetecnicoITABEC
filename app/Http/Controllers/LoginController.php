@@ -19,13 +19,13 @@ class LoginController extends Controller
     // Método para procesar el inicio de sesión
     public function login(Request $request)
     {
-        // Validación de los campos 'curp' y 'correo'
+        // Validación de los campos 'correo' y 'contraseña'
         $request->validate([
-            'curp' => 'required',
-            'correo' => 'required|email',
+            'correo' => 'required',
+            'contraseña' => 'required|contraseña',
         ]);
 
-        // Obtener el usuario por 'curp' y 'correo'
+        // Obtener el usuario por 'correo' y 'contraseña'
         $usuario = User::where('correo', $request->correo)
             ->where('contraseña', $request->contraseña)
             ->first();
