@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 //Auth::routes();
 
+//Rutas para el registro
+Route::get('/registro', function() {
+    return view('layouts.registro');
+})->name('registro');
+
+Route::post('registro', [RegistroController::class, 'registro']);
+
+//Rutas para el login
 Route::get('/login', function() {
     return view('layouts.login');
 })->name('login');

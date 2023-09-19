@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('assets/styles.css')}}">
-</head>
-<body>
+@extends('layouts.landing')
+@section('title', 'Login')
+@section('content')
     <section class="h-100 gradient-form" style="background-color: #eee;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -26,10 +16,12 @@
                         <h4 class="mt-5 mb-5 pb-1">Bievenido al Sistema</h4>
                       </div>
                       
-                      <form>
+                      <form method="POST" action="{{ route('login') }}">
+                        @csrf
                         <p>Por favor inicia sesión con tus datos:</p>
       
                         <div class="form-outline mb-4">
+<<<<<<< HEAD
                           <input type="email" id="form2Example11" class="form-control"
                             placeholder="CURP..." />
                           <label class="form-label" for="form2Example11">CURP</label>
@@ -39,6 +31,17 @@
                           <input type="password" id="form2Example22" class="form-control" 
                             placeholder="********"/>
                           <label class="form-label" for="form2Example22">CONTRASEÑA</label>
+=======
+                          <input type="text" name="curp" id="inputCurp" class="form-control"
+                            placeholder="ABCD1001....." />
+                          <label class="form-label" for="inputCurp">CURP</label>
+                        </div>
+      
+                        <div class="form-outline mb-4">
+                          <input type="email" name="correo" id="inputCorreo" class="form-control" 
+                            placeholder="correo@mail.com"/>
+                          <label class="form-label" for="inputCorreo">Contraseña</label>
+>>>>>>> 995fc62695d13a1fd906cfdb6c20c3b872fe4b93
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">
@@ -49,7 +52,11 @@
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">¿No tienes cuenta?</p>
+<<<<<<< HEAD
                           <button type="button" class="btn btn-outline-danger">Crear nueva</button>
+=======
+                          <a href="{{ route('registro') }}" class="btn btn-primary">Crear cuenta</a>
+>>>>>>> 995fc62695d13a1fd906cfdb6c20c3b872fe4b93
                         </div>
       
                       </form>
@@ -70,5 +77,4 @@
           </div>
         </div>
       </section>
-</body>
-</html>
+@endsection
