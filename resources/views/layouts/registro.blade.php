@@ -33,20 +33,20 @@
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 max-width-button" type="button">REGISTRARSE
+                          <button class="fill rounded" type="button">REGISTRARSE</button>
                             </button>
                         </div>
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">¿Ya tienes cuenta?</p>
-                          <a href="{{ route('login') }}" class="btn btn-primary">Iniciar sesión</a>
+                          <button class="fill rounded" type="button" onclick="window.location.href='{{ route('login') }}'">Inicia sesión</button>
                         </div>
       
                       </form>
       
                     </div>
                   </div>
-                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-justify">
+                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-center">
                     <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                       <h4 class="mb-4">CONÓCENOS</h4>
                       <p class="small mb-0">El Instituto Tamaulipeco de Becas, Estímulos y Créditos Educativo (ITABEC) es un organismo público descentralizado con personalidad jurídica y patrimonio propio, adscrito sectorialmente a la Secretaría de Educación.</p>
