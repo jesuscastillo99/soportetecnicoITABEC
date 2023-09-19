@@ -21,42 +21,26 @@
                         <p>Por favor inicia sesión con tus datos:</p>
       
                         <div class="form-outline mb-4">
-<<<<<<< HEAD
-                          <input type="email" id="form2Example11" class="form-control"
-                            placeholder="CURP..." />
-                          <label class="form-label" for="form2Example11">CURP</label>
-                        </div>
-      
-                        <div class="form-outline mb-4">
-                          <input type="password" id="form2Example22" class="form-control" 
-                            placeholder="********"/>
-                          <label class="form-label" for="form2Example22">CONTRASEÑA</label>
-=======
                           <input type="text" name="curp" id="inputCurp" class="form-control"
                             placeholder="ABCD1001....." />
-                          <label class="form-label" for="inputCurp">CURP</label>
+                          <label class="form-label" for="inputCurp">Curp</label>
                         </div>
       
                         <div class="form-outline mb-4">
-                          <input type="email" name="correo" id="inputCorreo" class="form-control" 
-                            placeholder="correo@mail.com"/>
+                          <input type="password" name="correo" id="inputCorreo" class="form-control" 
+                            placeholder="********"/>
                           <label class="form-label" for="inputCorreo">Contraseña</label>
->>>>>>> 995fc62695d13a1fd906cfdb6c20c3b872fe4b93
                         </div>
-      
+
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 max-width-button" type="button">Acceso
+                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 max-width-button" type="button">Iniciar sesión
                             </button>
                           <a class="text-muted" href="#!">¿Has olvidado tu contraseña?</a>
                         </div>
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">¿No tienes cuenta?</p>
-<<<<<<< HEAD
-                          <button type="button" class="btn btn-outline-danger">Crear nueva</button>
-=======
                           <a href="{{ route('registro') }}" class="btn btn-primary">Crear cuenta</a>
->>>>>>> 995fc62695d13a1fd906cfdb6c20c3b872fe4b93
                         </div>
       
                       </form>
