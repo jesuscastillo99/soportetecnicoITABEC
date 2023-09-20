@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\resources\views\auth\login;
 use Illuminate\Http\Request;
-use App\Models\Curp;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Routing\Redirector;
@@ -26,7 +26,7 @@ class LoginController extends Controller
         ]);
 
         // Obtener el usuario por 'curp' y 'correo'
-        $usuario = Curp::where('curp', $request->curp)
+        $usuario = Usuario::where('curp', $request->curp)
             ->where('correo', $request->correo)
             ->first();
 

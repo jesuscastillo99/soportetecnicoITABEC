@@ -23,14 +23,14 @@
                         <div class="form-outline mb-4">
                           <label class="form-label" for="inputCurp">CURP:</label>
                           <input type="text" name="curp" id="inputCurp" class="form-control"
-                            placeholder="ABCD1001....." />
+                            placeholder="" />
                           
                         </div>
       
                         <div class="form-outline mb-4">
                           <label class="form-label" for="inputCorreo">CORREO:</label>
                           <input type="email" name="correo" id="inputCorreo" class="form-control" 
-                            placeholder="correo@mail.com"/>
+                            placeholder=""/>
                           
                         </div>
       

@@ -1,17 +1,15 @@
 @extends('layouts.landing')
 @section('title', 'Exito')
 @section('content')
-<h1>TE REGISTRASTE</h1>
-<a href="{{ route('registro') }}">Regresar a inicio</a>
-<section class="vh-100">
-<div class="container py-5 h-100">
-<div class="row d-flex align-items-center justify-content-center h-100">
-  <div class="col-md-8 col-lg-7 col-xl-6 align-items-center justify-content-center">
-    <img src="images/logo-itabec.png"
-      class="img-fluid" alt="Phone image">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <!-- Utiliza 'container' para centrar y 'd-flex' para establecer flexbox -->
+  <div class="card text-center" style="width: 18rem;">
+      <img src="{{ asset('assets/images/exito.png')}}" class="card-img-top" alt="img_exito">
+      <div class="card-body">
+          <h5 class="card-title">¡REGISTRO EXITOSO!</h5>
+          <p class="card-text">Se ha generado una contraseña que te enviamos a través de tu correo electrónico.</p>
+          <button class="fill rounded" type="button" onclick="window.location.href='{{ route('login') }}'">Iniciar sesión</button>
+      </div>
   </div>
 </div>
-</div>
-</section>
-
 @endsection

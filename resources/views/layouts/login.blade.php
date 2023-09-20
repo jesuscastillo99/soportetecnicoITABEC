@@ -23,20 +23,20 @@
                         <div class="form-outline mb-4">
                           <label class="form-label" for="inputCurp">CURP:</label>
                           <input type="text" name="curp" id="inputCurp" class="form-control"
-                            placeholder="ABCD1001....." />
+                            placeholder="" />
                           
                         </div>
       
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="inputContraseña">CONTRASEÑA</label>
-                          <input type="password" name="contraseña" id="inputContraseña" class="form-control" 
-                            placeholder="********"/>
+                          <label class="form-label" for="inputCorreo">CORREO</label>
+                          <input type="email" name="correo" id="inputCorreo" class="form-control" 
+                            placeholder=""/>
                           
                         </div>
 
                         <div class="text-center pt-1 mb-5 pb-1">
                           <a class="text-muted" href="#">¿Has olvidado tu contraseña?</a>
-                          <button class="fill rounded" type="submit">INICIAR SESIÓN</button>
+                          <button class="fill rounded mt-2" type="submit">INICIAR SESIÓN</button>
                           
                         </div>
       
