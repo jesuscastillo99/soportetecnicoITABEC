@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('curp');
             $table->string('correo')->unique();
-            $table->timestamps();
+            $table->timestamp('fechaRegistro')->useCurrent();
         });
     }
 

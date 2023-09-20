@@ -14,8 +14,8 @@ public function registro(Request $request)
 {
     // Validación de datos del formulario
     $request->validate([
-        'curp' => 'required|unique:curps,curp',
-        'correo' => 'required|email|unique:curps,correo',
+        'curp' => 'required|unique:usuarios,curp',
+        'correo' => 'required|email|unique:usuarios,correo',
     ]);
 
     // Crear una nueva instancia del modelo Usuario

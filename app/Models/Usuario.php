@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = 'usuarios'; // Nombre de la tabla en la base de datos
 
     protected $fillable = ['curp', 'correo'];

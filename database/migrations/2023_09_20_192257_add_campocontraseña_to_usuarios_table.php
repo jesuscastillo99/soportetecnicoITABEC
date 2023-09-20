@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,11 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('curps', function (Blueprint $table) {
-            $table->id();
-            $table->string('curp');
-            $table->string('correo')->unique();
-            $table->timestamps();
+        Schema::table('usuarios', function (Blueprint $table) {
+            $table->string('contraseña'); // Primer nuevo campo
+            
         });
     }
 
@@ -24,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('curps');
+        Schema::table('usuarios', function (Blueprint $table) {
+            //
+        });
     }
 };
