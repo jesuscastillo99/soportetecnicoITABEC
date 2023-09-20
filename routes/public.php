@@ -12,7 +12,7 @@ Route::get('/registro', function() {
     return view('layouts.registro');
 })->name('registro');
 
-Route::post('registro', [RegistroController::class, 'registro']);
+Route::post('/registro', [RegistroController::class, 'registro']);
 
 //Rutas para el login
 Route::get('/login', function() {
@@ -21,10 +21,25 @@ Route::get('/login', function() {
 
 Route::post('/login', [LoginController::class, 'login']);
 
+//Ruta exito
+Route::get('/exito', function() {
+    return view('layouts.exito');
+})->name('exito');
 
+//Rutas inicio
+Route::get('/inicio', function() {
+    return view('layouts.inicio');
+})->name('inicio');
+//Rutas logout
+Route::get('/logout', function() {
+    return view('layouts.login');
+})->name('logout');
 
+Route::post('/logout', [LoginController::class, 'logout']);
 
-
+Route::get('/error', function() {
+    return view('layouts.error');
+})->name('error');
 
 
 

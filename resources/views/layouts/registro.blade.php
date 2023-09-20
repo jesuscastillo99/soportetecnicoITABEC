@@ -35,7 +35,7 @@
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <button class="fill rounded" type="button">REGISTRARSE</button>
+                          <button class="fill rounded" type="submit">REGISTRARSE</button>
                             </button>
                         </div>
       
@@ -54,8 +54,6 @@
                       <p class="small mb-0" class="text-center">El organismo tiene como objetivos, sistematizar, integrar y coordinar como única instancia en el estado, 
                         los procesos de asignación de becas, créditos y estímulos educativos, de las diferentes instituciones educativas ya sean públicas y/o privadas, y en todos los tipos y niveles educativos, con la finalidad de mejorar la cobertura, equidad y calidad del Sistema Estatal de Becas
                       </p>
-                        <img src="{{ asset('assets/images/dir-mansur.png')}}"
-                        alt="img-dirmansur" class="img-fluid rounded mt-5" id="img-dirmansur">
                         <img src="{{ asset('assets/images/telefonos_800.png')}}"
                         alt="img-telefonos800" class="img-fluid rounded mt-5" id="img-tel800">
                         <img src="{{ asset('assets/images/telefonos-070.png')}}"

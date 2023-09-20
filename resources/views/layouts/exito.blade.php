@@ -1,5 +1,5 @@
 @extends('layouts.landing')
-@section('title', 'Inicio')
+@section('title', 'Exito')
 @section('content')
 <h1>TE REGISTRASTE</h1>
 <a href="{{ route('registro') }}">Regresar a inicio</a>

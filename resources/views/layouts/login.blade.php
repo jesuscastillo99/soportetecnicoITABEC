@@ -36,7 +36,7 @@
 
                         <div class="text-center pt-1 mb-5 pb-1">
                           <a class="text-muted" href="#">¿Has olvidado tu contraseña?</a>
-                          <button class="fill rounded" type="button">INICIAR SESIÓN</button>
+                          <button class="fill rounded" type="submit">INICIAR SESIÓN</button>
                           
                         </div>
       

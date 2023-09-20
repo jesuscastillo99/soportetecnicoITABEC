@@ -1,18 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\resources\views\auth\register;
 use Illuminate\Http\Request;
-use App\Models\Curp; // Asegúrate de importar el modelo 
+use App\Models\Usuario; // Asegúrate de importar el modelo 
 
 class RegistroController extends Controller
 {
 
 
-public function showRegistroForm()
-{
-    return view('register'); // Reemplaza 'registro' con el nombre de tu vista de registro
-}
+
 
 public function registro(Request $request)
 {
@@ -23,7 +19,7 @@ public function registro(Request $request)
     ]);
 
     // Crear una nueva instancia del modelo Usuario
-    $nuevoUsuario = new Curp;
+    $nuevoUsuario = new Usuario;
     $nuevoUsuario->curp = $request->curp;
     $nuevoUsuario->correo = $request->correo;
     $nuevoUsuario->save();
