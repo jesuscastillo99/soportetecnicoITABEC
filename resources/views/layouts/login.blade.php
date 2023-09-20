@@ -13,7 +13,7 @@
                       <div class="text-center">
                         <img src="{{ asset('assets/images/logo-itabec.png')}}"
                            alt="logo-itabec" id="img-logo">
-                        <h2 class="mt-5 mb-5 pb-1 titulo-login">Bievenido al Sistema</h2>
+                        <h2 class="mt-5 mb-5 pb-1 titulo-login">Bienvenido al Sistema</h2>
                       </div>
                       
                       <form method="POST" action="{{ route('login') }}">
@@ -21,15 +21,15 @@
                         <p class="text-center"><strong>Por favor inicia sesión con tus datos:</strong></p>
       
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="inputCurp">Curp</label>
+                          <label class="form-label" for="inputCurp">CURP:</label>
                           <input type="text" name="curp" id="inputCurp" class="form-control"
                             placeholder="ABCD1001....." />
                           
                         </div>
       
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="inputCorreo">Contraseña</label>
-                          <input type="password" name="correo" id="inputCorreo" class="form-control" 
+                          <label class="form-label" for="inputContraseña">CONTRASEÑA</label>
+                          <input type="password" name="contraseña" id="inputContraseña" class="form-control" 
                             placeholder="********"/>
                           
                         </div>

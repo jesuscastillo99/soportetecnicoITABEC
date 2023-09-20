@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\resources\views\auth\register;
 use Illuminate\Http\Request;
-use App\Models\User; // Asegúrate de importar el modelo 
+use App\Models\Curp; // Asegúrate de importar el modelo 
 
 class RegistroController extends Controller
 {
@@ -23,7 +23,7 @@ public function registro(Request $request)
     ]);
 
     // Crear una nueva instancia del modelo Usuario
-    $nuevoUsuario = new User;
+    $nuevoUsuario = new Curp;
     $nuevoUsuario->curp = $request->curp;
     $nuevoUsuario->correo = $request->correo;
     $nuevoUsuario->save();

@@ -13,23 +13,25 @@
                       <div class="text-center">
                         <img src="{{ asset('assets/images/logo-itabec.png')}}"
                            alt="logo-itabec" class="img-responsive" id="img-logo">
-                        <h4 class="mt-5 mb-5 pb-1">Bievenido al Registro </h4>
+                           <h2 class="mt-5 mb-5 pb-1 titulo-login">Bienvenido al Registro</h2>
                       </div>
                       
                       <form method="POST" action="{{ route('registro') }}">
                         @csrf
-                        <p>Por favor ingresa tus datos para el registro:</p>
+                        <p class="text-center"><strong>Regístrate con tus datos:</strong></p>
       
                         <div class="form-outline mb-4">
+                          <label class="form-label" for="inputCurp">CURP:</label>
                           <input type="text" name="curp" id="inputCurp" class="form-control"
                             placeholder="ABCD1001....." />
-                          <label class="form-label" for="inputCurp">Registra tu curp</label>
+                          
                         </div>
       
                         <div class="form-outline mb-4">
+                          <label class="form-label" for="inputCorreo">CORREO:</label>
                           <input type="email" name="correo" id="inputCorreo" class="form-control" 
                             placeholder="correo@mail.com"/>
-                          <label class="form-label" for="inputCorreo">Registra tu correo</label>
+                          
                         </div>
       
                         <div class="text-center pt-1 mb-5 pb-1">

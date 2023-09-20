@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\resources\views\auth\login;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Curp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Routing\Redirector;
@@ -19,15 +19,15 @@ class LoginController extends Controller
     // Método para procesar el inicio de sesión
     public function login(Request $request)
     {
-        // Validación de los campos 'correo' y 'contraseña'
+        // Validación de los campos 'curp' y 'correo'
         $request->validate([
-            'correo' => 'required',
-            'contraseña' => 'required|contraseña',
+            'curp' => 'required',
+            'correo' => 'required|email',
         ]);
 
-        // Obtener el usuario por 'correo' y 'contraseña'
-        $usuario = User::where('correo', $request->correo)
-            ->where('contraseña', $request->contraseña)
+        // Obtener el usuario por 'curp' y 'correo'
+        $usuario = Curp::where('curp', $request->curp)
+            ->where('correo', $request->correo)
             ->first();
 
         if ($usuario) {
@@ -35,10 +35,10 @@ class LoginController extends Controller
             Auth::login($usuario);
 
             // Autenticación exitosa
-            return redirect()->intended('/'); // Redirige al usuario a la página deseada
+            return redirect()->intended('inicio'); // Redirige al usuario a la página deseada
         }else {
             // Autenticación fallida, redirige a una vista específica
-            return redirect('/'); // Cambia 'vista_de_error' por el nombre de la vista a la que deseas redirigir en caso de error
+            return redirect('error'); // Cambia 'vista_de_error' por el nombre de la vista a la que deseas redirigir en caso de error
         }
 
         // Autenticación fallida
