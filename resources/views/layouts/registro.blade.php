@@ -12,7 +12,7 @@
       
                       <div class="text-center">
                         <img src="{{ asset('assets/images/logo-itabec.png')}}"
-                           alt="logo-itabec" id="img-logo">
+                           alt="logo-itabec" class="img-responsive" id="img-logo">
                         <h4 class="mt-5 mb-5 pb-1">Bievenido al Registro </h4>
                       </div>
                       
@@ -48,8 +48,20 @@
                   </div>
                   <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-center">
                     <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                      <h4 class="mb-4">CONÓCENOS</h4>
-                      <p class="small mb-0">El Instituto Tamaulipeco de Becas, Estímulos y Créditos Educativo (ITABEC) es un organismo público descentralizado con personalidad jurídica y patrimonio propio, adscrito sectorialmente a la Secretaría de Educación.</p>
+                      <h4 class="mb-4">OBJETIVOS</h4>
+                      <p class="small mb-0" class="text-center">El organismo tiene como objetivos, sistematizar, integrar y coordinar como única instancia en el estado, 
+                        los procesos de asignación de becas, créditos y estímulos educativos, de las diferentes instituciones educativas ya sean públicas y/o privadas, y en todos los tipos y niveles educativos, con la finalidad de mejorar la cobertura, equidad y calidad del Sistema Estatal de Becas
+                      </p>
+                        <img src="{{ asset('assets/images/dir-mansur.png')}}"
+                        alt="img-dirmansur" class="img-fluid rounded mt-5" id="img-dirmansur">
+                        <img src="{{ asset('assets/images/telefonos_800.png')}}"
+                        alt="img-telefonos800" class="img-fluid rounded mt-5" id="img-tel800">
+                        <img src="{{ asset('assets/images/telefonos-070.png')}}"
+                        alt="img-telefonos070" class="img-fluid rounded mt-5" id="img-tel070">
+                        <img src="{{ asset('assets/images/telefonos-089.png')}}"
+                        alt="img-telefonos089" class="img-fluid rounded mt-5" id="img-tel089">
+                        <img src="{{ asset('assets/images/telefonos-911.png')}}"
+                        alt="img-telefonos911" class="img-fluid rounded mt-5" id="img-tel911">
                     </div>
                   </div>
                 </div>
