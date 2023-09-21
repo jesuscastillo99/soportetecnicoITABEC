@@ -71,7 +71,7 @@ h3 {
 
 h4 {
 	font-size: 21px;
-	color: #07528d;
+	color: #ffffff;
 	margin-top: 25px;
 }
 
@@ -337,20 +337,22 @@ button:focus {
 
 /*------------------------------------------------------------------ HEADER -------------------------------------------------------------------*/
 
+
 .top-header .navbar {
 	padding: 5px 0px;
+	
 }
 
 .top-header {
     position: absolute;
     top: 0px;
     left: 0px;
+	width: 90%;
     z-index: 20;
     background-position: left;
     background-repeat: no-repeat;
     background-color: #fff;
     background-size: auto 100%;
-    width: 90%;
     margin: 0 5%;
 }
 
@@ -377,7 +379,7 @@ a.navbar-brand img {
 .top-header .navbar .navbar-collapse ul li a:hover,
 .top-header .navbar .navbar-collapse ul li a:focus {
 	background: transparent;
-	color: #d4a81e;
+	color: #A91B41;
 }
 
 .search_icon.nav-link img {
@@ -404,7 +406,7 @@ a.navbar-brand img {
 }
 
 .navbar-toggler {
-	border: 2px solid #d4a81e !important;
+	border: 2px solid #A91B41 !important;
 	border-radius: 0;
 	margin: 15px 15px;
 	padding: 8px 8px;
@@ -415,7 +417,7 @@ a.navbar-brand img {
 }
 
 .navbar-toggler span {
-	background: #d4a81e;
+	background: #A91B41;
 	display: block;
 	width: 22px;
 	height: 2px;
@@ -436,11 +438,11 @@ a.navbar-brand img {
 }
 
 .navbar-toggler:hover {
-	border: 2px solid #d4a81e;
+	border: 2px solid #A91B41;
 }
 
 .navbar-toggler:hover span {
-	background: #d4a81e;
+	background: #A91B41;
 }
 
 .tab_menu {
@@ -483,11 +485,10 @@ a.navbar-brand img {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #111;
 }
 
 .search-txt {
-	border: none;
+	border: solid #000 1px;
 	outline: none;
 	float: left;
 	padding: 0;
@@ -502,7 +503,7 @@ a.navbar-brand img {
 }
 
 .theme_color {
-	color: #d4a81e;
+	color: #A91B41;
 }
 
 
@@ -599,7 +600,7 @@ a.navbar-brand img {
 }
 
 .pogoSlider-nav-btn--selected {
-	background: #d4a81e !important;
+	background: #df2456 !important;
 }
 
 .pogoSlider--navBottom .pogoSlider-nav {
@@ -638,7 +639,7 @@ a.navbar-brand img {
 }
 
 .slide_text p {
-    color: #d4a81e;
+    color: #A91B41;
     font-size: 20px;
     font-weight: 300;
     padding-top: 0;
@@ -649,7 +650,7 @@ a.navbar-brand img {
 .contact_bt {
     width: 180px;
     height: 50px;
-    background: #d4a81e;
+    background: #A91B41;
     color: #fff;
     float: left;
     line-height: 50px;
@@ -695,7 +696,7 @@ a.navbar-brand img {
 }
 
 .tab_menu ul li:nth-child(6) {
-    background: #d4a81e;
+    background: #A91B41;
     transform: skew(-30deg);
 	color:#fff;
 }
@@ -870,7 +871,7 @@ span.icon img {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
     overflow: hidden;
-    background: #095a83;
+    background: #A81B40;
     -webkit-transition-property: color;
     transition-property: color;
     -webkit-transition-duration: 0.3s;
@@ -907,7 +908,7 @@ span.icon img {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: #070500;
+	background: #f1295e;
 	border-radius: 100%;
 	-webkit-transform: scale(0);
 	transform: scale(0);
@@ -1595,7 +1596,7 @@ p.count-text {
 	margin-right: 15px;
 	color: #fff;
 	border-radius: 100%;
-	background: #d4a81e;
+	background: #A91B41;
 }
 
 .dit-right h4 {
@@ -1638,7 +1639,7 @@ p.count-text {
 }
 
 .submit-button .btn-common {
-	background-color: #d4a81e;
+	background-color: #A91B41;
 	height: 45px;
 	line-height: 45px;
 	font-size: 14px;
@@ -1760,7 +1761,7 @@ p {
     font-size: 16px;
     font-weight: 300;
     line-height: 30px;
-    color: #4a4a49;
+    color: #000000;
 }
 
 .text_align_center {
@@ -1842,7 +1843,7 @@ p {
 }
 
 .heading_main h2 span {
-	color: #095a83;
+	color: #A81B40;
 }
 
 .heading_main p.large {
@@ -1927,7 +1928,7 @@ h3.small_heading {
 }
 
 .carousel a.carousel-control-prev {
-    background: #d4a81e;
+    background: #A91B41;
     opacity: 1;
     width: 55px;
     height: 50px;
@@ -1937,7 +1938,7 @@ h3.small_heading {
 }
 
 .carousel a.carousel-control-next {
-	background: #d4a81e;
+	background: #A91B41;
 	opacity: 1;
 	width: 50px;
 	height: 50px;
@@ -2146,7 +2147,7 @@ section.inner_banner h3 {
 }
 
 .top-header.fixed-menu .search-btn {
-	background: #111;
+	background: transparent;
 }
 
 .top-header.fixed-menu .search-btn img {
@@ -2159,10 +2160,10 @@ section.inner_banner h3 {
 	border: solid #000 1px;
 	height: 41px;
 }
-
+/*BARRA NAV*/
 .top-header.fixed-menu ul li:hover a,
 .top-header.fixed-menu ul li:focus a {
-	color: #0892fd !important;
+	color: #A81B40 !important;
 }
 
 .blog_img_popular h4 {

@@ -1,4 +1,4 @@
-@extends('layouts.landing')
+@extends('layouts.landinglogin')
 @section('title', 'Login')
 @section('content')
     <section class="h-100 gradient-form" style="background-color: #eee;">
@@ -52,7 +52,7 @@
                   <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-center">
                     <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                       <h4 class="mb-4">CONÓCENOS</h4>
-                      <p class="small mb-0" class="text-center">El Instituto Tamaulipeco de Becas, Estímulos y Créditos Educativo (ITABEC) 
+                      <p class="small mb-0 text-white" class="text-center">El Instituto Tamaulipeco de Becas, Estímulos y Créditos Educativo (ITABEC) 
                         es un organismo público descentralizado con personalidad jurídica y patrimonio propio, adscrito sectorialmente a la Secretaría de Educación.
                       </p>
                         <img src="{{ asset('assets/images/conocenos.png')}}"
