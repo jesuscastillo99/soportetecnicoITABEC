@@ -51,7 +51,7 @@
                   <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-center">
                     <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                       <h4 class="mb-4">OBJETIVOS</h4>
-                      <p class="small mb-0" class="text-center">El organismo tiene como objetivos, sistematizar, integrar y coordinar como única instancia en el estado, 
+                      <p class="small mb-0 text-white" >El organismo tiene como objetivos, sistematizar, integrar y coordinar como única instancia en el estado, 
                         los procesos de asignación de becas, créditos y estímulos educativos, de las diferentes instituciones educativas ya sean públicas y/o privadas, y en todos los tipos y niveles educativos, con la finalidad de mejorar la cobertura, equidad y calidad del Sistema Estatal de Becas
                       </p>
                         <img src="{{ asset('assets/images/telefonos_800.png')}}"

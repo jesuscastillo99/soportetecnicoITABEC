@@ -10,6 +10,7 @@ use Illuminate\Routing\Redirector;
 
 class LoginController extends Controller
 {
+    //protected $redirectTo = 'inicio';
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -36,9 +37,6 @@ class LoginController extends Controller
 
             // Autenticación exitosa
             return redirect()->intended('inicio'); // Redirige al usuario a la página deseada
-        }else {
-            // Autenticación fallida, redirige a una vista específica
-            return redirect('error'); // Cambia 'vista_de_error' por el nombre de la vista a la que deseas redirigir en caso de error
         }
 
         // Autenticación fallida

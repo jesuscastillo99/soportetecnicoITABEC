@@ -17,7 +17,7 @@ Route::post('/registro', [RegistroController::class, 'registro']);
 //Rutas para el login
 Route::get('/login', function() {
     return view('layouts.login');
-})->name('login');
+})->name('login')->middleware('guest');
 
 Route::post('/login', [LoginController::class, 'login']);
 
@@ -29,7 +29,7 @@ Route::get('/exito', function() {
 //Rutas inicio
 Route::get('/inicio', function() {
     return view('layouts.inicio');
-})->name('inicio');
+})->name('inicio')->middleware('auth');
 //Rutas logout
 Route::get('/logout', function() {
     return view('layouts.login');
@@ -40,6 +40,11 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/error', function() {
     return view('layouts.error');
 })->name('error');
+
+//Ruta solicitar crédito
+Route::get('/solicitar', function() {
+    return view('layouts.solicitarcredito');
+})->name('solicitar')
 
 
 
