@@ -44,11 +44,12 @@ Route::get('/error', function() {
 //Ruta solicitar crédito
 Route::get('/solicitar', function() {
     return view('layouts.solicitarcredito');
-})->name('solicitar')
+})->name('solicitar');
 
-
-
-
+//Ruta de noticias
+Route::get('/noticias', function() {
+    return view('layouts.noticias');
+})->name('noticias');
 
 
 

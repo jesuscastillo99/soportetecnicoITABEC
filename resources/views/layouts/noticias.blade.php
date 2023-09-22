@@ -1,15 +1,7 @@
-@extends('layouts.landing')
-@section('title', 'Inicio')
+@extends('layouts.landingsinslider')
+@section('title', 'Noticias')
 @section('content')
- <!-- LOADER -->
- <div id="preloader">
-    <div class="loader">
-        <img src="{{ asset('assets/images/loader.gif')}}" alt="gif_image" />
-    </div>
-</div>
-
- <!-- section -->
- <div class="section margin-top_50">
+<div class="section margin-top_50">
     <div class="container">
         <div class="row">
             <div class="col-md-6 layout_padding_2">
@@ -37,13 +29,5 @@
     </div>
 </div>
 <!-- end section -->
-
-<section class="centrar-seccion">
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <!-- Utiliza 'container' para centrar y 'd-flex' para establecer flexbox -->
-    <h1>Bienvenido a Mi Página Web</h1>
-    
-  </div>
-</section>
 
 @endsection

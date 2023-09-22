@@ -8,7 +8,7 @@
       <div class="card-body">
           <h5 class="card-title">¡REGISTRO EXITOSO!</h5>
           <p class="card-text">Se ha generado una contraseña que te enviamos a través de tu correo electrónico.</p>
-          <button class="fill rounded" type="button" onclick="window.location.href='{{ route('login') }}'">Iniciar sesión</button>
+          <button class="fill rounded" type="button" onclick="window.location.href='{{ route('login') }}'">Inicia Sesión</button>
       </div>
   </div>
 </div>

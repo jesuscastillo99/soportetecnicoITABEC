@@ -54,39 +54,6 @@
     </nav>
 </header>
 <!-- End header -->
-<!-- Start Banner -->
-<div class="ulockd-home-slider">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="pogoSlider" id="js-main-slider">
-                <div class="pogoSlider-slide" style="background-image:url({{ asset('assets/images/fondoTam.png')}});">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slide_text">
-                                    {{-- Aqui va texto en el slider --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pogoSlider-slide img-responsive" style="background-image:url({{ asset('assets/images/fondoTam.png')}});">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slide_text">
-                                    {{-- Aqui va texto en el slider --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- .pogoSlider -->
-        </div>
-    </div>
-</div>
-<!-- End Banner -->
 @yield('content')
 <!-- Start Footer -->
 <footer class="footer-box">
@@ -111,7 +78,7 @@
                         <ul> 
                           <li><a href="{{ route('inicio') }}">> Inicio</a></li>
                           <li><a href="#">> Acerca de</a></li>
-                          <li><a href="{{ route('login') }}">> Noticias</a></li>
+                          <li><a href="{{ route('noticias') }}">> Noticias</a></li>
                         </ul>
                      </div>
              </div>

@@ -12,7 +12,7 @@
       
                       <div class="text-center">
                         <img src="{{ asset('assets/images/logo-itabec.png')}}"
-                           alt="logo-itabec" id="img-logo">
+                           alt="logo-itabec" class="img-responsive" id="img-logo">
                         <h2 class="mt-5 mb-5 pb-1 titulo-login">Bienvenido al Sistema</h2>
                       </div>
                       

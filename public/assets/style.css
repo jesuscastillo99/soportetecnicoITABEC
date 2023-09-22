@@ -1683,7 +1683,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .footer-box {
-    background: #0b1c2c;
+    background: #A91B41;
     padding: 50px 0;
 }
 
@@ -1920,7 +1920,7 @@ h3.small_heading {
 }
 
 .margin-top_50 {
-	margin-top: 50px;
+	margin-top: 150px;
 }
 
 .margin-bottom_30 {
@@ -1996,7 +1996,7 @@ ul.social_icon li {
 }
 
 .footer_bottom {
-    background: #095a83;
+    background: #DFB974;
     padding: 15px 0;
 }
 
@@ -2042,7 +2042,7 @@ ul.social_icon li {
 }
 
 .newsletter_form button {
-    background: #e0af14;
+    background: #DFB974;
     color: #fff;
     border: none;
     font-size: 14px;
@@ -2056,7 +2056,7 @@ ul.social_icon li {
     margin-bottom: 10px;
     font-size: 22px;
     color: #fff;
-    border-bottom: solid #e0af14 2px;
+    border-bottom: solid #DFB974 2px;
     font-weight: 600;
     margin-top: 14px;
     float: right;
