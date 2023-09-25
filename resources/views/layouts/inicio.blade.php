@@ -24,7 +24,7 @@
                         estudios en los niveles Medio Superior y Superior.</p>
                     </div>
                     <div class="full">
-                       <a class="hvr-radial-out button-theme" href="#">Solicitar crédito</a>
+                       <a class="hvr-radial-out button-theme" href="{{ route('solicitar') }}">Solicitar crédito</a>
                     </div>
                 </div>
             </div>
