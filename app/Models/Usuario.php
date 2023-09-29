@@ -18,8 +18,8 @@ class Usuario extends Model implements Authenticatable
 
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'usuarios'; // Nombre de la tabla en la base de datos
+    protected $table = 'usuarioslog'; // Nombre de la tabla en la base de datos
 
-    protected $fillable = ['curp', 'correo', 'contraseña'];
+    protected $fillable = ['curp', 'correo', 'activo', 'fecha', 'act_token'];
 
 }

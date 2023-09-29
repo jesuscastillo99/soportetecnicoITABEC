@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ActivationController;
 use App\Http\Controllers\VistasController;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,6 +60,14 @@ Route::get('/form2', function() {
 Route::get('/form4', function() {
     return view('layouts-form.form4');
 })->name('form4');
+
+//Ruta para validación de correo
+Route::get('/activate/{token}', [ActivationController::class, 'activate'])->name('activate');
+
+// Route::get('/activation', function() {
+//     return view('layouts.activation');
+// })->name('activation');
+
 
 
 
