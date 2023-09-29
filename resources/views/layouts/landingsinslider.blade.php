@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="images/png" href="{{ asset('assets/images/escudotam_2023.ico')}}">
     <title>@yield('title')</title>
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -130,6 +131,7 @@
     <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{ asset('assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('assets/js/form.js')}}"></script>
     <!-- ALL PLUGINS -->
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js')}}"></script> 
     <script src="{{ asset('assets/js/jquery.pogo-slider.min.js')}}"></script>

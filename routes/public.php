@@ -51,8 +51,14 @@ Route::get('/noticias', function() {
     return view('layouts.noticias');
 })->name('noticias');
 
+//Rutas formulario
+Route::get('/form2', function() {
+    return view('layouts-form.form2');
+})->name('form2');
 
-
+Route::get('/form4', function() {
+    return view('layouts-form.form4');
+})->name('form4');
 
 
 
