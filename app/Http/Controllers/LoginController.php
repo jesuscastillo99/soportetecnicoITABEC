@@ -29,6 +29,7 @@ class LoginController extends Controller
         // Obtener el usuario por 'curp' y 'correo'
         $usuario = Usuario::where('curp', $request->curp)
             ->where('correo', $request->correo)
+            ->where('activo', 1)
             ->first();
 
         if ($usuario) {

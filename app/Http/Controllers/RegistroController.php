@@ -51,16 +51,17 @@ public function registro(Request $request)
         'correo' => 'required|email|unique:usuarioslog,correo',
     ]);
 
+    $activationToken = Str::random(40);
     // Crea una nueva instancia del modelo Usuario
     $nuevoUsuario = new Usuario;
     $nuevoUsuario->curp = $request->curp;
     $nuevoUsuario->correo = $request->correo;
     $nuevoUsuario->activo = 0; // Establece 'activo' en 0 (inactivo) por defecto
-    $nuevoUsuario->act_token = 0; // Genera un token de activación
+    $nuevoUsuario->act_token = $activationToken; // Genera un token de activación
 
     $nuevoUsuario->save();
 
-    $activationToken = Str::random(40);
+    
     // Envía el correo de activación
     Mail::to($nuevoUsuario->correo)->send(new ActivationMail($nuevoUsuario, $activationToken));
 

@@ -32,10 +32,10 @@ class ActivationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Activación de cuenta')
+        return $this->subject('Activación de cuenta del ITABEC')
                     ->html('<p>Haga clic en el siguiente enlace para activar su cuenta:</p>'.
                            '<a href="'.$this->activationLink.'">Activar Cuenta</a>'.
-                           '<p>¡Gracias por unirse a nosotros!</p>');
+                           '<p>¡Serás redirigido al formulario al dar click al enlace!</p>');
     }
 }
 
