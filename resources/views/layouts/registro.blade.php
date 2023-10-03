@@ -51,7 +51,11 @@
                         </div>
       
                       </form>
-      
+                      @if(isset($errorMessage))
+                          <div class="alert alert-danger">
+                              {{ $errorMessage }}
+                          </div>
+                      @endif
                     </div>
                   </div>
                   <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-center">
