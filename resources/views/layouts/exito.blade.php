@@ -7,7 +7,7 @@
       <img src="{{ asset('assets/images/exito.png')}}" class="card-img-top" alt="img_exito">
       <div class="card-body">
           <h5 class="card-title">¡REGISTRO EXITOSO!</h5>
-          <p class="card-text">Se ha generado una contraseña que te enviamos a través de tu correo electrónico.</p>
+          <p class="card-text">Se ha generado un enlace que te enviamos a través de tu correo electrónico para que actives tu cuenta.</p>
           <button class="fill rounded" type="button" onclick="window.location.href='{{ route('login') }}'">Inicia Sesión</button>
       </div>
   </div>

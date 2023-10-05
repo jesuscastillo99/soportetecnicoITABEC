@@ -40,7 +40,7 @@ public function registro(Request $request)
         if ($response->getStatusCode() == 200) {
             $xmlResponse = $response->getBody()->getContents();
             
-            // Procesar la respuesta XML y guardar en "catpersonas"
+            // Procesar la respuesta XML y guardar en "personas"
             $xml = new SimpleXMLElement($xmlResponse);
             $curp = $xml->curp;
             $paterno = $xml->paterno;
@@ -48,10 +48,11 @@ public function registro(Request $request)
             $nombre = $xml->nombre;
             $sexo = $xml->sexo;
             $fn = $xml->fn;
-
+            
             if (empty($xmlResponse) || $xml->curp == "") {
-                $errorMessage = "Tu CURP no fue encontrada.";
-                return redirect()->route('registro')->with('error', $errorMessage);
+                $errorMessage = "Tu CURP no fue encontrada en el sistema.";
+                // return redirect()->route('registro')->with('error', $errorMessage);
+                return view('layouts.registro', ['errorMessage' => $errorMessage]);
             } else {
                 // Crea una nueva instancia del modelo Persona
                 $nuevaPersona = new Persona;

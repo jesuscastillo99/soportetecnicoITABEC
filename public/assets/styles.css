@@ -111,3 +111,7 @@ button {
   color: white;
   background-color: #cf2037;
 }
+
+.reducir-ancho {
+  width: auto;
+}

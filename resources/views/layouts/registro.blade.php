@@ -49,16 +49,15 @@
                           <p class="mb-0 me-2">¿Ya tienes cuenta?</p>
                           <button class="fill rounded" type="button" onclick="window.location.href='{{ route('login') }}'">Inicia sesión</button>
                         </div>
-      
-                      </form>
-                      @if(isset($errorMessage))
+                        @if(isset($errorMessage))
                           <div class="alert alert-danger">
                               {{ $errorMessage }}
                           </div>
-                      @endif
+                        @endif
+                      </form>
                     </div>
                   </div>
-                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-center">
+                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2 text-center rounded reducir-ancho">
                     <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                       <h4 class="mb-4">OBJETIVOS</h4>
                       <p class="small mb-0 text-white" >El organismo tiene como objetivos, sistematizar, integrar y coordinar como única instancia en el estado, 
