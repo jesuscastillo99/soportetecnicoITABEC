@@ -4,7 +4,7 @@
 
 <div class="section margin-top_50">
     <div class="container mb-4 bg-cremita pt-3 rounded">
-      <form method="POST" action="{{ route('form1') }}">
+      <form method="POST" action="{{ route('form1-post') }}">
         <div class="row">
             <div class="col-md-12 text-center">
               <h2 class="titulo-form"><strong>Datos Personales</strong><h2>
@@ -73,8 +73,6 @@
                {{-- Campo vacio --}}
               </div>
             </div>
-
-       
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h2 class="titulo-form"><strong>Lugar de Nacimiento</strong><h2>
@@ -82,10 +80,11 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="estado_nac">Estado donde nació:</label>
-                      <select class="form-control" id="estado_nac" name="estado_nac">
-                        <option value="seleccione">Seleccione:</option>
-                        <option value="prueba1">Prueba1</option>
-                        <option value="prueba2">Prueba2</option>
+                      <select class="form-control" id="estado" name="estados">
+                          <option value="">Selecciona un estado</option>
+                          @foreach($estados as $IdEstado => $NombreEstado)
+                              <option value="{{ $IdEstado }}">{{ $NombreEstado }}</option>
+                          @endforeach
                       </select>
                     </div>
                   </div>

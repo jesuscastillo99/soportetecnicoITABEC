@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Estado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class Form1Controller extends Controller
+class UbicacionController extends Controller
 {
-    public function form1Registro(Request $request){
-
-    }
-    
     public function obtenerEstados()
     {
         // Obtén los estados desde la tabla CatEstado
