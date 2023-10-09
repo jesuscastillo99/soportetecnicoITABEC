@@ -104,6 +104,7 @@
 <!-- end section -->
 <div class="section mt-3">
     <div class="container mb-2 bg-cremita pt-3 rounded">
+      <form method="POST" action="{{ route('form2-post') }}">
         <div class="row">
             <div class="col-md-12 text-center">
               <h2 class="titulo-form"><strong>Otro Domicilio</strong><h2>
@@ -199,7 +200,8 @@
                   <button type="submit" class="boton btn-form">Guardar datos</button>
                 </div>
             </div>
-        </div> 
+        </form>
+      </div> 
     </div>
 </div>
 <!-- end section -->

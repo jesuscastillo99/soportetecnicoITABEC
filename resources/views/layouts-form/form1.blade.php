@@ -50,8 +50,6 @@
                 </div>
               </div>
             </div>
-
-         
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -66,7 +64,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="correo_elec">Correo Electrónico (Obligatorio):</label>
-                  <input class="form-control" id="correo_elec" name="correo_elec">
+                  <input type="email" class="form-control" id="correo_elec" name="correo_elec">
                 </div>
               </div>
               <div class="col-md-4">
@@ -80,31 +78,27 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="estado_nac">Estado donde nació:</label>
-                      <select class="form-control" id="estado" name="estados">
-                          <option value="">Selecciona un estado</option>
-                          @foreach($estados as $IdEstado => $NombreEstado)
-                              <option value="{{ $IdEstado }}">{{ $NombreEstado }}</option>
-                          @endforeach
-                      </select>
+                      <select class="form-control" id="estado" name="estado">
+                        <option value="">Selecciona un estado</option>
+                        @foreach($estados as $IdEstado => $NombreEstado)
+                            <option value="{{ $IdEstado }}">{{ $NombreEstado }}</option>
+                        @endforeach
+                    </select>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="municipio_nac">Municipio donde nació:</label>
-                      <select class="form-control" id="municipio_nac" name="municipio_nac">
-                        <option value="seleccione">Seleccione:</option>
-                        <option value="prueba1">Prueba1</option>
-                        <option value="prueba2">Prueba2</option>
+                      <select class="form-control" id="municipio" name="municipio">
+                        <option value="">Selecciona un municipio</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="localidad_nac">Localidad donde nació:</label>
-                      <select class="form-control" id="localidad_nac" name="localidad_nac">
-                        <option value="seleccione">Seleccione:</option>
-                        <option value="prueba1">Prueba1</option>
-                        <option value="prueba2">Prueba2</option>
+                      <select class="form-control" id="localidad" name="localidad">
+                        <option value="">Selecciona una localidad</option>
                       </select>
                     </div>
                   </div>
@@ -116,8 +110,8 @@
                       <label for="estado_civil">Estado Civil:</label>
                       <select class="form-control" id="estado_civil" name="estado_civil">
                         <option value="seleccione">Seleccione:</option>
-                        <option value="prueba1">Soltero</option>
-                        <option value="prueba2">Casado</option>
+                        <option value="1">Soltero(a)</option>
+                        <option value="0">Casado(a)</option>
                       </select>
                     </div>
                   </div>
@@ -126,18 +120,21 @@
                       <label for="trabjas_p">¿Trabajas?</label>
                       <select class="form-control" id="trabajas_p" name="trabajas_p">
                         <option value="seleccione">Seleccione:</option>
-                        <option value="prueba1">No</option>
-                        <option value="prueba2">Si</option>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
                       </select>
                     </div>
                   </div>
               </div>
-            <div class="row">
-              <div class="col-md-12 text-right mb-3">
-                <button type="submit" class="boton btn-form">Guardar datos</button>
-              </div>
-            </div>
       </form>
+      <div class="row mt-4">
+        <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
+          <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form0') }}'">Regresar</button>
+        </div>
+        <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
+          <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form2') }}'">Continuar</button>
+        </div>
+      </div>
     </div>
 </div>
 

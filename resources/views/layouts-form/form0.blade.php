@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5 class="card-title">¡ATENCIÓN!</h5>
                 <p class="card-text">Antes de iniciar con el formulario verifica que los datos que ingreses sean los correctos.</p>
-                <button class="fill rounded" type="button" onclick="window.location.href='{{ route('form1') }}'">Iniciar formulario</button>
+                <button class="fill rounded" type="button" onclick="window.location.href='{{ route('form1-formulario') }}'">Iniciar formulario</button>
             </div>
         </div>
       </div>

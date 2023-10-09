@@ -133,6 +133,8 @@
     <script src="{{ asset('assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/js/form.js')}}"></script>
+    <script src="{{ asset('assets/js/estados.js')}}"></script>
+    <script src="{{ asset('assets/js/municipios.js')}}"></script>
     <!-- ALL PLUGINS -->
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js')}}"></script> 
     <script src="{{ asset('assets/js/jquery.pogo-slider.min.js')}}"></script>
