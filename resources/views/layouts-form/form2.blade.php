@@ -148,7 +148,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="codigo_postal">Codigo Postal:</label>
-                  <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5)">
+                  <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" value="{{ old('codigo_postal') }}" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5)">
                 </div>
               </div>
             </div>
@@ -179,28 +179,40 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="estado">Estado:</label>
-                  <input type="text" class="form-control" id="estado" name="estado" value="San Luis Potosí" readonly>
+                    <select class="form-control" id="estado2" name="estado2">
+                      <option value="">Selecciona un estado</option>
+                        @foreach($estados as $IdEstado => $NombreEstado)
+                            <option value="{{ $IdEstado }}">{{ $NombreEstado }}</option>
+                        @endforeach 
+                    </select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="municipio">Municipio:</label>
-                  <input type="text" class="form-control" id="municipio" name="municipio" value="Cd. Valles" readonly>
+                  <select class="form-control" id="municipio2" name="municipio2">
+                    <option value="">Selecciona un municipio</option>
+                  </select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="localidad">Localidad:</label>
-                  <input type="text" class="form-control" id="localidad" name="localidad" value="Cd. Valles" readonly>
+                    <select class="form-control" id="localidad2" name="localidad2">
+                      <option value="">Selecciona una localidad</option>
+                    </select>
                 </div>
               </div> 
             </div>
-            <div class="row">
-                <div class="col-md-12 text-right mb-3">
-                  <button type="submit" class="boton btn-form">Guardar datos</button>
-                </div>
-            </div>
         </form>
+        <div class="row mt-4">
+          <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
+            <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form1-formulario') }}'">Regresar</button>
+          </div>
+          <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
+            <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form2-formulario') }}'">Continuar</button>
+          </div>
+        </div>
       </div> 
     </div>
 </div>

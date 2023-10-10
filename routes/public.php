@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ActivationController;
 use App\Http\Controllers\DatosController;
 use App\Http\Controllers\Form1Controller;
+use App\Http\Controllers\Form2Controller;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VistasController;
@@ -64,17 +65,19 @@ Route::get('/form0', function() {
 Route::get('/form1-formulario', [Form1Controller::class, 'index'])->name('form1-formulario')->middleware('auth');
 Route::get('/form1-formulario/E/{estado}', [Form1Controller::class, 'cargarMunicipios'])->middleware('auth');
 Route::get('/form1-formulario/M/{municipio}', [Form1Controller::class, 'cargarLocalidades'])->middleware('auth');
-Route::post('/form1Registro', [FormsController::class, 'form1Registro'])->name('form1-post')->middleware('auth');
+Route::post('/form1-formulario', [FormsController::class, 'form1Registro'])->name('form1-post')->middleware('auth');
 
 
 
 //Rutas formulario 2
-Route::get('/form2', function() {
-    return view('layouts-form.form2');
-})->name('form2');
+Route::get('/form2-formulario', [Form2Controller::class, 'index'])->name('form2-formulario')->middleware('auth');
+Route::get('/form2-formulario/E/{estado}', [Form2Controller::class, 'cargarMunicipios'])->middleware('auth');
+Route::get('/form2-formulario/M/{municipio}', [Form2Controller::class, 'cargarLocalidades'])->middleware('auth');
+Route::post('/form2Registro', [FormsController::class, 'form2Registro'])->name('form2-post')->middleware('auth');
 
-Route::post('/form2Registro', [Form2Controller::class, 'form2Registro'])->name('form2-post')->middleware('auth');
 
+
+//Rutas formulario 4
 Route::get('/form4', function() {
     return view('layouts-form.form4');
 })->name('form4');

@@ -22,7 +22,7 @@
       
                         <div class="form-outline mb-4">
                           <label class="form-label" for="inputCurp">CURP:</label>
-                          <input type="text" name="curp" id="inputCurp" class="form-control"
+                          <input type="text" name="curp" id="inputCurp" value="{{ old('curp') }}" class="form-control"
                             placeholder="" />
                             @error('curp')
                             <p class="text-danger">{{ $message }}</p>
@@ -32,7 +32,7 @@
       
                         <div class="form-outline mb-4">
                           <label class="form-label" for="inputCorreo">CORREO:</label>
-                          <input type="email" name="correo" id="inputCorreo" class="form-control" 
+                          <input type="email" name="correo" id="inputCorreo" value="{{ old('correo') }}" class="form-control" 
                             placeholder=""/>
                             @error('correo')
                             <p class="text-danger">{{ $message }}</p>
