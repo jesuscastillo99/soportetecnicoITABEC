@@ -79,7 +79,9 @@
                       <select class="form-control" id="estado" name="estado">
                         <option value="">Selecciona un estado</option>
                         @foreach($estados as $IdEstado => $NombreEstado)
-                        <option value="{{ $IdEstado }}" {{ old('estado') == $IdEstado ? 'selected' : '' }}>{{ $NombreEstado }}</option>
+                            <option value="{{ $IdEstado }}" {{ ($nombreEstado2 == $NombreEstado) ? 'selected' : '' }}>
+                                {{ $NombreEstado }}
+                            </option>
                         @endforeach
                       </select>
                       @error('estado')
@@ -92,6 +94,7 @@
                       <label for="municipio_nac">Municipio donde nació:</label>
                         <select class="form-control" id="municipio" name="municipio">
                           <option value="">Selecciona un municipio</option>
+                          <option value="{{ $nombreMunicipio }}" selected>{{ $nombreMunicipio }}</option>
                         </select>
                         @error('municipio')
                         <p class="text-danger">{{ $message }}</p>
@@ -103,6 +106,7 @@
                       <label for="localidad_nac">Localidad donde nació:</label>
                         <select class="form-control" id="localidad" name="localidad">
                           <option value="">Selecciona una localidad</option>
+                          <option value="{{ $datosPersona->idlocalidad }}" selected>{{ $nombreLocalidad }}</option>
                         </select>
                         @error('localidad')
                         <p class="text-danger">{{ $message }}</p>
@@ -116,8 +120,8 @@
                       <label for="estado_civil">Estado Civil:</label>
                       <select class="form-control" id="estado_civil" name="estado_civil">
                         <option value="seleccione">Seleccione:</option>
-                        <option value="0" {{ old('estado_civil') == '0' ? 'selected' : '' }}>Soltero(a)</option>
-                        <option value="1" {{ old('estado_civil') == '1' ? 'selected' : '' }}>Casado(a)</option>
+                        <option value="0" {{ old('estado_civil', $datosPersona->estadoCivil) == '0' ? 'selected' : '' }}>Soltero(a)</option>
+                    <option value="1" {{ old('estado_civil', $datosPersona->estadoCivil) == '1' ? 'selected' : '' }}>Casado(a)</option>
                       </select>
                       @error('estado_civil')
                       <p class="text-danger">{{ $message }}</p>

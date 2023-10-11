@@ -19,16 +19,37 @@ class Form1Controller extends Controller
 
         // Obtener los datos de la persona desde la tabla "personas"
         $datosPersona = Persona::where('curp', $usuario->curp)
-            ->select('curp', 'paterno', 'materno', 'nombre', 'sexo', 'fn') // Selecciona los campos que necesitas
+            ->select('curp', 'paterno', 'materno', 'nombre', 'sexo', 'fn', 'idlocalidad', 'estadoCivil') // Selecciona los campos que necesitas
             ->first(); // Obtén la primera coincidencia (puede haber solo una)
 
         //Enviando datos al select    
         $estados = Estado::pluck('NombreEstado', 'IdEstado');
 
+        //función para cargar estado,municipio y localidad
         
-        // Pasar los datos a la vista
-        return view('layouts-form.form1', ['datosPersona' => $datosPersona, 'estados' => $estados]);
+        $curpUser=$usuario->curp;
+        $persona = Persona::where('curp', $curpUser)->first();
+        $idLocalidad = $persona->idlocalidad;
+        $localidad = DB::table('Catlocalidades')
+            ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
+            ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
+            ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
+            ->where('Catlocalidades.IdLocalidad', $idLocalidad)
+            ->first();
+
+        
+            $nombreLocalidad = $localidad->Localidad;
+            $nombreMunicipio = $localidad->NombreMunicipio;
+            $nombreEstado2 = $localidad->NombreEstado;
+            return view('layouts-form.form1', 
+            ['datosPersona' => $datosPersona, 
+            'estados' => $estados, 
+            'nombreLocalidad' => $nombreLocalidad,
+            'nombreMunicipio' => $nombreMunicipio,
+            'nombreEstado2' => $nombreEstado2]);
+    
     }
+
     public function cargarMunicipios($estado)
     {
         // Consulta los municipios relacionados con el estado
@@ -52,26 +73,26 @@ class Form1Controller extends Controller
         $usuario = Auth::user();
         $idPersona = $usuario->id;
         $idLocalidad = DB::table('personas')
-        ->where('id', $idPersona) // Reemplaza $personaId con el ID de la persona que deseas consultar
+        ->where('id', $idPersona) 
         ->value('idlocalidad');
 
         $localidad = DB::table('Catlocalidades')
             ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
             ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
-            ->join('CatEstados', 'CatMunicipios.IdEstado', '=', 'CatEstados.IdEstado')
+            ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
             ->where('Catlocalidades.IdLocalidad', $idLocalidad)
             ->first();
 
         if ($localidad) {
             $nombreLocalidad = $localidad->Localidad;
             $nombreMunicipio = $localidad->NombreMunicipio;
-            $nombreEstado = $localidad->NombreEstado;
+            $nombreEstado2 = $localidad->NombreEstado;
 
             // Pasar las variables a la vista
             return view('layouts-form.form1', [
                 'nombreLocalidad' => $nombreLocalidad,
                 'nombreMunicipio' => $nombreMunicipio,
-                'nombreEstado' => $nombreEstado
+                'nombreEstado2' => $nombreEstado2
             ]);
         } else {
             // Manejar el caso donde no se encontró la localidad.

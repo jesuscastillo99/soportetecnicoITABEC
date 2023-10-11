@@ -205,14 +205,6 @@
               </div> 
             </div>
         </form>
-        <div class="row mt-4">
-          <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
-            <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form1-formulario') }}'">Regresar</button>
-          </div>
-          <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
-            <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form2-formulario') }}'">Continuar</button>
-          </div>
-        </div>
       </div> 
     </div>
 </div>
@@ -316,6 +308,14 @@
             </div>
         </div> 
     </div>
+    <div class="row mt-4 pl-5 pr-5">
+      <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
+        <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form1-formulario') }}'">Regresar</button>
+      </div>
+      <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
+        <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form2-formulario') }}'">Siguiente</button>
+      </div>
+      </div>
 </div>
 <!-- end section -->
 @endsection
