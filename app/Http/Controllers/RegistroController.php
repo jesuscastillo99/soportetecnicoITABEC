@@ -50,7 +50,14 @@ class RegistroController extends Controller
                 // Crea una nueva instancia del modelo Persona
                 $nuevaPersona = new Persona;
                 $nuevaPersona->curp = $xml->curp;
-                // Resto de campos de persona aquí...
+                $nuevaPersona->correo = $request->correo;
+                $nuevaPersona->paterno = $xml->paterno;
+                $nuevaPersona->materno = $xml->materno;
+                $nuevaPersona->nombre = $xml->nombre;
+                $nuevaPersona->sexo = $xml->sexo;
+                $nuevaPersona->fn = $xml->fn;
+                $nuevaPersona->idlocalidad = '';
+                $nuevaPersona->estadoCivil = '';
                 $nuevaPersona->save();
     
                 // Crea una nueva instancia del modelo Usuario

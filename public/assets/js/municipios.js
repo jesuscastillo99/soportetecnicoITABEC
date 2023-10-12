@@ -26,7 +26,7 @@ document.getElementById('municipio').addEventListener('change', function() {
             });
     }
 });
-
+//CODIGO PARA EL FORMULARIO 2
 document.getElementById('municipio2').addEventListener('change', function() {
     var municipioSeleccionado = this.value; // Obtiene el valor seleccionado del estado
     var localidadSelect = document.getElementById('localidad2');

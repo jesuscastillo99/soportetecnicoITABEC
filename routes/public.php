@@ -65,7 +65,6 @@ Route::get('/form0', function() {
 Route::get('/form1-formulario', [Form1Controller::class, 'index'])->name('form1-formulario')->middleware('auth');
 Route::get('/form1-formulario/E/{estado}', [Form1Controller::class, 'cargarMunicipios'])->middleware('auth');
 Route::get('/form1-formulario/M/{municipio}', [Form1Controller::class, 'cargarLocalidades'])->middleware('auth');
-//Route::get('/form1-formulario/cargar', [Form1Controller::class, 'mostrarLocalidad'])->middleware('auth');
 Route::post('/form1-formulario', [FormsController::class, 'form1Registro'])->name('form1-post')->middleware('auth');
 
 
@@ -82,14 +81,6 @@ Route::post('/form2Registro', [FormsController::class, 'form2Registro'])->name('
 Route::get('/form4', function() {
     return view('layouts-form.form4');
 })->name('form4');
-
-
-
-
-
-
-
-
 
 
 

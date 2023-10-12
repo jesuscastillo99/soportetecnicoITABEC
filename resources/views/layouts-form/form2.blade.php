@@ -179,7 +179,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="estado">Estado:</label>
-                    <select class="form-control" id="estado2" name="estado2">
+                    <select class="form-control" id="estado3" name="estado3">
                       <option value="">Selecciona un estado</option>
                         @foreach($estados as $IdEstado => $NombreEstado)
                             <option value="{{ $IdEstado }}">{{ $NombreEstado }}</option>
@@ -190,7 +190,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="municipio">Municipio:</label>
-                  <select class="form-control" id="municipio2" name="municipio2">
+                  <select class="form-control" id="municipio3" name="municipio3">
                     <option value="">Selecciona un municipio</option>
                   </select>
                 </div>
@@ -198,7 +198,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="localidad">Localidad:</label>
-                    <select class="form-control" id="localidad2" name="localidad2">
+                    <select class="form-control" id="localidad3" name="localidad3">
                       <option value="">Selecciona una localidad</option>
                     </select>
                 </div>
@@ -286,7 +286,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="estado">Estado:</label>
-                  <select class="form-control" id="estado2" name="estado2">
+                  <select class="form-control" id="estado3" name="estado3">
                     <option value="">Selecciona un estado</option>
                       @foreach($estados as $IdEstado => $NombreEstado)
                           <option value="{{ $IdEstado }}">{{ $NombreEstado }}</option>
@@ -297,7 +297,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="municipio">Municipio:</label>
-                <select class="form-control" id="municipio2" name="municipio2">
+                <select class="form-control" id="municipio3" name="municipio3">
                   <option value="">Selecciona un municipio</option>
                 </select>
               </div>
@@ -305,7 +305,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="localidad">Localidad:</label>
-                  <select class="form-control" id="localidad2" name="localidad2">
+                  <select class="form-control" id="localidad3" name="localidad3">
                     <option value="">Selecciona una localidad</option>
                   </select>
               </div>
