@@ -22,7 +22,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="fecha_nac">Fecha de Nacimiento:</label>
-                  <input type="text" class="form-control" id="fecha_nac" name="fecha_nac" value="{{ old('fecha_nac', $datosPersona->fn) }}" readonly>
+                  <input type="text" class="form-control" id="fecha_nac" name="fecha_nac" value="{{ old('fecha_nac', $datosPersona->fechanac) }}" readonly>
                 </div>
               </div>
               <div class="col-md-4">
@@ -30,8 +30,8 @@
                   <label for="sexo">Sexo:</label>
                   <select class="form-control" id="sexo" name="sexo">
                     <option value="3">Seleccione:</option>
-                    <option value="H" {{ old('sexo', $datosPersona->sexo) == 'H' ? 'selected' : '' }}>Masculino</option>
-                    <option value="M" {{ old('sexo', $datosPersona->sexo) == 'M' ? 'selected' : '' }}>Femenino</option>
+                    <option value="1" {{ old('sexo', $datosPersona->sexo) == '1' ? 'selected' : '' }}>Masculino</option>
+                    <option value="0" {{ old('sexo', $datosPersona->sexo) == '0' ? 'selected' : '' }}>Femenino</option>
                   </select>
                   @error('sexo')
                   <p class="text-danger">{{ $message }}</p>
@@ -106,7 +106,7 @@
                       <label for="localidad_nac">Localidad donde nació:</label>
                         <select class="form-control" id="localidad" name="localidad">
                           <option value="">Selecciona una localidad</option>
-                          <option value="{{ $datosPersona->idlocalidad }}" selected>{{ $nombreLocalidad }}</option>
+                          <option value="{{ $datosPersona->locnac }}" selected>{{ $nombreLocalidad }}</option>
                         </select>
                         @error('localidad')
                         <p class="text-danger">{{ $message }}</p>

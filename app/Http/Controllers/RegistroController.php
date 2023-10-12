@@ -15,6 +15,8 @@ use Illuminate\Support\Str;
 use App\Mail\ActivationMail;
 use GuzzleHttp\Client;
 use SimpleXMLElement;
+use Illuminate\Support\Carbon;
+
 
 
 class RegistroController extends Controller
@@ -49,14 +51,20 @@ class RegistroController extends Controller
     
                 // Crea una nueva instancia del modelo Persona
                 $nuevaPersona = new Persona;
+                $nuevaPersona->rfc = '';
                 $nuevaPersona->curp = $xml->curp;
                 $nuevaPersona->correo = $request->correo;
                 $nuevaPersona->paterno = $xml->paterno;
                 $nuevaPersona->materno = $xml->materno;
                 $nuevaPersona->nombre = $xml->nombre;
-                $nuevaPersona->sexo = $xml->sexo;
-                $nuevaPersona->fn = $xml->fn;
-                $nuevaPersona->idlocalidad = '';
+                if ($xml->sexo == 'H') {
+                    $nuevaPersona->sexo = 1; // Hombre
+                } elseif ($xml->sexo == 'M') {
+                    $nuevaPersona->sexo = 0; // Mujer
+                }
+                $nuevaPersona->fechanac = Carbon::createFromFormat('d/m/Y', $xml->fn)->toDateString();
+                $nuevaPersona->locnac = '';
+                $nuevaPersona->fechaRegistro = now();
                 $nuevaPersona->estadoCivil = '';
                 $nuevaPersona->save();
     

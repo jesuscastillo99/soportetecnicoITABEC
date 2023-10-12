@@ -19,7 +19,7 @@ class Form1Controller extends Controller
 
         // Obtener los datos de la persona desde la tabla "personas"
         $datosPersona = Persona::where('curp', $usuario->curp)
-            ->select('curp', 'paterno', 'materno', 'nombre', 'sexo', 'fn', 'idlocalidad', 'estadoCivil') // Selecciona los campos que necesitas
+            ->select('curp', 'paterno', 'materno', 'nombre', 'sexo', 'fechanac', 'locnac', 'estadoCivil') // Selecciona los campos que necesitas
             ->first(); // Obtén la primera coincidencia (puede haber solo una)
 
         //Enviando datos al select    
@@ -29,7 +29,7 @@ class Form1Controller extends Controller
         
         $curpUser=$usuario->curp;
         $persona = Persona::where('curp', $curpUser)->first();
-        $idLocalidad = $persona->idlocalidad;
+        $idLocalidad = $persona->locnac;
         $localidad = DB::table('Catlocalidades')
             ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
             ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
@@ -72,9 +72,9 @@ class Form1Controller extends Controller
     {
         $usuario = Auth::user();
         $idPersona = $usuario->id;
-        $idLocalidad = DB::table('personas')
-        ->where('id', $idPersona) 
-        ->value('idlocalidad');
+        $idLocalidad = DB::table('catpersonas')
+        ->where('idpersona', $idPersona) 
+        ->value('locnac');
 
         $localidad = DB::table('Catlocalidades')
             ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
