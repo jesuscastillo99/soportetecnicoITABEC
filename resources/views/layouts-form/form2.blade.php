@@ -57,29 +57,43 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="estado">Estado:</label>
-                  <select class="form-control" id="estado2" name="estado2">
+                  <select class="form-control" id="estado" name="estado">
                     <option value="">Selecciona un estado</option>
-                      @foreach($estados as $IdEstado => $NombreEstado)
-                          <option value="{{ $IdEstado }}">{{ $NombreEstado }}</option>
-                      @endforeach 
+                    @foreach($estados as $IdEstado => $NombreEstado)
+                            <option value="{{ $IdEstado }}" {{ ($nombreEstado2 == $NombreEstado) ? 'selected' : '' }}>
+                                {{ $NombreEstado }}
+                            </option>
+                    @endforeach
                   </select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="municipio">Municipio:</label>
-                <select class="form-control" id="municipio2" name="municipio2">
+                <select class="form-control" id="municipio" name="municipio">
                   <option value="">Selecciona un municipio</option>
+                  <option value="{{ $nombreMunicipio ?: '' }}" selected>
+                    {{ $nombreMunicipio ?: 'Selecciona un municipio' }}
+                </option>
                 </select>
+                <script>
+                  cargarMunicipios('estado', 'municipio');
+                </script> 
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="localidad">Localidad:</label>
-                  <select class="form-control" id="localidad2" name="localidad2">
+                <select class="form-control" id="localidad" name="localidad">
                     <option value="">Selecciona una localidad</option>
-                  </select>
-              </div>
+                    @isset($datosDomicilio1)
+                        <option value="{{ $datosDomicilio1->idlocalidad }}" selected>{{ $nombreLocalidad }}</option>
+                    @endisset
+                </select>
+                <script>
+                  cargarLocalidades('municipio', 'localidad');
+                </script> 
+            </div>
             </div> 
           </div>
           <div class="row mt-4">
@@ -152,10 +166,10 @@
                   <select class="form-control" id="estado2" name="estado2">
                     <option value="">Selecciona un estado</option>
                     @foreach($estados as $IdEstado => $NombreEstado)
-                      <option value="{{ $IdEstado }}" {{ ($NombreEstado == $NombreEstado) ? 'selected' : '' }}>
-                          {{ $NombreEstado }}
-                      </option>
-                    @endforeach 
+                    <option value="{{ $IdEstado }}" {{ ($nombreEstado2 == $NombreEstado) ? 'selected' : '' }}>
+                        {{ $NombreEstado }}
+                    </option>
+                    @endforeach
                   </select>
               </div>
             </div>
@@ -164,7 +178,12 @@
                 <label for="municipio">Municipio:</label>
                 <select class="form-control" id="municipio2" name="municipio2">
                   <option value="">Selecciona un municipio</option>
+                  <option value="{{ $nombreMunicipio ?: '' }}" selected>
+                    {{ $nombreMunicipio ?: 'Selecciona un municipio' }}
                 </select>
+                <script>
+                  cargarMunicipios('estado2', 'municipio2');
+                </script> 
               </div>
             </div>
             <div class="col-md-4">
@@ -172,7 +191,13 @@
                 <label for="localidad">Localidad:</label>
                   <select class="form-control" id="localidad2" name="localidad2">
                     <option value="">Selecciona una localidad</option>
+                    @isset($datosDomicilio1)
+                        <option value="{{ $datosDomicilio1->idlocalidad }}" selected>{{ $nombreLocalidad }}</option>
+                    @endisset
                   </select>
+                  <script>
+                    cargarLocalidades('municipio2', 'localidad2');
+                  </script> 
               </div>
             </div> 
           </div>
@@ -242,29 +267,42 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="estado">Estado:</label>
-                  <select class="form-control" id="estado2" name="estado2">
+                <label for="estado3">Estado:</label>
+                  <select class="form-control" id="estado3" name="estado3">
                     <option value="">Selecciona un estado</option>
-                      @foreach($estados as $IdEstado => $NombreEstado)
-                          <option value="{{ $IdEstado }}">{{ $NombreEstado }}</option>
-                      @endforeach 
+                    @foreach($estados as $IdEstado => $NombreEstado)
+                    <option value="{{ $IdEstado }}" {{ ($nombreEstado2 == $NombreEstado) ? 'selected' : '' }}>
+                        {{ $NombreEstado }}
+                    </option>
+                    @endforeach
                   </select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="municipio">Municipio:</label>
-                <select class="form-control" id="municipio2" name="municipio2">
+                <label for="municipio3">Municipio:</label>
+                <select class="form-control" id="municipio3" name="municipio3">
                   <option value="">Selecciona un municipio</option>
+                  <option value="{{ $nombreMunicipio ?: '' }}" selected>
+                    {{ $nombreMunicipio ?: 'Selecciona un municipio' }}
                 </select>
+                <script>
+                  cargarMunicipios('estado3', 'municipio3');
+                </script> 
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="localidad">Localidad:</label>
-                  <select class="form-control" id="localidad2" name="localidad2">
+                <label for="localidad3">Localidad:</label>
+                  <select class="form-control" id="localidad3" name="localidad3">
                     <option value="">Selecciona una localidad</option>
+                    @isset($datosDomicilio1)
+                        <option value="{{ $datosDomicilio1->idlocalidad }}" selected>{{ $nombreLocalidad }}</option>
+                    @endisset
                   </select>
+                  <script>
+                    cargarLocalidades('municipio3', 'localidad3');
+                  </script> 
               </div>
             </div> 
           </div>

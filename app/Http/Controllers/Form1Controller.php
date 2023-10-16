@@ -41,6 +41,7 @@ class Form1Controller extends Controller
             $nombreLocalidad = $localidad->Localidad ?? null;
             $nombreMunicipio = $localidad->NombreMunicipio ?? null;
             $nombreEstado2 = $localidad->NombreEstado ?? null;
+            
             return view('layouts-form.form1', 
             ['datosPersona' => $datosPersona, 
             'estados' => $estados, 

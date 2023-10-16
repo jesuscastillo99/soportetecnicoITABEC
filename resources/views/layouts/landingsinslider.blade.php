@@ -7,6 +7,7 @@
     <link rel="icon" type="images/png" href="{{ asset('assets/images/escudotam_2023.ico')}}">
     <title>@yield('title')</title>
     <!-- Bootstrap CSS v5.2.1 -->
+    <script src="{{ asset('assets/js/estados.js')}}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" media="all" href="{{ asset('assets/styles.css')}}">
@@ -134,7 +135,7 @@
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/js/form.js')}}"></script>
     <script src="{{ asset('assets/js/estados.js')}}"></script>
-    <script src="{{ asset('assets/js/municipios.js')}}"></script>
+    {{-- <script src="{{ asset('assets/js/municipios.js')}}"></script> --}}
     <!-- ALL PLUGINS -->
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js')}}"></script> 
     <script src="{{ asset('assets/js/jquery.pogo-slider.min.js')}}"></script>

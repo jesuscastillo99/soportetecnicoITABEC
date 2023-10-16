@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 use App\Models\Usuario; // Asegúrate de importar el modelo Usuario adecuadamente
 use App\Models\Persona;
+use App\Models\Expediente;
+use App\Models\Domicilio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -48,9 +50,21 @@ class RegistroController extends Controller
     
                 // Generación del token
                 $activationToken = Str::random(40);
-    
+
+                // Crea una nueva instancia del modelo Usuario
+                $nuevoUsuario = new Usuario;
+                $nuevoUsuario->curp = $xml->curp;
+                $nuevoUsuario->correo = $request->correo;
+                $nuevoUsuario->activo = 0; // Establece 'activo' en 0 (inactivo) por defecto
+                $nuevoUsuario->act_token = $activationToken; // Genera un token de activación
+                $nuevoUsuario->save();
+
+                //Generar el mismo idpersona para las demás tablas
+                $nuevoId=$nuevoUsuario->idlog;
+
                 // Crea una nueva instancia del modelo Persona
                 $nuevaPersona = new Persona;
+                $nuevaPersona->idpersona = $nuevoId;
                 $nuevaPersona->rfc = '';
                 $nuevaPersona->curp = $xml->curp;
                 $nuevaPersona->correo = $request->correo;
@@ -67,14 +81,15 @@ class RegistroController extends Controller
                 $nuevaPersona->fechaRegistro = now();
                 $nuevaPersona->estadoCivil = '';
                 $nuevaPersona->save();
-    
-                // Crea una nueva instancia del modelo Usuario
-                $nuevoUsuario = new Usuario;
-                $nuevoUsuario->curp = $xml->curp;
-                $nuevoUsuario->correo = $request->correo;
-                $nuevoUsuario->activo = 0; // Establece 'activo' en 0 (inactivo) por defecto
-                $nuevoUsuario->act_token = $activationToken; // Genera un token de activación
-                $nuevoUsuario->save();
+
+                //Creando instancia del modelo Expediente
+                $nuevoExpediente = new Expediente;
+                $nuevoExpediente->idsolicitante = $nuevoId;
+                $nuevoExpediente->fecha = now();
+                $nuevoExpediente->save();
+
+               
+                
     
                 // Envía el correo de activación
                 Mail::to($nuevoUsuario->correo)->send(new ActivationMail($nuevoUsuario, $activationToken));
