@@ -24,7 +24,7 @@ class Form1Controller extends Controller
 
         //Enviando datos al select    
         $estados = Estado::pluck('NombreEstado', 'IdEstado');
-
+        
         //función para cargar estado,municipio y localidad
         
         $curpUser=$usuario->curp;

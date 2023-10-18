@@ -73,9 +73,9 @@ Route::post('/form1-formulario', [FormsController::class, 'form1Registro'])->nam
 Route::get('/form2-formulario', [Form2Controller::class, 'index'])->name('form2-formulario')->middleware('auth');
 Route::get('/form2-formulario/E/{estado}', [Form2Controller::class, 'cargarMunicipios'])->middleware('auth');
 Route::get('/form2-formulario/M/{municipio}', [Form2Controller::class, 'cargarLocalidades'])->middleware('auth');
-Route::post('/form2Registro', [FormsController::class, 'form2Registro'])->name('form2-post')->middleware('auth');
-
-
+Route::post('/form2-formularior', [FormsController::class, 'form2Registro1'])->name('form2-post')->middleware('auth');
+Route::post('/form2-formularior2', [FormsController::class, 'form2Registro2'])->name('form2-post2')->middleware('auth');
+Route::post('/form2-formularior3', [FormsController::class, 'form2Registro3'])->name('form2-post3')->middleware('auth');
 
 //Rutas formulario 4
 Route::get('/form4', function() {

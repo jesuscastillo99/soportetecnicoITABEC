@@ -18,36 +18,36 @@ class Form2Controller extends Controller
         $usuario = Auth::user();
 
         // Obtener los datos del primer domicilio desde la tabla "catdomicilio"
-        $datosDomicilio1 = Domicilio::where('idpersona', $usuario->idpersona)
+        $datosDomicilio1 = Domicilio::where('idpersona', $usuario->idlog)
             ->where('tipo', 1) 
-            ->select('idpersona', 'calle', 'calle2', 'calle3', 'numero', 'colonia', 'idlocalidad', 'telefono', 'celular') // Selecciona los campos que necesitas
+            ->select('idpersona', 'calle', 'calle2', 'calle3', 'numero', 'colonia', 'idlocalidad', 'telefono', 'celular', 'cp') // Selecciona los campos que necesitas
             ->first() ?? null; // Obtén la primera coincidencia (puede haber solo una)
 
         // Obtener los datos del primer domicilio desde la tabla "catdomicilio"
-        $datosDomicilio2 = Domicilio::where('idpersona', $usuario->idpersona)
+        $datosDomicilio2 = Domicilio::where('idpersona', $usuario->idlog)
             ->where('tipo', 2) 
-            ->select('idpersona', 'calle', 'calle2', 'calle3', 'numero', 'colonia', 'idlocalidad', 'telefono', 'celular') // Selecciona los campos que necesitas
+            ->select('idpersona', 'calle', 'calle2', 'calle3', 'numero', 'colonia', 'idlocalidad', 'telefono', 'celular', 'cp') // Selecciona los campos que necesitas
             ->first() ?? null; // Obtén la primera coincidencia (puede haber solo una)
 
         // Obtener los datos del primer domicilio desde la tabla "catdomicilio"
-        $datosDomicilio3 = Domicilio::where('idpersona', $usuario->idpersona)
+        $datosDomicilio3 = Domicilio::where('idpersona', $usuario->idlog)
             ->where('tipo', 3) 
-            ->select('idpersona', 'calle', 'calle2', 'calle3', 'numero', 'colonia', 'idlocalidad', 'telefono', 'celular') // Selecciona los campos que necesitas
+            ->select('idpersona', 'calle', 'calle2', 'calle3', 'numero', 'colonia', 'idlocalidad', 'telefono', 'celular', 'cp') // Selecciona los campos que necesitas
             ->first() ?? null; // Obtén la primera coincidencia (puede haber solo una)
 
        //Enviando datos al select    
         $estados = Estado::pluck('NombreEstado', 'IdEstado');
 
-        //función para cargar estado,municipio y localidad
+        //función para cargar estado,municipio y localidad del post1
         
         $idUser=$usuario->idlog;
-        $persona = Domicilio::where('idpersona', $idUser)
+        $domicilio = Domicilio::where('idpersona', $idUser)
         ->where('tipo', 1)
         ->first() ?? null;
 
         //En caso de que sea nulo
         
-        $idLocalidad = $persona ? $persona->idlocalidad : null;
+        $idLocalidad = $domicilio ? $domicilio->idlocalidad : null;
         $localidad = DB::table('Catlocalidades')
             ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
             ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
@@ -60,6 +60,48 @@ class Form2Controller extends Controller
         $nombreLocalidad = $localidad->Localidad ?? null;
         $nombreMunicipio = $localidad->NombreMunicipio ?? null;
         $nombreEstado2 = $localidad->NombreEstado ?? null;
+
+        //función para cargar estado,municipio y localidad del post2
+        $domicilio2 = Domicilio::where('idpersona', $idUser)
+        ->where('tipo', 2)
+        ->first() ?? null;
+
+        //En caso de que sea nulo
+        
+        $idLocalidad2 = $domicilio2 ? $domicilio2->idlocalidad : null;
+        $localidad2 = DB::table('Catlocalidades')
+            ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
+            ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
+            ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
+            ->where('Catlocalidades.IdLocalidad', $idLocalidad2)
+            ->first();
+
+        //En caso de que sea nulo
+        
+        $nombreLocalidad2 = $localidad2->Localidad ?? null;
+        $nombreMunicipio2 = $localidad2->NombreMunicipio ?? null;
+        $nombreEstado22 = $localidad2->NombreEstado ?? null;
+
+        //función para cargar estado,municipio y localidad del post3
+        $domicilio3 = Domicilio::where('idpersona', $idUser)
+        ->where('tipo', 3)
+        ->first() ?? null;
+
+        //En caso de que sea nulo
+        
+        $idLocalidad3 = $domicilio3 ? $domicilio3->idlocalidad : null;
+        $localidad3 = DB::table('Catlocalidades')
+            ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
+            ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
+            ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
+            ->where('Catlocalidades.IdLocalidad', $idLocalidad3)
+            ->first();
+
+        //En caso de que sea nulo
+        
+        $nombreLocalidad3 = $localidad3->Localidad ?? null;
+        $nombreMunicipio3 = $localidad3->NombreMunicipio ?? null;
+        $nombreEstado23 = $localidad3->NombreEstado ?? null;
         
         // Pasar los datos a la vista
         return view('layouts-form.form2', 
@@ -69,7 +111,13 @@ class Form2Controller extends Controller
             'estados' => $estados, 
             'nombreLocalidad' => $nombreLocalidad,
             'nombreMunicipio' => $nombreMunicipio,
-            'nombreEstado2' => $nombreEstado2]);
+            'nombreEstado2' => $nombreEstado2,
+            'nombreLocalidad2' => $nombreLocalidad2,
+            'nombreMunicipio2' => $nombreMunicipio2,
+            'nombreEstado22' => $nombreEstado22,
+            'nombreLocalidad3' => $nombreLocalidad3,
+            'nombreMunicipio3' => $nombreMunicipio3,
+            'nombreEstado23' => $nombreEstado23]);
     }
     public function cargarMunicipios($estado)
     {

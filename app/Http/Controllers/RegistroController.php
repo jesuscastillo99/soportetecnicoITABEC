@@ -1,13 +1,6 @@
 <?php
-
-
-// use Illuminate\Http\Request;
-// use Illuminate\Support\Str;
-// use App\Mail\EnviarContraseñaGenerada;
-// use App\Models\Usuario; // Asegúrate de importar el modelo 
-
 namespace App\Http\Controllers;
-use App\Models\Usuario; // Asegúrate de importar el modelo Usuario adecuadamente
+use App\Models\Usuario; 
 use App\Models\Persona;
 use App\Models\Expediente;
 use App\Models\Domicilio;
@@ -88,9 +81,6 @@ class RegistroController extends Controller
                 $nuevoExpediente->fecha = now();
                 $nuevoExpediente->save();
 
-               
-                
-    
                 // Envía el correo de activación
                 Mail::to($nuevoUsuario->correo)->send(new ActivationMail($nuevoUsuario, $activationToken));
     
