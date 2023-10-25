@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Domicilio;
 use Illuminate\Http\Request;
+use App\Models\Expediente;
 use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Localidad;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Persona;
+use Illuminate\Support\Carbon;
 class FormsController extends Controller
 {
     
@@ -36,7 +38,7 @@ class FormsController extends Controller
 
             // Redirige o realiza otras acciones después de guardar los datos
 
-            return redirect()->route('form2-formulario');
+            return redirect()->route('form1-formulario');
         }
 
     
@@ -195,5 +197,77 @@ class FormsController extends Controller
             $domicilio->save();
             return redirect()->route('form2-formulario');
         }
+    }
+
+    public function form3Registro1(Request $request)
+        {
+            // Validación de los campos
+            $request->validate([
+                'curppadre2' => 'required|unique:catpersonas,curp',
+                'fechapadre' => 'required',
+                'apellidopadre1' => 'required',
+                'apellidopadre2' => 'required',
+                'nombrepadre' => 'required',
+                'estado' => 'required',
+                'municipio' => 'required',
+                'localidad' => 'required',
+            ]);
+
+            
+            // Obtener el usuario autenticado (persona)
+            $usuario = Auth::user();
+
+            // Obtener los datos del id del papá de la persona que está haciendo la solicitud
+            $idPadre = Expediente::where('idsolicitante', $usuario->idlog)
+            ->select('idpadre')
+            ->first(); // Obtén la primera coincidencia (puede haber solo una)
+           
+            //Verificar si existe ya un papá registrado en caso contrario se crea
+            $padre = Persona::where('idpersona', $idPadre->idpadre)
+            ->first();
+
+            if($padre == null){
+                $nuevoPadre = new Persona();
+                $nuevoPadre->curp = $request->input('curppadre2');
+                $nuevoPadre->paterno = $request->input('apellidopadre1');
+                $nuevoPadre->materno = $request->input('apellidopadre2');
+                $nuevoPadre->nombre = $request->input('nombrepadre');
+                $nuevoPadre->locnac = $request->input('localidad'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
+                $nuevoPadre->fechaRegistro = Carbon::now();
+                $nuevoPadre->save();
+
+                // Encuentra el expediente relacionado al solicitante actual (puedes ajustar esta parte según tus relaciones)
+                $expediente = Expediente::where('idsolicitante', $usuario->idlog)->first();
+                $expediente->idpadre = $nuevoPadre->idpersona;
+                $expediente->save();
+                // Redirige o realiza otras acciones después de guardar los datos
+
+                return view('layouts-form.form3');
+
+            } else {
+                $padre->curp = $request->input('curppadre2');
+                $padre->paterno = $request->input('apellidopadre1');
+                $padre->materno = $request->input('apellidopadre2');
+                $padre->nombre = $request->input('nombrepadre');
+                $padre->locnac = $request->input('localidad'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
+                $padre->fechaRegistro = Carbon::now();
+                $padre->save();
+
+                return view('layouts-form.form3');
+            }
+            
+            
+        }
+    
+    public function form3Registro2(Request $request) {
+
+    }
+
+    public function form3Registro3(Request $request) {
+
+    }
+
+    public function form3Registro4(Request $request) {
+
     }
 }

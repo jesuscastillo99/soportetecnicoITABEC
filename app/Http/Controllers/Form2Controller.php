@@ -1,6 +1,5 @@
 <?php
 
-namespace App\Http\Controllers;
 
 namespace App\Http\Controllers;
 use App\Models\Estado;
@@ -119,6 +118,9 @@ class Form2Controller extends Controller
             'nombreMunicipio3' => $nombreMunicipio3,
             'nombreEstado23' => $nombreEstado23]);
     }
+
+
+    
     public function cargarMunicipios($estado)
     {
         // Consulta los municipios relacionados con el estado

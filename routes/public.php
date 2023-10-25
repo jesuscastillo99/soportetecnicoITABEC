@@ -6,6 +6,7 @@ use App\Http\Controllers\ActivationController;
 use App\Http\Controllers\DatosController;
 use App\Http\Controllers\Form1Controller;
 use App\Http\Controllers\Form2Controller;
+use App\Http\Controllers\Form3Controller;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VistasController;
@@ -76,6 +77,15 @@ Route::get('/form2-formulario/M/{municipio}', [Form2Controller::class, 'cargarLo
 Route::post('/form2-formularior', [FormsController::class, 'form2Registro1'])->name('form2-post')->middleware('auth');
 Route::post('/form2-formularior2', [FormsController::class, 'form2Registro2'])->name('form2-post2')->middleware('auth');
 Route::post('/form2-formularior3', [FormsController::class, 'form2Registro3'])->name('form2-post3')->middleware('auth');
+
+//Rutas formulario 3
+Route::get('/form3-formulario', [Form3Controller::class, 'index'])->name('form3-formulario')->middleware('auth');
+Route::get('/form2-formulario/E/{estado}', [Form3Controller::class, 'cargarMunicipios'])->middleware('auth');
+Route::get('/form2-formulario/M/{municipio}', [Form3Controller::class, 'cargarLocalidades'])->middleware('auth');
+Route::post('/form3-formulario', [Form3Controller::class, 'validarCurpPadre'])->name('form3-post1')->middleware('auth');
+Route::post('/form3-formularior1', [FormsController::class, 'form3Registro1'])->name('form3-post2')->middleware('auth');
+Route::post('/form3-formulariov2', [FormsController::class, 'form3Registro3'])->name('form3-post3')->middleware('auth');
+Route::post('/form3-formularior2', [FormsController::class, 'form3Registro4'])->name('form3-post4')->middleware('auth');
 
 //Rutas formulario 4
 Route::get('/form4', function() {

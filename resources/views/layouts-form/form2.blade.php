@@ -420,7 +420,7 @@
         <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form1-formulario') }}'">Regresar</button>
       </div>
       <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
-        <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form2-formulario') }}'">Siguiente</button>
+        <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form3-formulario') }}'">Siguiente</button>
       </div>
 </div>
 <!-- end section -->

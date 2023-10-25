@@ -115,3 +115,7 @@ button {
 .reducir-ancho {
   width: auto;
 }
+
+.container-none {
+  display: none;
+}

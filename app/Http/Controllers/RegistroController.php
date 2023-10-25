@@ -57,7 +57,6 @@ class RegistroController extends Controller
 
                 // Crea una nueva instancia del modelo Persona
                 $nuevaPersona = new Persona;
-                $nuevaPersona->idpersona = $nuevoId;
                 $nuevaPersona->rfc = '';
                 $nuevaPersona->curp = $xml->curp;
                 $nuevaPersona->correo = $request->correo;
@@ -71,14 +70,14 @@ class RegistroController extends Controller
                 }
                 $nuevaPersona->fechanac = Carbon::createFromFormat('d/m/Y', $xml->fn)->toDateString();
                 $nuevaPersona->locnac = '';
-                $nuevaPersona->fechaRegistro = now();
+                $nuevaPersona->fechaRegistro = Carbon::now();
                 $nuevaPersona->estadoCivil = '';
                 $nuevaPersona->save();
 
                 //Creando instancia del modelo Expediente
                 $nuevoExpediente = new Expediente;
                 $nuevoExpediente->idsolicitante = $nuevoId;
-                $nuevoExpediente->fecha = now();
+                $nuevoExpediente->fecha = Carbon::now();
                 $nuevoExpediente->save();
 
                 // Envía el correo de activación
