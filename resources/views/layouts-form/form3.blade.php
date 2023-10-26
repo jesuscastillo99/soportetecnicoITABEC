@@ -209,7 +209,7 @@
                 <div class="form-group">
                   <label for="curpmadre1">CURP MAMÁ:</label>
                   <input type="text" class="form-control" id="curpmadre1" name="curpmadre1">
-                  <p class="text-danger">{{ $errorMessage ?? '' }}</p>
+                  <p class="text-danger">{{ $errorMessageM ?? '' }}</p>
                 </div>
             </div>
 

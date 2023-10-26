@@ -57,7 +57,8 @@ class Form3Controller extends Controller
             if($curp1)
             $xml1 = $this->consultarWebService($curp1);
 
-            if ($xml1) {
+            if ($xml1 ?? null) {
+
                     //Obtener estados
                 $estados = Estado::pluck('NombreEstado', 'IdEstado');
 
@@ -66,35 +67,64 @@ class Form3Controller extends Controller
                 ->select('idpersona')
                 ->first();
 
-                
+                //Este if sirve para en caso de que no encuentre la CURP en la tabla de personas
+                if($idlog){
 
-                $localidadPadre = Persona::where('idpersona', $idlog->idpersona)
+                    $localidadPadre = Persona::where('idpersona', $idlog->idpersona)
                     ->select('locnac')
                     ->first();
 
-                $localidadPadre = $localidadPadre->locnac ?? null;
+                    $localidadPadre = $localidadPadre->locnac ?? null;
 
-                // $idLocalidad = $localidadPadre ? $localidadPadre->locnac : null;
-                $localidad = DB::table('Catlocalidades')
-                    ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
-                    ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
-                    ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
-                    ->where('Catlocalidades.IdLocalidad', $localidadPadre)
-                    ->first();
-            
-                //En caso de que sea nulo
+                    // $idLocalidad = $localidadPadre ? $localidadPadre->locnac : null;
+                    $localidad = DB::table('Catlocalidades')
+                        ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
+                        ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
+                        ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
+                        ->where('Catlocalidades.IdLocalidad', $localidadPadre)
+                        ->first();
                 
-                $nombreLocalidad = $localidad->Localidad ?? null;
-                $nombreMunicipio = $localidad->NombreMunicipio ?? null;
-                $nombreEstado2 = $localidad->NombreEstado ?? null;
+                    //En caso de que sea nulo
+                    
+                    $nombreLocalidad = $localidad->Localidad ?? null;
+                    $nombreMunicipio = $localidad->NombreMunicipio ?? null;
+                    $nombreEstado2 = $localidad->NombreEstado ?? null;
 
-                return view('layouts-form.form3', [
-                    'xml' => $xml1,
-                    'estados' => $estados,
-                    'localidadPadre' => $localidadPadre,
-                    'nombreLocalidad' => $nombreLocalidad,
-                    'nombreMunicipio' => $nombreMunicipio,
-                    'nombreEstado2' => $nombreEstado2]);
+                    return view('layouts-form.form3', [
+                        'xml' => $xml1,
+                        'estados' => $estados,
+                        'localidadPadre' => $localidadPadre,
+                        'nombreLocalidad' => $nombreLocalidad,
+                        'nombreMunicipio' => $nombreMunicipio,
+                        'nombreEstado2' => $nombreEstado2]);
+
+                } else {
+                    $localidadPadre = '';
+
+                    $localidadPadre = $localidadPadre ?? null;
+
+                    // $idLocalidad = $localidadPadre ? $localidadPadre->locnac : null;
+                    $localidad = DB::table('Catlocalidades')
+                        ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
+                        ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
+                        ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
+                        ->where('Catlocalidades.IdLocalidad', $localidadPadre)
+                        ->first();
+                
+                    //En caso de que sea nulo
+                    
+                    $nombreLocalidad = $localidad->Localidad ?? null;
+                    $nombreMunicipio = $localidad->NombreMunicipio ?? null;
+                    $nombreEstado2 = $localidad->NombreEstado ?? null;
+                    return view('layouts-form.form3', [
+                        'xml' => $xml1,
+                        'estados' => $estados,
+                        'localidadPadre' => $localidadPadre,
+                        'nombreLocalidad' => $nombreLocalidad,
+                        'nombreMunicipio' => $nombreMunicipio,
+                        'nombreEstado2' => $nombreEstado2]);
+                }
+                  
 
             } else {
                 $errorMessage = "Ingresa una CURP válida.";
