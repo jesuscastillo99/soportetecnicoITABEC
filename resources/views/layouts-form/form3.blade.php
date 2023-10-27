@@ -7,7 +7,7 @@
 <div class="section margin-top_50">
 
   {{-- PRIMER CONTAINER | PADRE --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded" id="container-padre" style="{{ !isset($xml) ? 'display: block;' : 'display: none;' }}">
+    <div class="container mb-4 bg-cremita pt-3 rounded" id="container-padre" style="{{ !isset($xml1) ? 'display: block;' : 'display: none;' }}">
       <form method="POST" action="{{ route('form3-post1') }}">
         @csrf
       {{-- PRIMER CONTAINER | PADRE | ROW 1 DEL FORMULARIO --}}
@@ -26,6 +26,16 @@
                         {{ session('error') }}
                     </div>
                 @endif
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('errorR'))
+                    <div class="alert alert-danger">
+                        {{ session('errorR') }}
+                    </div>
+                @endif
               </div>
               <div class="row mt-4">
                 <div class="col-md-12 text-right mb-3"> <!-- Botón derecho -->
@@ -37,7 +47,7 @@
     </div>
 
     {{-- SEGUNDO CONTAINER | PADRE --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-padre2" style="{{ isset($xml) ? 'display: block;' : 'display: none;' }}">
+    <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-padre2" style="{{ isset($xml1) ? 'display: block;' : 'display: none;' }}">
       <form id="form-padre2" method="POST" action="{{ route('form3-post2') }}">  {{-- SEGUNDO CONTAINER | PADRE | ROW 2 DEL FORMULARIO --}}
         @csrf
         <div class="row">
@@ -47,7 +57,7 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="curppadre2">CURP:</label>
-                <input type="text" class="form-control" id="curppadre2" name="curppadre2" value="{{ $xml->curp ?? '' }}" readonly>
+                <input type="text" class="form-control" id="curppadre2" name="curppadre2" value="{{ $xml1->curp ?? '' }}" readonly>
                 @error('curppadre2')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -56,7 +66,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="fechapadre">Fecha de Nacimiento:</label>
-                <input type="text" class="form-control" id="fechapadre" name="fechapadre" value="{{ $xml->fn ?? '' }}" readonly>
+                <input type="text" class="form-control" id="fechapadre" name="fechapadre" value="{{ $xml1->fn ?? '' }}" readonly>
                 @error('fechapadre')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -69,7 +79,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="apellidopadre1">Apellido Paterno:</label>
-                  <input type="text" class="form-control" id="apellidopadre1" name="apellidopadre1" value="{{ $xml->paterno ?? '' }}" readonly>
+                  <input type="text" class="form-control" id="apellidopadre1" name="apellidopadre1" value="{{ $xml1->paterno ?? '' }}" readonly>
                   @error('apellidopadre1')
                   <p class="text-danger">{{ $message }}</p>
                   @enderror
@@ -78,7 +88,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="apellidopadre2">Apellido Materno:</label>
-                  <input type="text" class="form-control" id="apellidopadre2" name="apellidopadre2" value="{{ $xml->materno ?? '' }}" readonly>
+                  <input type="text" class="form-control" id="apellidopadre2" name="apellidopadre2" value="{{ $xml1->materno ?? '' }}" readonly>
                   @error('apellidopadre2')
                   <p class="text-danger">{{ $message }}</p>
                   @enderror
@@ -87,7 +97,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="nombrepadre">Nombre:</label>
-                  <input type="text" class="form-control" id="nombrepadre" name="nombrepadre" value="{{ $xml->nombre ?? '' }}" readonly>
+                  <input type="text" class="form-control" id="nombrepadre" name="nombrepadre" value="{{ $xml1->nombre ?? '' }}" readonly>
                   @error('nombrepadre')
                   <p class="text-danger">{{ $message }}</p>
                   @enderror
@@ -198,7 +208,7 @@
   </div>
 
    {{--  TERCER CONTAINER | MADRE --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded" id="container-madre">
+    <div class="container mb-4 bg-cremita pt-3 rounded" id="container-madre" style="{{ !isset($xml2) ? 'display: block;' : 'display: none;' }}">
       <form method="POST" action="{{ route('form3-post3')}}"> {{-- TERCER CONTAINER | MADRE | ROW 7 DEL FORMULARIO --}}
         @csrf
         <div class="row">
@@ -211,6 +221,16 @@
                   <input type="text" class="form-control" id="curpmadre1" name="curpmadre1">
                   <p class="text-danger">{{ $errorMessageM ?? '' }}</p>
                 </div>
+                @if(session('errorM'))
+                    <div class="alert alert-danger">
+                        {{ session('errorM') }}
+                    </div>
+                @endif
+                @if (session('successM'))
+                    <div class="alert alert-success">
+                        {{ session('successM') }}
+                    </div>
+                @endif
             </div>
 
             <div class="row mt-4">
@@ -223,8 +243,8 @@
     </div>
 
     {{--  CUARTO CONTAINER | MADRE --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-madre2">
-      <form method="POST" action="{{ route('form3-post4')}}">    {{-- CUARTO CONTAINER | MADRE | ROW 8 DEL FORMULARIO --}}
+    <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-madre2" style="{{ isset($xml2) ? 'display: block;' : 'display: none;' }}">
+      <form id="form-madre2" method="POST" action="{{ route('form3-post4')}}">    {{-- CUARTO CONTAINER | MADRE | ROW 8 DEL FORMULARIO --}}
         @csrf
         <div class="row">
         <div class="col-md-12 text-center">
@@ -233,13 +253,19 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="curpmadre2">CURP:</label>
-                <input type="text" class="form-control" id="curpmadre2" name="curpmadre2" readonly>
+                <input type="text" class="form-control" id="curpmadre2" name="curpmadre2" value="{{ $xml2->curp ?? '' }}" readonly>
+                @error('curpmadre2')
+                  <p class="text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="fechamadre">Fecha de Nacimiento:</label>
-                <input type="text" class="form-control" id="fechamadre" name="fechamadre" readonly>
+                <input type="text" class="form-control" id="fechamadre" name="fechamadre" value="{{ $xml2->fn ?? '' }}" readonly>
+                @error('fechamadre')
+                  <p class="text-danger">{{ $message }}</p>
+                @enderror
               </div>
             </div>
             <div class="col-md-4">
@@ -251,19 +277,28 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="apellidomadre1">Apellido Paterno:</label>
-                  <input type="text" class="form-control" id="apellidomadre1" name="apellidomadre1" readonly>
+                  <input type="text" class="form-control" id="apellidomadre1" name="apellidomadre1" value="{{ $xml2->paterno ?? '' }}" readonly>
+                  @error('apellidomadre1')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="apellidomadre2">Apellido Materno:</label>
-                  <input type="text" class="form-control" id="apellidomadre2" name="apellidomadre2" readonly>
+                  <input type="text" class="form-control" id="apellidomadre2" name="apellidomadre2" value="{{ $xml2->materno ?? '' }}" readonly>
+                  @error('apellidomadre2')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="nombremadre">Nombre:</label>
-                  <input type="text" class="form-control" id="nombremadre" name="nombremadre" readonly>
+                  <input type="text" class="form-control" id="nombremadre" name="nombremadre" value="{{ $xml2->nombre ?? '' }}" readonly>
+                  @error('nombremadre')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
               </div>
             </div>
@@ -274,30 +309,50 @@
                 <div class="form-group">
                   <label for="estado2">Estado donde nació:</label>
                   <select class="form-control" id="estado2" name="estado2">
-                    <option value="seleccione">Seleccione:</option>
-                    <option value="prueba1">Prueba1</option>
-                    <option value="prueba2">Prueba2</option>
+                    <option value="">Selecciona un estado</option>
+                    @foreach(($estados2 ?? []) as $IdEstado => $NombreEstado)
+                        <option value="{{ $IdEstado }}" {{ ($nombreEstado22 == $NombreEstado) ? 'selected' : '' }}>
+                            {{ $NombreEstado }}
+                        </option>
+                    @endforeach
                   </select>
+                  @error('estado2')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="municipio2">Municipio donde nació:</label>
                   <select class="form-control" id="municipio2" name="municipio2">
-                    <option value="seleccione">Seleccione:</option>
-                    <option value="prueba1">Prueba1</option>
-                    <option value="prueba2">Prueba2</option>
+                    <option value="">Selecciona un municipio</option>
+                    <option value="{{ $nombreMunicipio2 ?? '' }}" selected>
+                        {{ $nombreMunicipio2 ?? 'Selecciona un municipio' }}
+                    </option>
                   </select>
+                  @error('municipio2')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
+                  <script>
+                    cargarMunicipios('estado2', 'municipio2');
+                  </script> 
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="localidad_nac_mama">Localidad donde nació:</label>
-                  <select class="form-control" id="localidad_nac_mama" name="localidad_nac_mama">
-                    <option value="seleccione">Seleccione:</option>
-                    <option value="prueba1">Prueba1</option>
-                    <option value="prueba2">Prueba2</option>
+                  <label for="localidad2">Localidad donde nació:</label>
+                  <select class="form-control" id="localidad2" name="localidad2">
+                    <option value="">Selecciona una localidad</option>
+                    @isset($localidadMadre)
+                        <option value="{{ $localidadMadre }}" selected>{{ $nombreLocalidad2 }}</option>
+                    @endisset
                   </select>
+                  @error('localidad2')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
+                  <script>
+                    cargarLocalidades('municipio2', 'localidad2');
+                  </script>
                 </div>
               </div>
             </div>

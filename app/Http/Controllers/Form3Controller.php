@@ -91,7 +91,7 @@ class Form3Controller extends Controller
                     $nombreEstado2 = $localidad->NombreEstado ?? null;
 
                     return view('layouts-form.form3', [
-                        'xml' => $xml1,
+                        'xml1' => $xml1,
                         'estados' => $estados,
                         'localidadPadre' => $localidadPadre,
                         'nombreLocalidad' => $nombreLocalidad,
@@ -117,7 +117,7 @@ class Form3Controller extends Controller
                     $nombreMunicipio = $localidad->NombreMunicipio ?? null;
                     $nombreEstado2 = $localidad->NombreEstado ?? null;
                     return view('layouts-form.form3', [
-                        'xml' => $xml1,
+                        'xml1' => $xml1,
                         'estados' => $estados,
                         'localidadPadre' => $localidadPadre,
                         'nombreLocalidad' => $nombreLocalidad,
@@ -136,14 +136,92 @@ class Form3Controller extends Controller
 
     public function validarCurpMadre(Request $request)
     {
-        $curp2 = $request->curpmadre1; // Cambia 'nombreDelCampo' al nombre correcto del campo
-        $xml2 = $this->consultarWebService($curp2);
+        $curp2 = $request->curpmadre1;
+        $usuario = Auth::user();
 
-        if ($xml2) {
-            return view('layouts-form.form3', ['xml' => $xml2]);
-        } else {
-            $errorMessage = "Ingresa un valor válido."; // Cambia el mensaje según tus necesidades
-            return view('layouts-form.form3', ['errorMessage' => $errorMessage]);
+        if($curp2 == $usuario->curp){
+            session()->flash('errorM', 'La CURP es inválida.');
+            return view('layouts-form.form3');
+        }else {
+
+            if($curp2)
+            $xml2 = $this->consultarWebService($curp2);
+
+            if ($xml2 ?? null) {
+
+                    //Obtener estados
+                $estados2 = Estado::pluck('NombreEstado', 'IdEstado');
+
+                
+                $idlog = Persona::where('curp', $curp2)
+                ->select('idpersona')
+                ->first();
+
+                //Este if sirve para en caso de que no encuentre la CURP en la tabla de personas
+                if($idlog){
+
+                    $localidadMadre = Persona::where('idpersona', $idlog->idpersona)
+                    ->select('locnac')
+                    ->first();
+
+                    $localidadMadre = $localidadMadre->locnac ?? null;
+
+                    // $idLocalidad = $localidadPadre ? $localidadPadre->locnac : null;
+                    $localidad2 = DB::table('Catlocalidades')
+                        ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
+                        ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
+                        ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
+                        ->where('Catlocalidades.IdLocalidad', $localidadMadre)
+                        ->first();
+                
+                    //En caso de que sea nulo
+                    
+                    $nombreLocalidad2 = $localidad2->Localidad ?? null;
+                    $nombreMunicipio2 = $localidad2->NombreMunicipio ?? null;
+                    $nombreEstado22 = $localidad2->NombreEstado ?? null;
+
+                    return view('layouts-form.form3', [
+                        'xml2' => $xml2,
+                        'estados2' => $estados2,
+                        'localidadMadre' => $localidadMadre,
+                        'nombreLocalidad2' => $nombreLocalidad2,
+                        'nombreMunicipio2' => $nombreMunicipio2,
+                        'nombreEstado22' => $nombreEstado22]);
+
+                } else {
+                    $localidadMadre = '';
+
+                    $localidadMadre = $localidadMadre ?? null;
+
+                    // $idLocalidad = $localidadMadre ? $localidadMadre->locnac : null;
+                    $localidad2 = DB::table('Catlocalidades')
+                        ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
+                        ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
+                        ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
+                        ->where('Catlocalidades.IdLocalidad', $localidadMadre)
+                        ->first();
+                
+                    //En caso de que sea nulo
+                    
+                    $nombreLocalidad2 = $localidad2->Localidad ?? null;
+                    $nombreMunicipio2 = $localidad2->NombreMunicipio ?? null;
+                    $nombreEstado22 = $localidad2->NombreEstado ?? null;
+
+                    return view('layouts-form.form3', [
+                        'xml2' => $xml2,
+                        'estados2' => $estados2,
+                        'localidadMadre' => $localidadMadre,
+                        'nombreLocalidad2' => $nombreLocalidad2,
+                        'nombreMunicipio2' => $nombreMunicipio2,
+                        'nombreEstado22' => $nombreEstado22]);
+                }
+                  
+
+            } else {
+                $errorMessageM = "Ingresa una CURP válida.";
+                return view('layouts-form.form3', ['errorMessageM' => $errorMessageM]);
+            }
+
         }
     }
 

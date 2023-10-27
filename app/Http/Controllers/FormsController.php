@@ -213,7 +213,8 @@ class FormsController extends Controller
                 'localidad' => 'required',
             ]);
 
-            
+            //Defino la curp del input ingresado
+            $curpInputPadre=$request->curppadre2;
             // Obtener el usuario autenticado (persona)
             $usuario = Auth::user();
 
@@ -226,48 +227,106 @@ class FormsController extends Controller
             $padre = Persona::where('idpersona', $idPadre->idpadre)
             ->first();
 
-            if($padre == null){
-                $nuevoPadre = new Persona();
-                $nuevoPadre->curp = $request->input('curppadre2');
-                $nuevoPadre->paterno = $request->input('apellidopadre1');
-                $nuevoPadre->materno = $request->input('apellidopadre2');
-                $nuevoPadre->nombre = $request->input('nombrepadre');
-                $nuevoPadre->locnac = $request->input('localidad'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
-                $nuevoPadre->fechaRegistro = Carbon::now();
-                $nuevoPadre->save();
-
-                // Encuentra el expediente relacionado al solicitante actual (puedes ajustar esta parte según tus relaciones)
-                $expediente = Expediente::where('idsolicitante', $usuario->idlog)->first();
-                $expediente->idpadre = $nuevoPadre->idpersona;
-                $expediente->save();
-                // Redirige o realiza otras acciones después de guardar los datos
-
-                return view('layouts-form.form3');
-
-            } else {
-                $padre->curp = $request->input('curppadre2');
-                $padre->paterno = $request->input('apellidopadre1');
-                $padre->materno = $request->input('apellidopadre2');
-                $padre->nombre = $request->input('nombrepadre');
-                $padre->locnac = $request->input('localidad'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
-                $padre->fechaRegistro = Carbon::now();
-                $padre->save();
-
-                return view('layouts-form.form3');
-            }
-            
-            
+            //Validar que la curp no se encuentre registrada
+            if($curpInputPadre == $padre->curp){
+                session()->flash('errorR', 'La CURP ya se encuentra registrada.');
+                return view('layouts-form.form2');
+            }else {
+                if($padre == null){
+                    $nuevoPadre = new Persona();
+                    $nuevoPadre->curp = $request->input('curppadre2');
+                    $nuevoPadre->paterno = $request->input('apellidopadre1');
+                    $nuevoPadre->materno = $request->input('apellidopadre2');
+                    $nuevoPadre->nombre = $request->input('nombrepadre');
+                    $nuevoPadre->locnac = $request->input('localidad'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
+                    $nuevoPadre->fechaRegistro = Carbon::now();
+                    $nuevoPadre->save();
+    
+                    // Encuentra el expediente relacionado al solicitante actual (puedes ajustar esta parte según tus relaciones)
+                    $expediente = Expediente::where('idsolicitante', $usuario->idlog)->first();
+                    $expediente->idpadre = $nuevoPadre->idpersona;
+                    $expediente->save();
+                    // Redirige o realiza otras acciones después de guardar los datos
+                    session()->flash('success', 'Registro del padre guardadoxd.');
+                    return view('layouts-form.form3');
+    
+                } else {
+                    $padre->curp = $request->input('curppadre2');
+                    $padre->paterno = $request->input('apellidopadre1');
+                    $padre->materno = $request->input('apellidopadre2');
+                    $padre->nombre = $request->input('nombrepadre');
+                    $padre->locnac = $request->input('localidad'); 
+                    $padre->fechaRegistro = Carbon::now();
+                    $padre->save();
+                    session()->flash('success', 'Registro del padre guardado2.');
+                    return view('layouts-form.form3');
+                }
+            }   
         }
     
     public function form3Registro2(Request $request) {
+             // Validación de los campos
+             $request->validate([
+                'curpmadre2' => 'required|unique:catpersonas,curp',
+                'fechamadre' => 'required',
+                'apellidomadre1' => 'required',
+                'apellidomadre2' => 'required',
+                'nombremadre' => 'required',
+                'estado2' => 'required',
+                'municipio2' => 'required',
+                'localidad2' => 'required',
+            ]);
 
-    }
+            //Defino la curp del input ingresado
+            $curpInputMadre=$request->curpmadre2;
+            // Obtener el usuario autenticado (persona)
+            $usuario = Auth::user();
 
-    public function form3Registro3(Request $request) {
+            // Obtener los datos del id del papá de la persona que está haciendo la solicitud
+            $idMadre = Expediente::where('idsolicitante', $usuario->idlog)
+            ->select('idmadre')
+            ->first(); // Obtén la primera coincidencia (puede haber solo una)
+           
+            //Verificar si existe ya un papá registrado en caso contrario se crea
+            $madre = Persona::where('idpersona', $idMadre->idmadre)
+            ->first();
 
-    }
-
-    public function form3Registro4(Request $request) {
-
-    }
+            //Validar que la curp no se encuentre registrada
+            if($curpInputMadre == $madre->curp){
+                session()->flash('errorM', 'La CURP ya se encuentra registrada.');
+                return view('layouts-form.form3');
+            }else {
+                if($madre == null){
+                    $nuevoMadre = new Persona();
+                    $nuevoMadre->curp = $request->input('curpmadre2');
+                    $nuevoMadre->paterno = $request->input('apellidomadre1');
+                    $nuevoMadre->materno = $request->input('apellidomadre2');
+                    $nuevoMadre->nombre = $request->input('nombremadre');
+                    $nuevoMadre->locnac = $request->input('localidad2'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
+                    $nuevoMadre->fechaRegistro = Carbon::now();
+                    $nuevoMadre->save();
+    
+                    // Encuentra el expediente relacionado al solicitante actual (puedes ajustar esta parte según tus relaciones)
+                    $expediente = Expediente::where('idsolicitante', $usuario->idlog)->first();
+                    $expediente->idmadre = $nuevoMadre->idpersona;
+                    $expediente->save();
+                    // Redirige o realiza otras acciones después de guardar los datos
+                    session()->flash('successM', 'Registro de la madre guardadoxd.');
+                    return view('layouts-form.form3');
+    
+                } else {
+                    $madre->curp = $request->input('curpmadre2');
+                    $madre->paterno = $request->input('apellidomadre1');
+                    $madre->materno = $request->input('apellidomadre2');
+                    $madre->nombre = $request->input('nombremadre');
+                    $madre->locnac = $request->input('localidad2'); 
+                    $madre->fechaRegistro = Carbon::now();
+                    $madre->save();
+                    session()->flash('successM', 'Registro de la madre guardado2.');
+                    return view('layouts-form.form3');
+                }
+            } 
+            
+        }
+    
 }
