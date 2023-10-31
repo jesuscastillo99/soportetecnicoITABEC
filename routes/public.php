@@ -82,9 +82,9 @@ Route::post('/form2-formularior3', [FormsController::class, 'form2Registro3'])->
 Route::get('/form3-formulario', [Form3Controller::class, 'index'])->name('form3-formulario')->middleware('auth');
 Route::get('/form3-formulario/E/{estado}', [Form3Controller::class, 'cargarMunicipios'])->middleware('auth');
 Route::get('/form3-formulario/M/{municipio}', [Form3Controller::class, 'cargarLocalidades'])->middleware('auth');
-Route::post('/form3-formulario', [Form3Controller::class, 'validarCurpPadre'])->name('form3-post1')->middleware('auth');
+Route::post('/form3-formulariov1', [Form3Controller::class, 'validarCurpPadre'])->name('form3-post1')->middleware('auth');
 Route::post('/form3-formularior1', [FormsController::class, 'form3Registro1'])->name('form3-post2')->middleware('auth');
-Route::post('/form3-formulariov2', [Form3Controller::class, 'validarCurpMadre'])->name('form3-post3')->middleware('auth');
+Route::post('/form3-formulariov1', [Form3Controller::class, 'validarCurpMadre'])->name('form3-post3')->middleware('auth');
 Route::post('/form3-formularior2', [FormsController::class, 'form3Registro2'])->name('form3-post4')->middleware('auth');
 
 //Rutas formulario 4

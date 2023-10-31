@@ -43,7 +43,9 @@ class Form3Controller extends Controller
         return response()->json($localidades);
     }
 
+    public function obtenerCurpInput(Request $request){
 
+    }
     public function validarCurpPadre(Request $request)
     {
         $curp1 = $request->curppadre1;
@@ -140,7 +142,7 @@ class Form3Controller extends Controller
         $usuario = Auth::user();
 
         if($curp2 == $usuario->curp){
-            session()->flash('errorM', 'La CURP es inválida.');
+            session()->flash('errorM', 'La CURP es la misma que la del usuario.');
             return view('layouts-form.form3');
         }else {
 
