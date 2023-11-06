@@ -84,7 +84,7 @@ Route::get('/form3-formulario/E/{estado}', [Form3Controller::class, 'cargarMunic
 Route::get('/form3-formulario/M/{municipio}', [Form3Controller::class, 'cargarLocalidades'])->middleware('auth');
 Route::post('/form3-formulariov1', [Form3Controller::class, 'validarCurpPadre'])->name('form3-post1')->middleware('auth');
 Route::post('/form3-formularior1', [FormsController::class, 'form3Registro1'])->name('form3-post2')->middleware('auth');
-Route::post('/form3-formulariov1', [Form3Controller::class, 'validarCurpMadre'])->name('form3-post3')->middleware('auth');
+Route::post('/form3-formulariov2', [Form3Controller::class, 'validarCurpMadre'])->name('form3-post3')->middleware('auth');
 Route::post('/form3-formularior2', [FormsController::class, 'form3Registro2'])->name('form3-post4')->middleware('auth');
 
 //Rutas formulario 4
