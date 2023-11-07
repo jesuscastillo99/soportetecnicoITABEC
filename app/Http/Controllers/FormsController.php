@@ -230,7 +230,8 @@ class FormsController extends Controller
             //Validar que la curp no se encuentre registrada
             if($curpInputPadre == $padre->curp){
                 session()->flash('errorR', 'La CURP ya se encuentra registrada.');
-                return view('layouts-form.form2');
+                return redirect()->route('form3-formulario');
+                //return view('layouts-form.form2');
             }else {
                 if($padre == null){
                     $nuevoPadre = new Persona();
@@ -247,7 +248,7 @@ class FormsController extends Controller
                     $expediente->idpadre = $nuevoPadre->idpersona;
                     $expediente->save();
                     // Redirige o realiza otras acciones después de guardar los datos
-                    session()->flash('success', 'Registro del padre guardadoxd.');
+                    session()->flash('success', 'Registro del padre guardado.');
                     return view('layouts-form.form3');
     
                 } else {
@@ -258,8 +259,9 @@ class FormsController extends Controller
                     $padre->locnac = $request->input('localidad'); 
                     $padre->fechaRegistro = Carbon::now();
                     $padre->save();
-                    session()->flash('success', 'Registro del padre guardado2.');
+                    session()->flash('success', 'Registro del padre actualizado.');
                     return view('layouts-form.form3');
+                    session()->forget('success');
                 }
             }   
         }
@@ -294,7 +296,7 @@ class FormsController extends Controller
             //Validar que la curp no se encuentre registrada
             if($curpInputMadre == $madre->curp){
                 session()->flash('errorM', 'La CURP ya se encuentra registrada.');
-                return view('layouts-form.form3');
+                return redirect()->route('form3-formulario');
             }else {
                 if($madre == null){
                     $nuevoMadre = new Persona();

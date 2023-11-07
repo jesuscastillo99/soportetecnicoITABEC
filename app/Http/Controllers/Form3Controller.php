@@ -52,10 +52,10 @@ class Form3Controller extends Controller
         $usuario = Auth::user();
 
         if($curp1 == $usuario->curp){
-            session()->flash('error', 'La CURP es inválida.');
+            session()->flash('error', 'La CURP es la misma que el usuario.');
             return view('layouts-form.form3');
         }else {
-
+            session()->forget('error');
             if($curp1)
             $xml1 = $this->consultarWebService($curp1);
 
@@ -129,7 +129,7 @@ class Form3Controller extends Controller
                   
 
             } else {
-                $errorMessage = "Ingresa una CURP válida.";
+                $errorMessage = "Tu curp no se encuentra en el sistema.";
                 return view('layouts-form.form3', ['errorMessage' => $errorMessage]);
             }
 
@@ -145,7 +145,7 @@ class Form3Controller extends Controller
             session()->flash('errorM', 'La CURP es la misma que la del usuario.');
             return view('layouts-form.form3');
         }else {
-
+            session()->forget('errorM');
             if($curp2)
             $xml2 = $this->consultarWebService($curp2);
 

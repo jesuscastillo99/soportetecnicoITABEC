@@ -7,7 +7,7 @@
 <div class="section margin-top_50">
 
   {{-- PRIMER CONTAINER | PADRE --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded" id="container-padre" style="{{ !isset($xml1) ? 'display: block;' : 'display: none;' }}">
+    <div class="container mb-4 bg-cremita pt-3 rounded" id="container-padre">
       <form method="POST" action="{{ route('form3-post1') }}">
         @csrf
       {{-- PRIMER CONTAINER | PADRE | ROW 1 DEL FORMULARIO --}}
@@ -31,11 +31,6 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                @if (session('errorR'))
-                    <div class="alert alert-danger">
-                        {{ session('errorR') }}
-                    </div>
-                @endif
               </div>
               <div class="row mt-4">
                 <div class="col-md-12 text-right mb-3"> <!-- Botón derecho -->
@@ -47,7 +42,7 @@
     </div>
 
     {{-- SEGUNDO CONTAINER | PADRE --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-padre2" style="{{ isset($xml1) ? 'display: block;' : 'display: none;' }}">
+    <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-padre2">
       <form id="form-padre2" method="POST" action="{{ route('form3-post2') }}">  {{-- SEGUNDO CONTAINER | PADRE | ROW 2 DEL FORMULARIO --}}
         @csrf
         <div class="row">
@@ -61,6 +56,11 @@
                 @error('curppadre2')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
+                @if (session('errorR'))
+                    <div class="alert alert-danger">
+                        {{ session('errorR') }}
+                    </div>
+                @endif
               </div>
             </div>
             <div class="col-md-4">
@@ -208,7 +208,7 @@
   </div>
 
    {{--  TERCER CONTAINER | MADRE --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded" id="container-madre" style="{{ !isset($xml2) ? 'display: block;' : 'display: none;' }}">
+    <div class="container mb-4 bg-cremita pt-3 rounded" id="container-madre">
       <form method="POST" action="{{ route('form3-post3')}}"> {{-- TERCER CONTAINER | MADRE | ROW 7 DEL FORMULARIO --}}
         @csrf
         <div class="row">
@@ -243,7 +243,7 @@
     </div>
 
     {{--  CUARTO CONTAINER | MADRE --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-madre2" style="{{ isset($xml2) ? 'display: block;' : 'display: none;' }}">
+    <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-madre2" >
       <form id="form-madre2" method="POST" action="{{ route('form3-post4')}}">    {{-- CUARTO CONTAINER | MADRE | ROW 8 DEL FORMULARIO --}}
         @csrf
         <div class="row">
