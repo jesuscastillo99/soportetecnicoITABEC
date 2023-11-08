@@ -72,7 +72,17 @@
                 @enderror
               </div>
             </div>
-           
+            
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="fechapadre">Sexo:</label>
+                <input type="text" class="form-control" id="sexopadre" name="sexopadre" value="{{ $xml1->sexo ?? '' }}" readonly>
+                @error('fechapadre')
+                  <p class="text-danger">{{ $message }}</p>
+                @enderror
+              </div>
+            </div>
+          </div>
 
             {{-- SEGUNDO CONTAINER | PADRE | ROW 3 DEL FORMULARIO --}}
             <div class="row">
@@ -203,7 +213,6 @@
                   <button type="submit" class="boton btn-form">Guardar datos</button>
                 </div>
               </div>
-      </div>
       </form>
   </div>
 
@@ -269,9 +278,15 @@
               </div>
             </div>
             <div class="col-md-4">
-              {{-- campo vacio --}}
+              <div class="form-group">
+                <label for="fechapadre">Sexo:</label>
+                <input type="text" class="form-control" id="sexomadre" name="sexomaadre" value="{{ $xml2->sexo ?? '' }}" readonly>
+                @error('fechapadre')
+                  <p class="text-danger">{{ $message }}</p>
+                @enderror
+              </div>
             </div>
-
+       </div>
             {{-- CUARTO CONTAINER | MADRE | ROW 9 DEL FORMULARIO --}}
             <div class="row">
               <div class="col-md-4">
@@ -393,7 +408,7 @@
                   <button type="submit" class="boton btn-form">Guardar datos</button>
                 </div>
               </div>
-      </div>
+      
       </form>
   </div>
 

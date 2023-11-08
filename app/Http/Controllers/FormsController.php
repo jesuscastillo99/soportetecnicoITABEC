@@ -223,22 +223,23 @@ class FormsController extends Controller
             ->select('idpadre')
             ->first(); // Obtén la primera coincidencia (puede haber solo una)
            
-            //Verificar si existe ya un papá registrado en caso contrario se crea
+            //Verificar si existe ya un papá registrado, si no existe se crea y si ya existe se actualiza
             $padre = Persona::where('idpersona', $idPadre->idpadre)
             ->first();
 
-            //Validar que la curp no se encuentre registrada
-            if($curpInputPadre == $padre->curp){
-                session()->flash('errorR', 'La CURP ya se encuentra registrada.');
-                return redirect()->route('form3-formulario');
-                //return view('layouts-form.form2');
-            }else {
                 if($padre == null){
                     $nuevoPadre = new Persona();
                     $nuevoPadre->curp = $request->input('curppadre2');
                     $nuevoPadre->paterno = $request->input('apellidopadre1');
                     $nuevoPadre->materno = $request->input('apellidopadre2');
                     $nuevoPadre->nombre = $request->input('nombrepadre');
+                    $sexo = $request->input('sexopadre');
+                    if ($sexo == 'H') {
+                        $nuevoPadre->sexo = 1;  // Hombre
+                    } elseif ($sexo == 'M') {
+                        $nuevoPadre->sexo = 0;  // Mujer
+                    }
+                    $nuevoPadre->fechanac = $request->input('fechapadre');
                     $nuevoPadre->locnac = $request->input('localidad'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
                     $nuevoPadre->fechaRegistro = Carbon::now();
                     $nuevoPadre->save();
@@ -256,14 +257,20 @@ class FormsController extends Controller
                     $padre->paterno = $request->input('apellidopadre1');
                     $padre->materno = $request->input('apellidopadre2');
                     $padre->nombre = $request->input('nombrepadre');
+                    $sexo = $request->input('sexopadre');
+                    if ($sexo == 'H') {
+                        $padre->sexo = 1;  // Hombre
+                    } elseif ($sexo == 'M') {
+                        $padre->sexo = 0;  // Mujer
+                    }
+                    $padre->fechanac = $request->input('fechapadre');
                     $padre->locnac = $request->input('localidad'); 
-                    $padre->fechaRegistro = Carbon::now();
                     $padre->save();
                     session()->flash('success', 'Registro del padre actualizado.');
-                    return view('layouts-form.form3');
+                    return redirect()->route('form3-formulario');
                     session()->forget('success');
                 }
-            }   
+               
         }
     
     public function form3Registro2(Request $request) {
@@ -303,6 +310,13 @@ class FormsController extends Controller
                     $nuevoMadre->curp = $request->input('curpmadre2');
                     $nuevoMadre->paterno = $request->input('apellidomadre1');
                     $nuevoMadre->materno = $request->input('apellidomadre2');
+                    $sexo = $request->input('sexomadre');
+                    if ($sexo == 'H') {
+                        $nuevoMadre->sexo = 1;  // Hombre
+                    } elseif ($sexo == 'M') {
+                        $nuevoMadre->sexo = 0;  // Mujer
+                    }
+                    $nuevoMadre->fechanac = $request->input('fechamadre');
                     $nuevoMadre->nombre = $request->input('nombremadre');
                     $nuevoMadre->locnac = $request->input('localidad2'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
                     $nuevoMadre->fechaRegistro = Carbon::now();
@@ -321,8 +335,14 @@ class FormsController extends Controller
                     $madre->paterno = $request->input('apellidomadre1');
                     $madre->materno = $request->input('apellidomadre2');
                     $madre->nombre = $request->input('nombremadre');
+                    $sexo = $request->input('sexomadre');
+                    if ($sexo == 'H') {
+                        $madre->sexo = 1;  // Hombre
+                    } elseif ($sexo == 'M') {
+                        $madre->sexo = 0;  // Mujer
+                    }
+                    $madre->fechanac = $request->input('fechamadre');
                     $madre->locnac = $request->input('localidad2'); 
-                    $madre->fechaRegistro = Carbon::now();
                     $madre->save();
                     session()->flash('successM', 'Registro de la madre guardado2.');
                     return view('layouts-form.form3');
