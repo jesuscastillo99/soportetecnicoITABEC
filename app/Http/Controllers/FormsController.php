@@ -239,7 +239,13 @@ class FormsController extends Controller
                     } elseif ($sexo == 'M') {
                         $nuevoPadre->sexo = 0;  // Mujer
                     }
-                    $nuevoPadre->fechanac = $request->input('fechapadre');
+                    // // Obtener la cadena de fecha del input
+                    $fechaInput = $request->input('fechapadre');
+                    // // Convertir la cadena de fecha a un objeto Carbon
+                    $fechaCarbon = Carbon::createFromFormat('d/m/Y', $fechaInput);
+                    // // Obtener la nueva cadena de fecha en el formato deseado
+                    $nuevaFecha = $fechaCarbon->format('Y-m-d');
+                    $nuevoPadre->fechanac = $nuevaFecha;
                     $nuevoPadre->locnac = $request->input('localidad'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
                     $nuevoPadre->fechaRegistro = Carbon::now();
                     $nuevoPadre->save();
@@ -263,7 +269,13 @@ class FormsController extends Controller
                     } elseif ($sexo == 'M') {
                         $padre->sexo = 0;  // Mujer
                     }
-                    $padre->fechanac = $request->input('fechapadre');
+                    // // Obtener la cadena de fecha del input
+                    $fechaInput = $request->input('fechapadre');
+                    // // Convertir la cadena de fecha a un objeto Carbon
+                    $fechaCarbon = Carbon::createFromFormat('d/m/Y', $fechaInput);
+                    // // Obtener la nueva cadena de fecha en el formato deseado
+                    $nuevaFecha = $fechaCarbon->format('Y-m-d');
+                    $padre->fechanac = $nuevaFecha;
                     $padre->locnac = $request->input('localidad'); 
                     $padre->save();
                     session()->flash('success', 'Registro del padre actualizado.');
@@ -319,7 +331,13 @@ class FormsController extends Controller
                     $nuevoMadre->fechanac = $request->input('fechamadre');
                     $nuevoMadre->nombre = $request->input('nombremadre');
                     $nuevoMadre->locnac = $request->input('localidad2'); // Asumiendo que "idLocalidad" es el campo en tu tabla para la localidad
-                    $nuevoMadre->fechaRegistro = Carbon::now();
+                    // // Obtener la cadena de fecha del input
+                    $fechaInput = $request->input('fechapadre');
+                    // // Convertir la cadena de fecha a un objeto Carbon
+                    $fechaCarbon = Carbon::createFromFormat('d/m/Y', $fechaInput);
+                    // // Obtener la nueva cadena de fecha en el formato deseado
+                    $nuevaFecha = $fechaCarbon->format('Y-m-d');
+                    $nuevoMadre->fechanac = $nuevaFecha;
                     $nuevoMadre->save();
     
                     // Encuentra el expediente relacionado al solicitante actual (puedes ajustar esta parte según tus relaciones)
@@ -341,7 +359,13 @@ class FormsController extends Controller
                     } elseif ($sexo == 'M') {
                         $madre->sexo = 0;  // Mujer
                     }
-                    $madre->fechanac = $request->input('fechamadre');
+                    // // Obtener la cadena de fecha del input
+                    $fechaInput = $request->input('fechapadre');
+                    // // Convertir la cadena de fecha a un objeto Carbon
+                    $fechaCarbon = Carbon::createFromFormat('d/m/Y', $fechaInput);
+                    // // Obtener la nueva cadena de fecha en el formato deseado
+                    $nuevaFecha = $fechaCarbon->format('Y-m-d');
+                    $madre->fechanac = $nuevaFecha;
                     $madre->locnac = $request->input('localidad2'); 
                     $madre->save();
                     session()->flash('successM', 'Registro de la madre guardado2.');

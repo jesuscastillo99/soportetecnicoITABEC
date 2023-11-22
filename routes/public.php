@@ -55,6 +55,10 @@ Route::get('/noticias', function() {
     return view('layouts.noticias');
 })->name('noticias');
 
+//Ruta para crear noticias
+Route::get('/noticias-admin', function() {
+    return view('layouts.noticiasadmin');
+})->name('noticiasadmin');
 
 //Rutas formulario 0
 Route::get('/form0', function() {

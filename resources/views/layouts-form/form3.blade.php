@@ -187,7 +187,7 @@
                   <div class="form-group">
                     <label for="trabajapadre">¿Trabaja?</label>
                     <select class="form-control" id="trabajapadre" name="trabajapadre">
-                      <option value="seleccione">Seleccione:</option>
+                      <option value="0">Seleccione:</option>
                       <option value="si">Si</option>
                       <option value="no">No</option>
                     </select>
@@ -199,7 +199,13 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="estudiospadre">Último Grado de Estudios:</label>
-                    <input type="text" class="form-control" id="estudiospadre" name="estudiospadre">
+                    <select class="form-control" id="estudiospadre" name="trabajapadre">
+                      <option value="0">Seleccione:</option>
+                      <option value="1">Primaria</option>
+                      <option value="2">Secundaria</option>
+                      <option value="3">Preparatoria</option>
+                      <option value="4">Universidad</option>
+                    </select>
                     @error('estudiospadre')
                   <p class="text-danger">{{ $message }}</p>
                   @enderror
