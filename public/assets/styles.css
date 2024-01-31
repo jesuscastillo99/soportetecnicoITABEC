@@ -3,10 +3,10 @@
     background: #fccb90;
     
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(90deg, rgba(156,24,60,1) 24%, rgba(124,16,40,1) 87%);
+    background: linear-gradient(90deg, rgba(171,0,51,1) 80%, rgba(171,0,51,1) 100%);
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(90deg, rgba(156,24,60,1) 24%, rgba(124,16,40,1) 87%);
+    background: linear-gradient(90deg,  rgba(171,0,51,1) 80%, rgba(171,0,51,1) 100%);
     }
     
 @media (min-width: 768px) {
@@ -39,8 +39,8 @@
 }
 
 .fill {
-  --color: #912736;
-  --hover: #93072D;
+  --color: #ab0033;
+  --hover: #ab0033;
 }
 
 button {
@@ -64,7 +64,7 @@ button {
   }
 
   .titulo-login {
-    color: #912736;
+    color: #ab0033;
   }
 
   @media (max-width: 767px) {
@@ -79,8 +79,8 @@ button {
 }
 
 .bg-cremita {
-  background-color: #F1E9DE;
-  border: solid 2px #93072ca8;
+  background-color: #ddc9a3;
+  border: solid 2px #ab0033;
 }
 
 .titulo-form {
@@ -90,7 +90,7 @@ button {
 
 .btn-form {
   color: white;
-  background-color: #912736;
+  background-color: #ab0033;
 }
 
 .boton {
@@ -109,10 +109,104 @@ button {
 
 .boton:hover {
   color: white;
-  background-color: #cf2037;
+  background-color: #ab0033;
 }
 
 .reducir-ancho {
   width: auto;
 }
 
+
+
+/*CSS PARA EL ACORDEON DEL FORMULARIO 3 */
+
+.accordion {
+   /* Ajusta el valor según tus necesidades */
+  width: 100%;
+}
+
+
+ /* Cambia el color del titulo del item cuando pases el cursor sobre el */
+.accordion-item:hover .accordion-button {
+  color: blue;
+}
+
+
+/* Cambia al color asignado cuando el item este cerrado */
+.accordion-item .accordion-button.collapsed {
+  color: rgb(0, 0, 0); 
+}
+
+
+/* Cambia al color asignado cuando el item este desplegado */
+.accordion-item .accordion-button:not(.collapsed) {
+  color: rgb(0, 0, 0); 
+}
+
+/* .accordion-body {
+  border: 2px solid rgb(248, 120, 120);
+} */
+
+
+.accordion-item:focus {
+  background-color: white;
+} 
+
+/* Cambia el color del contorno solo cuando un ítem del acordeón está abierto y enfocado */
+/* .accordion-item:not(.collapsed):focus {
+  outline: 2px solid red; 
+} */
+
+/* .accordion-item:focus {
+  border-color: red;
+} */
+
+.bg-acordeon {
+  background-color: #ab0033;
+  color: #ab0033;
+}
+
+
+
+.accordion-button-focus-border-color {
+  color: #ab0033;
+} 
+.accordion-button-focus-box-shadow {
+  color: #ab0033;
+}
+
+.accordion {
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-active-color: white;
+}
+
+
+.mi-accordion .accordion-button:focus,
+    .mi-accordion .accordion-button:hover {
+        color: #fff; /* Cambia el color del texto al pasar el ratón o al hacer clic */
+        background-color: #ab0033; /* Cambia el color de fondo al pasar el ratón */
+    }
+
+    .mi-accordion .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(171, 0, 51); /* Cambia el color de sombra al estado activo */
+        border-color: #ab0033; /* Cambia el color del borde al estado activo */
+    }
+
+    .mi-accordion .accordion-button {
+        background-color: #fff; /* Restaura el color de fondo por defecto */
+        color: black; /* Color por defecto del texto */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Agrega una transición de color al pasar el ratón */
+    }
+
+
+.accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+
+.accordion-button::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'%3E%3Cpath d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/%3E%3C/svg%3E");
+  transition: all 0.5s;
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-dash' viewBox='0 0 16 16'%3E%3Cpath d='M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z'/%3E%3C/svg%3E");
+}

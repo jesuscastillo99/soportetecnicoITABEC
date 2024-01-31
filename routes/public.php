@@ -96,8 +96,43 @@ Route::get('/form4', function() {
     return view('layouts-form.form4');
 })->name('form4');
 
+//Rutas formulario 5
+Route::get('/form5', function() {
+    return view('layouts-form.form5');
+})->name('form5');
 
+//Rutas formulario 6
+Route::get('/form6', function() {
+    return view('layouts-form.form6');
+})->name('form6');
 
+//Rutas formulario 7
+Route::get('/form7', function() {
+    return view('layouts-form.form7');
+})->name('form7');
 
+//Rutas formulario 8
+Route::get('/form8', function() {
+    return view('layouts-form.form8');
+})->name('form8');
+
+//Rutas formulario 9
+Route::get('/form9', function() {
+    return view('layouts-form.form9');
+})->name('form9');
+
+//Rutas formulario 10
+Route::get('/form10', function() {
+    return view('layouts-form.form10');
+})->name('form10');
+
+//Rutas formulario 11
+Route::get('/form11', function() {
+    return view('layouts-form.form11');
+})->name('form11');
+
+Route::get('/form12', function() {
+    return view('layouts-form.form12');
+})->name('form12');
 
 ?>

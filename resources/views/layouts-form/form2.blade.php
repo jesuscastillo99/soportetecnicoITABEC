@@ -127,6 +127,16 @@
                 <script>
                   cargarLocalidades('municipio', 'localidad');
                 </script> 
+                 @if (session('success'))
+                 <div class="alert alert-success mt-2">
+                     {{ session('success') }}
+                 </div>
+             @endif
+             @if (session('error'))
+             <div class="alert alert-error">
+                 {{ session('error') }}
+             </div>
+         @endif
             </div>
             </div> 
           </div>
@@ -266,6 +276,16 @@
                   <script>
                     cargarLocalidades('municipio2', 'localidad2');
                   </script> 
+                  @if (session('success2'))
+                      <div class="alert alert-success mt-2">
+                          {{ session('success2') }}
+                      </div>
+                  @endif
+                  @if (session('error2'))
+                    <div class="alert alert-error">
+                        {{ session('error2') }}
+                    </div>
+                  @endif
               </div>
             </div> 
           </div>
@@ -404,7 +424,17 @@
                   @enderror
                   <script>
                     cargarLocalidades('municipio3', 'localidad3');
-                  </script> 
+                  </script>
+                  @if (session('success3'))
+                      <div class="alert alert-success mt-2">
+                          {{ session('success3') }}
+                      </div>
+                  @endif
+                  @if (session('error3'))
+                    <div class="alert alert-error">
+                        {{ session('error3') }}
+                    </div>
+                  @endif 
               </div>
             </div> 
           </div>

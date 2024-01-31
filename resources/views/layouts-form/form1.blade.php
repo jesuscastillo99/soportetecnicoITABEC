@@ -28,11 +28,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="sexo">Sexo:</label>
-                  <select class="form-control" id="sexo" name="sexo">
-                    <option value="3">Seleccione:</option>
-                    <option value="1" {{ old('sexo', $datosPersona->sexo) == '1' ? 'selected' : '' }}>Masculino</option>
-                    <option value="0" {{ old('sexo', $datosPersona->sexo) == '0' ? 'selected' : '' }}>Femenino</option>
-                  </select>
+                  <input type="text" class="form-control" id="sexo" name="sexo" value="{{ old('sexo', $datosPersona->sexo) == 0 ? 'Femenino' : ($datosPersona->sexo == 1 ? 'Masculino' : 'Otro') }}" readonly>
                   @error('sexo')
                   <p class="text-danger">{{ $message }}</p>
                   @enderror
@@ -125,11 +121,12 @@
                       <select class="form-control" id="estado_civil" name="estado_civil">
                         <option value="seleccione">Seleccione:</option>
                         <option value="0" {{ old('estado_civil', $datosPersona->estadoCivil) == '0' ? 'selected' : '' }}>Soltero(a)</option>
-                    <option value="1" {{ old('estado_civil', $datosPersona->estadoCivil) == '1' ? 'selected' : '' }}>Casado(a)</option>
+                        <option value="1" {{ old('estado_civil', $datosPersona->estadoCivil) == '1' ? 'selected' : '' }}>Casado(a)</option>
                       </select>
                       @error('estado_civil')
                       <p class="text-danger">{{ $message }}</p>
                       @enderror
+                     
                     </div>
                   </div>    
               </div>

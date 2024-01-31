@@ -8,48 +8,52 @@ use Illuminate\Http\Request;
 use App\Models\Persona;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ContadorParametros;
 class Form1Controller extends Controller
 {
     
 
-    public function index()
-    {
-        // Obtener el usuario autenticado (persona)
+    // Llamar al procedimiento almacenado con un conjunto de parámetros
+  
+
+    
+    public function index(){
         $usuario = Auth::user();
+        $nombreProcedimiento1= 'ObtenerDatosPersona';
+        $arrayCurp = [$usuario->curp];
+        $contadorParametros = new ContadorParametros();
+        $datosPersona = $contadorParametros->proceSelect($nombreProcedimiento1, $arrayCurp);
 
-        // Obtener los datos de la persona desde la tabla "personas"
-        $datosPersona = Persona::where('curp', $usuario->curp)
-            ->select('curp', 'paterno', 'materno', 'nombre', 'sexo', 'fechanac', 'locnac', 'estadoCivil') // Selecciona los campos que necesitas
-            ->first(); // Obtén la primera coincidencia (puede haber solo una)
+        // Verificar si se obtuvieron resultados
+        if (!empty($datosPersona)) {
+            // Obtener el primer resultado
+            $datosPersona = $datosPersona[0];
+        } else {
+            // Si no se obtienen resultados, puedes manejarlo de acuerdo a tus necesidades
+            $datosPersona = null;
+        }
 
-        //Enviando datos al select    
         $estados = Estado::pluck('NombreEstado', 'IdEstado');
         
         //función para cargar estado,municipio y localidad
         
         $curpUser=$usuario->curp;
         $persona = Persona::where('curp', $curpUser)->first();
-        $idLocalidad = $persona->locnac;
-        $localidad = DB::table('Catlocalidades')
-            ->select('Catlocalidades.Localidad', 'CatMunicipios.NombreMunicipio', 'CatEstado.NombreEstado')
-            ->join('CatMunicipios', 'Catlocalidades.IdMunicipio', '=', 'CatMunicipios.IdMunicipio')
-            ->join('CatEstado', 'CatMunicipios.IdEstado', '=', 'CatEstado.IdEstado')
-            ->where('Catlocalidades.IdLocalidad', $idLocalidad)
-            ->first();
-
+        $idLocalidad = [$persona->locnac];
+        $nombreProcedimiento2= 'ObtenerLugarNacimiento';
+        $localidad = $contadorParametros->proceSelect($nombreProcedimiento2, $idLocalidad);
         
-            $nombreLocalidad = $localidad->Localidad ?? null;
-            $nombreMunicipio = $localidad->NombreMunicipio ?? null;
-            $nombreEstado2 = $localidad->NombreEstado ?? null;
-            
-            return view('layouts-form.form1', 
-            ['datosPersona' => $datosPersona, 
-            'estados' => $estados, 
-            'nombreLocalidad' => $nombreLocalidad,
-            'nombreMunicipio' => $nombreMunicipio,
-            'nombreEstado2' => $nombreEstado2]);
-    
+            $nombreLocalidad = $localidad[0]->Localidad ?? null;
+            $nombreMunicipio = $localidad[0]->NombreMunicipio ?? null;
+            $nombreEstado2 = $localidad[0]->NombreEstado ?? null;
+
+        return view('layouts-form.form1', ['datosPersona' => $datosPersona, 
+        'estados' => $estados, 
+        'nombreLocalidad' => $nombreLocalidad,
+        'nombreMunicipio' => $nombreMunicipio,
+        'nombreEstado2' => $nombreEstado2]);
     }
+
 
     public function cargarMunicipios($estado)
     {
@@ -100,5 +104,7 @@ class Form1Controller extends Controller
             return view('layouts-form.form1')->with('error', 'La localidad no fue encontrada');
         }
     }
+
+    
     
 }

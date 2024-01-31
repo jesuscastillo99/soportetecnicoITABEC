@@ -135,6 +135,8 @@
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/js/form.js')}}"></script>
     <script src="{{ asset('assets/js/estados.js')}}"></script>
+    <script src="{{ asset('assets/js/eventosAcordeon.js')}}"></script>
+    <script src="{{ asset('assets/js/eventosForm3.js')}}"></script>
     {{-- <script src="{{ asset('assets/js/form3-containers.js')}}"></script> --}}
     {{-- <script src="{{ asset('assets/js/municipios.js')}}"></script> --}}
     <!-- ALL PLUGINS -->
@@ -145,6 +147,6 @@
     <script src="{{ asset('assets/js/isotope.min.js')}}"></script>
     <script src="{{ asset('assets/js/images-loded.min.js')}}"></script>
     <script src="{{ asset('assets/js/custom.js')}}"></script>
-    <script>
-    /* counter js */
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
 </html>

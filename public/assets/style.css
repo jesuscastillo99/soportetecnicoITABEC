@@ -406,7 +406,7 @@ a.navbar-brand img {
 }
 
 .navbar-toggler {
-	border: 2px solid #A91B41 !important;
+	border: 2px solid #ab0033 !important;
 	border-radius: 0;
 	margin: 15px 15px;
 	padding: 8px 8px;
@@ -417,7 +417,7 @@ a.navbar-brand img {
 }
 
 .navbar-toggler span {
-	background: #A91B41;
+	background: #ab0033;
 	display: block;
 	width: 22px;
 	height: 2px;
@@ -438,11 +438,11 @@ a.navbar-brand img {
 }
 
 .navbar-toggler:hover {
-	border: 2px solid #A91B41;
+	border: 2px solid #ab0033;
 }
 
 .navbar-toggler:hover span {
-	background: #A91B41;
+	background: #ab0033;
 }
 
 .tab_menu {
@@ -503,7 +503,7 @@ a.navbar-brand img {
 }
 
 .theme_color {
-	color: #A91B41;
+	color: #ab0033;
 }
 
 
@@ -600,7 +600,7 @@ a.navbar-brand img {
 }
 
 .pogoSlider-nav-btn--selected {
-	background: #df2456 !important;
+	background: #ab0033 !important;
 }
 
 .pogoSlider--navBottom .pogoSlider-nav {
@@ -639,7 +639,7 @@ a.navbar-brand img {
 }
 
 .slide_text p {
-    color: #A91B41;
+    color: #ab0033;
     font-size: 20px;
     font-weight: 300;
     padding-top: 0;
@@ -650,7 +650,7 @@ a.navbar-brand img {
 .contact_bt {
     width: 180px;
     height: 50px;
-    background: #A91B41;
+    background: #ab0033;
     color: #fff;
     float: left;
     line-height: 50px;
@@ -696,7 +696,7 @@ a.navbar-brand img {
 }
 
 .tab_menu ul li:nth-child(6) {
-    background: #A91B41;
+    background: #ab0033;
     transform: skew(-30deg);
 	color:#fff;
 }
@@ -871,7 +871,7 @@ span.icon img {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
     overflow: hidden;
-    background: #A81B40;
+    background: #ab0033;
     -webkit-transition-property: color;
     transition-property: color;
     -webkit-transition-duration: 0.3s;
@@ -908,7 +908,7 @@ span.icon img {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: #f1295e;
+	background:  #ffffff;
 	border-radius: 100%;
 	-webkit-transform: scale(0);
 	transform: scale(0);
@@ -929,7 +929,7 @@ span.icon img {
 
 a.hvr-radial-out:hover,
 a.hvr-radial-out:focus {
-	color: #fff;
+	color: #ab0033;
 }
 
 a#scroll-to-top::after {
@@ -937,7 +937,7 @@ a#scroll-to-top::after {
 }
 
 .silver_bg .hvr-radial-out:after {
-    background: #eee;
+    background: #eeeeee;
 }
 
 /*------------------------------------------------------------------ Services -------------------------------------------------------------------*/
@@ -2003,7 +2003,7 @@ ul.social_icon li {
 .footer_bottom p.crp {
     float: left;
     margin: 0;
-    color: #fff;
+    color: #000000;
     font-size: 15px;
     width: 100%;
     text-align: center;

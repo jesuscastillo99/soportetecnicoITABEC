@@ -3,6 +3,7 @@
 @section('content')
 <div class="section margin-top_50">
     <div class="container mb-2 bg-cremita pt-3 rounded">
+      <form method="POST" action="{{ route('form4') }}">
         <div class="row">
             <div class="col-md-12 text-center">
               <h2 class="titulo-form"><strong>Información Académica</strong><h2>
@@ -100,6 +101,16 @@
             </div>
         </div> 
     </div>
+</div>
+
+
+<div class="row mt-4 pl-5 pr-5">
+  <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form3-formulario') }}'">Regresar</button>
+  </div>
+  <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form5') }}'">Siguiente</button>
+  </div>
 </div>
 <!-- end section -->
 @endsection

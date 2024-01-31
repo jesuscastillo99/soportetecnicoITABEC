@@ -27,6 +27,9 @@
                        <a class="hvr-radial-out button-theme" href="{{ route('form0') }}">Solicitar crédito</a>
                     </div>
                 </div>
+
+                
+
             </div>
             <div class="col-md-6">
                 <div class="full">
@@ -39,11 +42,8 @@
 <!-- end section -->
 
 <section class="centrar-seccion">
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <!-- Utiliza 'container' para centrar y 'd-flex' para establecer flexbox -->
-    <h1>Bienvenido a Mi Página Web</h1>
-    
-  </div>
+
+   
 </section>
 
 @endsection
