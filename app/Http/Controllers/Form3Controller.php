@@ -28,21 +28,167 @@ class Form3Controller extends Controller
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
-
+        
         if (!empty($resultados)) {
             $consultaPadre = true;
-           
+            $consultaIdPadre = $resultados[0]->idpersona;
+            $existeCurpPadre = $resultados[0]->idpersona;
+            $consultaPadreCurp = $resultados[0]->curp;
+            $consultaPFechaNac = $resultados[0]->fechanac;
+            $consultaPSexo = $resultados[0]->sexo;
+            if($consultaPSexo==1){
+                $consultaPSexo = 'Masculino';
+            } else {
+                $consultaPSexo = 'Femenino';
+            }
+            $consultaPPaterno = $resultados[0]->paterno;
+            $consultaPMaterno = $resultados[0]->materno;
+            $consultaPNombre = $resultados[0]->nombre;
+            $consultaPLocalidad = $resultados[0]->locnac;
+            $consultaPTrabaja = $resultados[0]->trabaja;
+            $consultaPEstudios = $resultados[0]->ult_grad_estudios;
+            
             //$consultaTrabaja = $resultados[0]->trabaja;
             
           
         } else {
             // Si no se obtienen resultados, se declara null por cualquier cosa
-            $consultaPadre = false;
-            
+            $consultaPadre = 0;
+            $consultaPadreCurp = null;
+            $consultaPFechaNac = null;
+            $consultaPSexo = null; 
+            $consultaPPaterno = null; 
+            $consultaPMaterno = null;
+            $consultaPNombre = null; 
+            $consultaPLocalidad = null; 
+            $consultaPTrabaja = null; 
+            $consultaPEstudios = null;
+            $existeCurpPadre =null;
+            $consultaIdPadre = null;
         }
-        //dd($consultaPadre);
+
+        if($consultaIdPadre==null){
+            $existeCurpPadre=0;
+            $consultaIdPadre=0;
+        }
+        //Obtener estados para cargarlos
+        $estados = Estado::pluck('NombreEstado', 'IdEstado');
+
+        //Se ejecuta el procedimiento para cargar el lugar de nacimiento del papá
+        $idLocalidad = [$consultaPLocalidad];
+        $nombreprocedimiento2= 'ObtenerLugarNacimiento';
+        $procedimiento2 = new ContadorParametros();
+        $localidad = $procedimiento2->proceSelect($nombreprocedimiento2, $idLocalidad); 
+        //dd($localidad);
+        //En caso de que sea nulo
+        $nombreLocalidad = $localidad[0]->Localidad ?? null;
+        $nombreMunicipio = $localidad[0]->NombreMunicipio ?? null;
+        $nombreEstado2 = $localidad[0]->NombreEstado ?? null;
+
+        //TODO SOBRE EL FORMULARIO DE LA MADRE
+        $nombreProcedimiento2= 'ObtenerMadreF3';
+        $arrayCurp2 = [$userId];
+        $procedimientoM = new ContadorParametros();
+        $resultadosM= $procedimientoM->proceSelect($nombreProcedimiento2, $arrayCurp2);
+        
+        if (!empty($resultadosM)) {
+            $consultaMadre = true;
+            $consultaIdMadre = $resultadosM[0]->idpersona;
+            $existeCurpMadre = $resultadosM[0]->idpersona;
+            $consultaMadreCurp = $resultadosM[0]->curp;
+            $consultaMFechaNac = $resultadosM[0]->fechanac;
+            $consultaMSexo = $resultadosM[0]->sexo;
+            if($consultaMSexo==1){
+                $consultaMSexo = 'Masculino';
+            } else {
+                $consultaMSexo = 'Femenino';
+            }
+            $consultaMPaterno = $resultadosM[0]->paterno;
+            $consultaMMaterno = $resultadosM[0]->materno;
+            $consultaMNombre = $resultadosM[0]->nombre;
+            $consultaMLocalidad = $resultadosM[0]->locnac;
+            $consultaMTrabaja = $resultadosM[0]->trabaja;
+            $consultaMEstudios = $resultadosM[0]->ult_grad_estudios;
+            
+            //$consultaTrabaja = $resultados[0]->trabaja;
+            
+          
+        } else {
+            // Si no se obtienen resultados, se declara null por cualquier cosa
+            $consultaMadre = 0;
+            $consultaMadreCurp = null;
+            $consultaMFechaNac = null;
+            $consultaMSexo = null; 
+            $consultaMPaterno = null; 
+            $consultaMMaterno = null;
+            $consultaMNombre = null; 
+            $consultaMLocalidad = null; 
+            $consultaMTrabaja = null; 
+            $consultaMEstudios = null;
+            $existeCurpMadre =null;
+            $consultaIdMadre = null;
+        }
+
+        if($consultaIdMadre==null){
+            $existeCurpMadre=0;
+            $consultaIdMadre=0;
+        }
+        //Obtener estados para cargarlos
+        $estados2 = Estado::pluck('NombreEstado', 'IdEstado');
+
+        //Se ejecuta el procedimiento para cargar el lugar de nacimiento del papá
+        $idLocalidad2 = [$consultaMLocalidad];
+        $nombreprocedimiento2M= 'ObtenerLugarNacimiento';
+        $procedimiento2M = new ContadorParametros();
+        $localidad2 = $procedimiento2M->proceSelect($nombreprocedimiento2M, $idLocalidad2); 
+
+        //En caso de que sea nulo
+        $nombreLocalidad2 = $localidad2[0]->Localidad ?? null;
+        $nombreMunicipio2 = $localidad2[0]->NombreMunicipio ?? null;
+        $nombreEstado22 = $localidad2[0]->NombreEstado ?? null;
+
+        //dd($localidad);
+        //dd($consultaIdPadre);
+
+
+        //CODIGO SOBRE EL REGISTRO 3 DEL FORM 3
+        $datosF3R3= $this->obtenerDatosF3R3();
+        //dd($datosF3R3);
             return view('layouts-form.form3', [
-                'consultaPadre' => $consultaPadre]);
+                'consultaPadre' => $consultaPadre,
+                'consultaPadreCurp' => $consultaPadreCurp,
+                'consultaPFechaNac' => $consultaPFechaNac,
+                'consultaPSexo' => $consultaPSexo,
+                'consultaPPaterno' => $consultaPPaterno,
+                'consultaPMaterno' => $consultaPMaterno,
+                'consultaPNombre' => $consultaPNombre,
+                'localidadPadre' => $consultaPLocalidad,
+                'consultaPTrabaja' => $consultaPTrabaja,
+                'consultaPEstudios' => $consultaPEstudios,
+                'estados' => $estados,
+                'nombreLocalidad' => $nombreLocalidad,
+                'nombreMunicipio' => $nombreMunicipio,
+                'nombreEstado2' => $nombreEstado2,
+                'consultaIdPadre' => $consultaIdPadre,
+                'existeCurpPadre' => $existeCurpPadre,
+                //VARIABLES DE LA MADRE
+                'consultaMadre' => $consultaMadre,
+                'consultaMadreCurp' => $consultaMadreCurp,
+                'consultaMFechaNac' => $consultaMFechaNac,
+                'consultaMSexo' => $consultaMSexo,
+                'consultaMPaterno' => $consultaMPaterno,
+                'consultaMMaterno' => $consultaMMaterno,
+                'consultaMNombre' => $consultaMNombre,
+                'localidadMadre' => $consultaMLocalidad,
+                'consultaMTrabaja' => $consultaMTrabaja,
+                'consultaMEstudios' => $consultaMEstudios,
+                'estados2' => $estados2,
+                'nombreLocalidad2' => $nombreLocalidad2,
+                'nombreMunicipio2' => $nombreMunicipio2,
+                'nombreEstado22' => $nombreEstado22,
+                'consultaIdMadre' => $consultaIdMadre,
+                'existeCurpMadre' => $existeCurpMadre,
+                'datosF3R3' => $datosF3R3]);
     }
 
     public function cargarMunicipios($estado)
@@ -79,7 +225,7 @@ class Form3Controller extends Controller
             if($curp1)
             //Validación para saber si existe esa persona en el sistema de CURPS del gobierno
             $xml1 = $this->consultarWebService($curp1);
-
+    
             if ($xml1 ?? null) {
                 //Obtener estados para cargarlos
                 $estados = Estado::pluck('NombreEstado', 'IdEstado');
@@ -88,10 +234,11 @@ class Form3Controller extends Controller
                 $arrayCurp = [$curp1];
                 $procedimiento = new ContadorParametros();
                 $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
-                
+                //dd($resultados);
                 // Verificar si se obtuvieron resultados para almacenar el id y la localidad de la personna (papá)
                 if (!empty($resultados)) {
                     $consultaIdPadre = $resultados[0]->idpersona;
+                    $consultaPadre = true;
                     $consultaLocNacPadre = $resultados[0]->locnac;
                     $consultaTrabaja = $resultados[0]->trabaja;
                     $consultaUltEstudios = $resultados[0]->ult_grad_estudios;
@@ -99,14 +246,21 @@ class Form3Controller extends Controller
                 } else {
                     // Si no se obtienen resultados, se declara null por cualquiercosa
                     $consultaIdPadre = null;
+                    $consultaPadre = null;
                     $consultaLocNacPadre = null;
                     $consultaTrabaja = null;
                     $consultaUltEstudios = null;
                 }
+
+                $existeCurpPadre = $this->obtenerIdPadre();
+                $consultaIdPadre = $this->obtenerIdPadre();
                 
+                $existeCurpMadre = $this->obtenerIdMadre();
+                $consultaIdMadre = $this->obtenerIdMadre();
+                //dd($consultaIdPadre);
              
-                //Si la consulta arroja que ya tiene un papá registrado
-                if($consultaIdPadre){
+                //Si la validacion arroja que es valida la curp para registrar a su padre
+                if($existeCurpPadre!=0){
                     //Se ejecuta el procedimiento para cargar el lugar de nacimiento del papá
                     $idLocalidad = [$consultaLocNacPadre];
                     $nombreprocedimiento3= 'ObtenerLugarNacimiento';
@@ -119,6 +273,7 @@ class Form3Controller extends Controller
                     $nombreEstado2 = $localidad[0]->NombreEstado ?? null;
                     //dd($consultaTrabaja);
                     $curpEsValida= true;
+                    //dd($consultaIdPadre);
                     return view('layouts-form.form3', [
                         'xml1' => $xml1,
                         'estados' => $estados,
@@ -128,7 +283,11 @@ class Form3Controller extends Controller
                         'nombreEstado2' => $nombreEstado2,
                         'consultaTrabaja' => $consultaTrabaja,
                         'consultaUltEstudios' => $consultaUltEstudios,
-                        'curpEsValida' => $curpEsValida 
+                        'curpEsValida' => $curpEsValida,
+                        'existeCurpPadre' => $existeCurpPadre,
+                        'consultaIdPadre' => $consultaIdPadre,
+                        'existeCurpMadre' => $existeCurpMadre,
+                        'consultaIdMadre' => $consultaIdMadre 
                     ]);
 
                 } else {
@@ -146,6 +305,9 @@ class Form3Controller extends Controller
                     $nombreMunicipio = $localidad[0]->NombreMunicipio ?? null;
                     $nombreEstado2 = $localidad[0]->NombreEstado ?? null;
                     $curpEsValida = true;
+                    //dd($consultaIdPadre);
+                    $existeCurpPadre=1;
+                   
                     return view('layouts-form.form3', [
                         'xml1' => $xml1,
                         'estados' => $estados,
@@ -155,7 +317,11 @@ class Form3Controller extends Controller
                         'nombreEstado2' => $nombreEstado2,
                         'consultaTrabaja' => $consultaTrabaja,
                         'consultaUltEstudios' => $consultaUltEstudios,
-                        'curpEsValida' => $curpEsValida // Agregar la variable aquí
+                        'curpEsValida' => $curpEsValida,
+                        'existeCurpPadre' => $existeCurpPadre,
+                        'consultaIdPadre' => $consultaIdPadre,
+                        'existeCurpMadre' => $existeCurpMadre,
+                        'consultaIdMadre' => $consultaIdMadre 
                     ]);
                 }
                   
@@ -207,9 +373,14 @@ class Form3Controller extends Controller
                     
                 }
                 
+                $existeCurpMadre = $this->obtenerIdMadre();
+                $consultaIdMadre = $this->obtenerIdMadre();
+
+                $existeCurpPadre = $this->obtenerIdPadre();
+                $consultaIdPadre = $this->obtenerIdPadre();
              
                 //Si la consulta arroja que ya tiene un papá registrado
-                if($consultaIdMadre){
+                if($existeCurpMadre!=0){
                     //Se ejecuta el procedimiento para cargar el lugar de nacimiento del papá
                     $idLocalidad = [$consultaLocNacMadre];
                     $nombreprocedimiento3= 'ObtenerLugarNacimiento';
@@ -230,7 +401,11 @@ class Form3Controller extends Controller
                         'nombreEstado22' => $nombreEstado22,
                         'consultaTrabaja2' => $consultaTrabaja2,
                         'consultaUltEstudios2' => $consultaUltEstudios2,
-                        'curpEsValida2' => $curpEsValida2, // Agregar la variable aquí
+                        'curpEsValida2' => $curpEsValida2,
+                        'existeCurpMadre' => $existeCurpMadre,
+                        'consultaIdMadre' => $consultaIdMadre,
+                        'existeCurpPadre' => $existeCurpPadre,
+                        'consultaIdPadre' => $consultaIdPadre   // Agregar la variable aquí
                     ]);
 
                 } else {
@@ -249,7 +424,8 @@ class Form3Controller extends Controller
                     $nombreEstado22 = $localidad[0]->NombreEstado ?? null;
                     //dd($estados2);
                     $curpEsValida2 = true;
-                    echo '<script>alert("Datos del padre encontrados");</script>';
+                    $existeCurpMadre=1;
+                    echo '<script>alert("Datos de la madre encontrados");</script>';
                     return view('layouts-form.form3', [
                         'xml2' => $xml2,
                         'estados2' => $estados2,
@@ -259,7 +435,11 @@ class Form3Controller extends Controller
                         'nombreEstado22' => $nombreEstado22,
                         'consultaTrabaja2' => $consultaTrabaja2,
                         'consultaUltEstudios2' => $consultaUltEstudios2,
-                        'curpEsValida2' => $curpEsValida2, // Agregar la variable aquí
+                        'curpEsValida2' => $curpEsValida2,
+                        'existeCurpMadre' => $existeCurpMadre,
+                        'consultaIdMadre' => $consultaIdMadre,
+                        'existeCurpPadre' => $existeCurpPadre,
+                        'consultaIdPadre' => $consultaIdPadre   // Agregar la variable aquí
                     ]);
                 }
                   
@@ -291,6 +471,68 @@ class Form3Controller extends Controller
         return null;
     }
 
+    private function obtenerIdPadre(){
+        $nombreProcedimiento1= 'ObtenerPadre';
+        $usuario = Auth::user();
+        $userId = $usuario->idlog;
+        $arrayCurp = [$userId];
+        $procedimiento = new ContadorParametros();
+        $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
+
+        if (!empty($resultados)) {
+            $consultaIdPadre = $resultados[0]->idpersona;
+           
+      
+        } else {
+            // Si no se obtienen resultados, se declara null por cualquier cosa      
+            $consultaIdPadre = null;
+        }
+
+        if($consultaIdPadre==null){
+            $consultaIdPadre=0;
+        }
+        return $consultaIdPadre;
+    }
+
+    private function obtenerIdMadre(){
+        $nombreProcedimiento1= 'ObtenerMadreF3';
+        $usuario = Auth::user();
+        $userId = $usuario->idlog;
+        $arrayCurp = [$userId];
+        $procedimiento = new ContadorParametros();
+        $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
+
+        if (!empty($resultados)) {
+            $consultaIdMadre = $resultados[0]->idpersona;
+           
+      
+        } else {
+            // Si no se obtienen resultados, se declara null por cualquier cosa      
+            $consultaIdMadre = null;
+        }
+
+        if($consultaIdMadre==null){
+            $consultaIdMadre=0;
+        }
+        return $consultaIdMadre;
+    }
+
+    public function obtenerDatosF3R3(){
+        $nombreProcedimiento1= 'ObtenerDatosFamF3';
+        $usuario = Auth::user();
+        $userId = $usuario->idlog;
+        $array = [$userId];
+        $procedimiento = new ContadorParametros();
+        $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $array);
+        if(!empty($resultados)) {
+            $datosF3R3= $resultados[0];
+        } else {
+            $datosF3R3=null;
+        }
+
+        return $datosF3R3;
+
+    }
    
 
    

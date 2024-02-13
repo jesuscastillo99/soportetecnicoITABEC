@@ -136,7 +136,7 @@
     <script src="{{ asset('assets/js/form.js')}}"></script>
     <script src="{{ asset('assets/js/estados.js')}}"></script>
     <script src="{{ asset('assets/js/eventosAcordeon.js')}}"></script>
-    <script src="{{ asset('assets/js/eventosForm3.js')}}"></script>
+    {{-- <script src="{{ asset('assets/js/eventosForm3.js')}}"></script> --}}
     {{-- <script src="{{ asset('assets/js/form3-containers.js')}}"></script> --}}
     {{-- <script src="{{ asset('assets/js/municipios.js')}}"></script> --}}
     <!-- ALL PLUGINS -->

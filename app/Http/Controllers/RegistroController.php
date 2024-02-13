@@ -42,46 +42,80 @@ class RegistroController extends Controller
                 ]);
     
                 // Generación del token
-                $activationToken = Str::random(40);
+                $activationToken = Str::random(50);
+                //PROCEDIMIENTO SQL SERVER INSERTAR SOLICITANTE
 
-                // Crea una nueva instancia del modelo Usuario
-                $nuevoUsuario = new Usuario;
-                $nuevoUsuario->curp = $xml->curp;
-                $nuevoUsuario->correo = $request->correo;
-                $nuevoUsuario->activo = 0; // Establece 'activo' en 0 (inactivo) por defecto
-                $nuevoUsuario->act_token = $activationToken; // Genera un token de activación
-                $nuevoUsuario->save();
-
-                //Generar el mismo idpersona para las demás tablas
-                $nuevoId=$nuevoUsuario->idlog;
-
-                // Crea una nueva instancia del modelo Persona
-                $nuevaPersona = new Persona;
-                $nuevaPersona->rfc = '';
-                $nuevaPersona->curp = $xml->curp;
-                $nuevaPersona->correo = $request->correo;
-                $nuevaPersona->paterno = $xml->paterno;
-                $nuevaPersona->materno = $xml->materno;
-                $nuevaPersona->nombre = $xml->nombre;
+                $nombreProcedimiento1= 'insertarsolicitante';
+                $curp= $xml->curp;
+                $correo= $request->correo;
+                $activo = 0; // Establece 'activo' en 0 (inactivo) por defecto
+                $act_token = $activationToken; // Genera un token de activación
+                $paterno = $xml->paterno;
+                $materno = $xml->materno;
+                $nombre = $xml->nombre;
                 if ($xml->sexo == 'H') {
-                    $nuevaPersona->sexo = 1; // Hombre
+                    $sexo = 1; // Hombre
                 } elseif ($xml->sexo == 'M') {
-                    $nuevaPersona->sexo = 0; // Mujer
+                    $sexo = 0; // Mujer
                 }
-                $nuevaPersona->fechanac = Carbon::createFromFormat('d/m/Y', $xml->fn)->toDateString();
-                $nuevaPersona->locnac = '';
-                $nuevaPersona->fechaRegistro = Carbon::now();
-                $nuevaPersona->estadoCivil = '';
-                $nuevaPersona->save();
+                //$fechanac = Carbon::createFromFormat('d/m/Y', $xml->fn)->toDateString();
+                $fechaInput = $xml->fn;
+                $fechaCarbon = Carbon::createFromFormat('d/m/Y', $fechaInput);
+                $nuevaFecha = $fechaCarbon->format('Y-m-d');
+                $arraySolicitante = [$curp, $correo, $activo, $act_token, $paterno, $materno, $nombre, $sexo, $nuevaFecha];
+                $procedimiento = new ContadorParametros();
+                $resultados= $procedimiento->proceStatement($nombreProcedimiento1, $arraySolicitante);
+                //dd($resultados[0]);
+                // Verificar si se obtuvieron resultados para almacenar el id y la localidad de la personna (papá)
+                // if (!empty($resultados)) {
+                //     $correoUsuario = $resultados[0]->correo;
+                    
+                    
+                // } else {
+                //     // Si no se obtienen resultados
+                //     return redirect()->route('login');
+                // }
 
-                //Creando instancia del modelo Expediente
-                $nuevoExpediente = new Expediente;
-                $nuevoExpediente->idsolicitante = $nuevoId;
-                $nuevoExpediente->fecha = Carbon::now();
-                $nuevoExpediente->save();
+
+                /* codigo USANDO ELOQUENT */
+                // // Crea una nueva instancia del modelo Usuario
+                $nuevoUsuario = new Usuario;
+                // $nuevoUsuario->curp = $xml->curp;
+                // $nuevoUsuario->correo = $request->correo;
+                // $nuevoUsuario->activo = 0; // Establece 'activo' en 0 (inactivo) por defecto
+                // $nuevoUsuario->act_token = $activationToken; // Genera un token de activación
+                // $nuevoUsuario->save();
+
+                // //Generar el mismo idpersona para las demás tablas
+                // $nuevoId=$nuevoUsuario->idlog;
+
+                // // Crea una nueva instancia del modelo Persona
+                // $nuevaPersona = new Persona;
+                // $nuevaPersona->rfc = '';
+                // $nuevaPersona->curp = $xml->curp;
+                // $nuevaPersona->correo = $request->correo;
+                // $nuevaPersona->paterno = $xml->paterno;
+                // $nuevaPersona->materno = $xml->materno;
+                // $nuevaPersona->nombre = $xml->nombre;
+                // if ($xml->sexo == 'H') {
+                //     $nuevaPersona->sexo = 1; // Hombre
+                // } elseif ($xml->sexo == 'M') {
+                //     $nuevaPersona->sexo = 0; // Mujer
+                // }
+                // $nuevaPersona->fechanac = Carbon::createFromFormat('d/m/Y', $xml->fn)->toDateString();
+                // $nuevaPersona->locnac = '';
+                // $nuevaPersona->fechaRegistro = Carbon::now();
+                // $nuevaPersona->estadoCivil = '';
+                // $nuevaPersona->save();
+
+                // //Creando instancia del modelo Expediente
+                // $nuevoExpediente = new Expediente;
+                // $nuevoExpediente->idsolicitante = $nuevoId;
+                // $nuevoExpediente->fecha = Carbon::now();
+                // $nuevoExpediente->save();
 
                 // Envía el correo de activación
-                Mail::to($nuevoUsuario->correo)->send(new ActivationMail($nuevoUsuario, $activationToken));
+                Mail::to($correo)->send(new ActivationMail($nuevoUsuario, $activationToken));
     
                 return redirect()->route('exito');
             }
