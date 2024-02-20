@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- La línea de abajo es para que pueda eliminar registros del form5 con js" -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="images/png" href="{{ asset('assets/images/escudotam_2023.ico')}}">
@@ -135,7 +137,9 @@
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/js/form.js')}}"></script>
     <script src="{{ asset('assets/js/estados.js')}}"></script>
+    <script src="{{ asset('assets/js/script.js')}}"></script>
     <script src="{{ asset('assets/js/eventosAcordeon.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     {{-- <script src="{{ asset('assets/js/eventosForm3.js')}}"></script> --}}
     {{-- <script src="{{ asset('assets/js/form3-containers.js')}}"></script> --}}
     {{-- <script src="{{ asset('assets/js/municipios.js')}}"></script> --}}

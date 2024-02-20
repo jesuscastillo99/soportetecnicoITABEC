@@ -8,6 +8,7 @@ use App\Http\Controllers\Form1Controller;
 use App\Http\Controllers\Form2Controller;
 use App\Http\Controllers\Form3Controller;
 use App\Http\Controllers\Form4Controller;
+use App\Http\Controllers\Form5Controller;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VistasController;
@@ -102,9 +103,10 @@ Route::get('/form4-formulario/M/{municipio}', [Form4Controller::class, 'cargarEs
 Route::get('/form4-formulario/C/{escuela}', [Form4Controller::class, 'cargarCarreras'])->middleware('auth');
 Route::post('/form4-formularior', [FormsController::class, 'form4Registro1'])->name('form4-post')->middleware('auth');
 //Rutas formulario 5
-Route::get('/form5', function() {
-    return view('layouts-form.form5');
-})->name('form5');
+Route::get('/form5-formulario', [Form5Controller::class, 'index'])->name('form5-formulario')->middleware('auth');
+Route::post('/form5-formularior', [FormsController::class, 'form5RegistroTabla'])->name('form5-post')->middleware('auth');
+Route::get('delete/{idtd}', [Form5Controller::class, 'delete_post'])->name('form5-delete')->middleware('auth');
+Route::get('/form5-formulario/E/{estado}', [Form5Controller::class, 'cargarMunicipios'])->middleware('auth');
 
 //Rutas formulario 6
 Route::get('/form6', function() {

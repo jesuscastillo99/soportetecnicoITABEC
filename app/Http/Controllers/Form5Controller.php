@@ -5,25 +5,56 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Estado;
 use App\Models\Municipio;
+use App\Models\TablaDinamica;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class Form5Controller extends Controller
 {
-  public function cargarEstadosMunicipios()
-  {
-      // Obtener datos de la tabla CatEstado
-      $estados = Estado::pluck('NombreEstado', 'IdEstado');
-      $municipios = Municipio::pluck('NombreMunicipio', 'IdMunicipio');
+  public function index()
+    {
+        $usuario = Auth::user();
+        $iduser = $usuario->idlog;
+        $registros = TablaDinamica::where('idpersona', $iduser)
+                                  ->with('municipio')
+                                  ->get();
+        $estados = Estado::pluck('NombreEstado', 'IdEstado');
+        $consultaEstado = null;
+        $consultaMunicipio = null;
+        //dd($registros);
+        return view('layouts-form.form5',[
+          'estados' => $estados,
+          'registros' => $registros,
+          'consultaEstado' => $consultaEstado,
+          'consultaMunicipio' => $consultaMunicipio]);
+    }
+
+    
+    public function delete_post($idtd)
+    {
+        try {
+            
+          $registro = TablaDinamica::find($idtd);
+          
+          $registro->delete();
   
-      return view('layouts-form.form5', ['estados' => $estados]);
-  }
+          return redirect()->route('form5-formulario');
 
-  public function cargarMunicipios($estado)
-  {
-    $municipios=Municipio::where('idEstado', $estado)->get();
+        } catch (QueryException $e) {
+          dd($e);
+          
+        }
+        
+    }
 
-    return response()->json($municipios);
-  }
+    public function cargarMunicipios($estado)
+    {
+        // Consulta los municipios relacionados con el estado
+        $municipios = Municipio::where('IdEstado', $estado)->get();
+
+        // Devuelve los municipios en formato JSON
+        return response()->json($municipios);
+    }
 
 }

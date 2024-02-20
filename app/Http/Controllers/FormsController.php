@@ -8,6 +8,7 @@ use App\Models\Expediente;
 use App\Models\Estado;
 use App\Models\Municipio;
 use App\Models\Localidad;
+use App\Models\TablaDinamica;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Persona;
 use Illuminate\Support\Carbon;
@@ -512,4 +513,25 @@ class FormsController extends Controller
              
             
         }
+
+        public function form5RegistroTabla(Request $request)
+    {
+        try{
+            $usuario = Auth::user();
+            $registro = new TablaDinamica();
+            $registro->idpersona = $usuario->idlog;
+            $registro->nivel = $request->input('nivel');
+            $registro->escuela = $request->input('escuela');
+            $registro->tipo = $request->input('tipo');
+            $registro->promedio = $request->input('promedio');
+            $registro->estado = $request->input('estado');
+            $registro->municipio = $request->input('municipio');
+            $registro->save();
+
+            return response()->json(['success' => true]);
+        } catch  (QueryException $e) {
+            dd($e);
+        }
+        
+    }
 }

@@ -263,7 +263,7 @@
     <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form3-formulario') }}'">Regresar</button>
   </div>
   <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form5') }}'">Siguiente</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form5-formulario') }}'">Siguiente</button>
   </div>
 </div> 
 
