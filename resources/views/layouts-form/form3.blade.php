@@ -41,6 +41,7 @@
     <!-- Utiliza 'container' para centrar y 'd-flex' para establecer flexbox -->
     
     <div class="accordion mi-accordion" id="accordionExample">
+      
         <div class="accordion-item" id="item1">
           <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -197,7 +198,7 @@
                                   <option value="{{ $nombreMunicipio ?? '' }}" selected>
                                       {{ $nombreMunicipio ?? 'Selecciona un municipio' }}
                                   </option>
-                              </select>
+                                </select>
                                 @error('municipio')
                                 <p class="text-danger">{{ $message }}</p>
                                 @enderror

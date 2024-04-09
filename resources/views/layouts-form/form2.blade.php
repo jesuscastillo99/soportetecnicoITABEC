@@ -306,7 +306,7 @@
       @csrf
       <div class="row">
           <div class="col-md-12 text-center">
-            <h2 class="titulo-form"><strong>Domicilio Fóraneo (si vive en otra ciudad)</strong><h2>
+            <h2 class="titulo-form"><strong>Domicilio Foráneo (si vive en otra ciudad)</strong><h2>
           </div>
         </div>
       <div class="row justify-content-center">

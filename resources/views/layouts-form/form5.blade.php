@@ -6,6 +6,7 @@
     <div class="container mb-4 bg-cremita pt-3 rounded">
       <div class="container">
         <h2 class="text-center fw-bold">HISTORIAL ACADEMICO</h2>
+        <p>Ingresa los datos de las escuelas en las que estudiaste:</p>
         <form id="miFormulario">
             @csrf <!-- Directiva de Blade para protección CSRF -->
             <div class="row">
@@ -79,7 +80,7 @@
                 </div>
             </div>
             <div class="text-end">
-              <button type="submit" class="btn btn-primary">Agregar Registro</button>
+              <button type="submit" class="btn btn-danger">Agregar Registro</button>
             </div>
         </form>
         <hr>
@@ -91,7 +92,7 @@
                     <th>Tipo</th>
                     <th>Promedio</th>
                     <th>Municipio</th>
-                    <th>Acciones</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody id="tablaRegistros">
@@ -102,7 +103,7 @@
                     <td>{{ $registro->escuela }}</td>
                     <td>{{ $registro->tipo }}</td>
                     <td>{{ $registro->promedio }}</td>
-                    <td>{{ $registro->Municipio->NombreMunicipio }}</td>
+                    <td>{{ $registro->Municipio->NombreMunicipio ?? '' }}</td>
                     <td>
                         <a href="{{ url('delete/'.$registro->idtd) }}" class="btn btn-danger btn-form">Eliminar</button>
                     </td>

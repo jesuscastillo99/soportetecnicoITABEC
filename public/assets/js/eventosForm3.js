@@ -83,3 +83,4 @@ function existeCurpMadre(existeCurpMadre){
         document.getElementById('btnEliminarMadre').classList.remove('d-none');
     }
 }
+

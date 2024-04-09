@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-6 mb-3 text-center">
-                <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form10') }}'">NO</button>
+                <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form10-formulario') }}'">NO</button>
               </div>
               <div class="col-md-4 mb-3 text-center">
                 <button type="submit" class="boton btn-form" onclick="window.location.href='{{ route('form12') }}'">SI</button>

@@ -367,7 +367,7 @@
 
 <div class="row mt-4 pl-5 pr-5">
   <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form5') }}'">Regresar</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form5-formulario') }}'">Regresar</button>
   </div>
   <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
     <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form7') }}'">Siguiente</button>

@@ -7,27 +7,28 @@
 
     <div class="container mb-4 bg-cremita pt-3 rounded" id="container_trabajo_estudiante">
 
-      <form method="POST" action="{{ route('form9') }}">
+      <form method="POST" action="{{ route('form9-post') }}">
+        @csrf
         <div class="col-md-12 text-center">
             <h2 class="titulo-form"><strong>Trabajo del Estudiante</strong><h2>
         </div>
          <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="nom_org_estudiante">Nombre de la Organización:</label>
-                  <input type="text" class="form-control" id="nom_org_estudiante" name="nom_org_estudiante">
+                  <label for="nomorgest">Nombre de la Organización:</label>
+                  <input type="text" class="form-control" id="nomorgest" name="nomorgest" value="{{ old('nomorgest', $nomorgest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="puesto_estudiante">Puesto:</label>
-                  <input type="text" class="form-control" id="puesto_estudiante" name="puesto_estudiante">
+                  <label for="pueest">Puesto:</label>
+                  <input type="text" class="form-control" id="pueest" name="pueest" value="{{ old('pueest', $pueest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="sueldo_estudiante">Sueldo:</label>
-                  <input type="text" class="form-control" id="sueldo_estudiante" name="sueldo_estudiante">
+                  <label for="sueest">Sueldo:</label>
+                  <input type="text" class="form-control" id="sueest" name="sueest" value="{{ old('sueest', $sueest ?? '') }}">
                 </div>
               </div>
         </div>
@@ -35,62 +36,87 @@
         <div class="row border-form" >
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="calle_p_estudiante">Calle Principal:</label>
-                  <input type="text" class="form-control" id="calle_p_estudiante" name="callep_cestudiante">
+                  <label for="callest">Calle Principal:</label>
+                  <input type="text" class="form-control" id="callest" name="callest" value="{{ old('callest', $callest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="calles_estudiante">Entre Calles:</label>
-                  <input type="text" class="form-control" id="calles_estudiante" name="calles_estudiante">
+                  <label for="calle2est">Entre calles:</label>
+                  <input type="text" class="form-control" id="calle2est" name="calle2est" maxlength="100" value="{{ old('calle2est', $calle2est ?? '') }}">
+                  <p class="text-center">Y</p>
+                  <input type="text" class="form-control mt-1" id="calle3est" name="calle3est" maxlength="100" value="{{ old('calle3est', $calle3est ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="numero_estudiante">Número:</label>
-                  <input type="text" class="form-control" id="numero_estudiante" name="numero_estudiante">
+                  <label for="numest">Número:</label>
+                  <input type="text" class="form-control" id="numest" name="numest" value="{{ old('numest', $numest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="colonia_estudiante">Colonia:</label>
-                  <input type="text" class="form-control" id="colonia_estudiante" name="colonia_estudiante">
+                  <label for="colest">Colonia:</label>
+                  <input type="text" class="form-control" id="colest" name="colest" value="{{ old('colest', $colest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="pais_estudiante">País:</label>
-                  <input type="text" class="form-control" id="pais_estudiante" name="pais_estudiante">
+                  <label for="paisest">País:</label>
+                  <input type="text" class="form-control" id="paisest" name="paisest" value="{{ old('paisest', $paisest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="estado_estudiante">Estado:</label>
-                  <input type="text" class="form-control" id="estado_estudiante" name="estado_estudiante">
+                  <label for="estado">Estado:</label>
+                  <select class="form-control" id="estado" name="estado">
+                    <option value="">Selecciona un estado</option>
+                    @foreach($estados as $IdEstado => $NombreEstado)
+                            <option value="{{ $IdEstado }}" {{ ($nombreEstado == $NombreEstado) ? 'selected' : '' }}>
+                                {{ $NombreEstado }}
+                            </option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="municipio_estudiante">Municipio:</label>
-                  <input type="text" class="form-control" id="municipio_estudiante" name="municipio_estudiante">
+                  <label for="municipio">Municipio:</label>
+                  <select class="form-control" id="municipio" name="municipio">
+                    <option value="">Selecciona un municipio</option>
+                    <option value="{{ $nombreMunicipio ?: '' }}" selected>
+                      {{ $nombreMunicipio ?: 'Selecciona un municipio' }}
+                  </option>
+                  </select>
+                  <script>
+                    cargarMunicipios('estado', 'municipio');
+                  </script> 
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="localidad_estudiante">Localidad:</label>
-                  <input type="text" class="form-control" id="localidad_estudiante" name="localidad_estudiante">
+                  <label for="localidad">Localidad:</label>
+                  <select class="form-control" id="localidad" name="localidad">
+                    <option value="">Selecciona una localidad</option>
+                    @isset($idlocalidadest)
+                    <option value="{{ $idlocalidadest }}" selected>{{ $nombreLocalidad }}</option>
+                    @endisset
+                  </select>
+                <script>
+                  cargarLocalidades('municipio', 'localidad');
+                </script> 
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="telefono_estudiante">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telefono_estudiante" name="telefono_estudiante">
+                  <label for="telest">Teléfono Local:</label>
+                  <input type="text" class="form-control" id="telest" name="telest" value="{{ old('telest', $telest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="codigoP_estudiante">Código Postal:</label>
-                  <input type="text" class="form-control" id="codigoP_estudiante" name="codigoP_estudiante">
+                  <label for="cpest">Código Postal:</label>
+                  <input type="text" class="form-control" id="cpest" name="cpest" value="{{ old('cpest', $cpest ?? '') }}">
                 </div>
               </div>
              
@@ -105,129 +131,32 @@
     </div>
 
 
-    <div class="container mb-4 bg-cremita pt-3 rounded" id="container_trabajo_conyugue">
-
-      <form method="POST" action="{{ route('form9') }}">
-        <div class="col-md-12 text-center">
-            <h2 class="titulo-form"><strong>Trabajo del Cónyugue</strong><h2>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="nom_org_conyugue">Nombre de la Organización:</label>
-                  <input type="text" class="form-control" id="nom_org_conyugue" name="nom_org_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="puesto_conyugue">Puesto:</label>
-                  <input type="text" class="form-control" id="puesto_conyugue" name="puesto_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="sueldo_conyugue">Sueldo:</label>
-                  <input type="text" class="form-control" id="sueldo_conyugue" name="sueldo_conyugue">
-                </div>
-              </div>
-        </div>
-        <h2 class="subtitulo-form">Domicilio de la Organización</h2>
-        <div class="row border-form" >
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="calle_p_conyugue">Calle Principal:</label>
-                  <input type="text" class="form-control" id="calle_p_conyugue" name="callep_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="calles_conyugue">Entre Calles:</label>
-                  <input type="text" class="form-control" id="calles_conyugue" name="calles_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="numero_conyugue">Número:</label>
-                  <input type="text" class="form-control" id="numero_conyugue" name="numero_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="colonia_conyugue">Colonia:</label>
-                  <input type="text" class="form-control" id="colonia_conyugue" name="colonia_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="pais_conyugue">País:</label>
-                  <input type="text" class="form-control" id="pais_conyugue" name="pais_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="estado_conyugue">Estado:</label>
-                  <input type="text" class="form-control" id="estado_conyugue" name="estado_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="municipio_conyugue">Municipio:</label>
-                  <input type="text" class="form-control" id="municipio_conyugue" name="municipio_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="localidad_conyugue">Localidad:</label>
-                  <input type="text" class="form-control" id="localidad_conyugue" name="localidad_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="telefono_conyugue">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telefono_conyugue" name="telefono_conyugue">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="codigoP_conyugue">Código Postal:</label>
-                  <input type="text" class="form-control" id="codigoP_conyugue" name="codigoP_conyugue">
-                </div>
-              </div>
-             
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-right mb-3">
-            <!-- Botón "Guardar" -->
-            <button type="submit" class="boton btn-form">Guardar datos</button>
-          </div>
-        </div>
-      </form>
-    </div>
-
+    
 
     <div class="container mb-4 bg-cremita pt-3 rounded" id="container_trabajo_padre">
 
-      <form method="POST" action="{{ route('form9') }}">
+      <form method="POST" action="{{ route('form9-post2') }}">
+        @csrf
         <div class="col-md-12 text-center">
             <h2 class="titulo-form"><strong>Trabajo del Padre</strong><h2>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="nom_org_padre">Nombre de la Organización:</label>
-                  <input type="text" class="form-control" id="nom_org_padre" name="nom_org_padre">
+                  <label for="nomorgpa">Nombre de la Organización:</label>
+                  <input type="text" class="form-control" id="nomorgpa" name="nomorgpa" value="{{ old('nomorgpa', $nomorgpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="puesto_padre">Puesto:</label>
-                  <input type="text" class="form-control" id="puesto_padre" name="puesto_padre">
+                  <label for="puepa">Puesto:</label>
+                  <input type="text" class="form-control" id="puepa" name="puepa" value="{{ old('puepa', $puepa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="sueldo_padre">Sueldo:</label>
-                  <input type="text" class="form-control" id="sueldo_padre" name="sueldo_padre">
+                  <label for="suepa">Sueldo:</label>
+                  <input type="text" class="form-control" id="suepa" name="suepa" value="{{ old('suepa', $suepa ?? '') }}">
                 </div>
               </div>
         </div>
@@ -235,62 +164,87 @@
         <div class="row border-form" >
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="calle_p_padre">Calle Principal:</label>
-                  <input type="text" class="form-control" id="calle_p_padre" name="callep_padre">
+                  <label for="callpa">Calle Principal:</label>
+                  <input type="text" class="form-control" id="callpa" name="callpa" value="{{ old('callpa', $callpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="calles_padre">Entre Calles:</label>
-                  <input type="text" class="form-control" id="calles_padre" name="calles_padre">
+                  <label for="calle2pa">Entre calles:</label>
+                  <input type="text" class="form-control" id="calle2pa" name="calle2pa" maxlength="100" value="{{ old('calle2pa', $calle2pa ?? '') }}">
+                  <p class="text-center">Y</p>
+                  <input type="text" class="form-control mt-1" id="calle3pa" name="calle3pa" maxlength="100" value="{{ old('calle3pa', $calle3pa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="numero_padre">Número:</label>
-                  <input type="text" class="form-control" id="numero_padre" name="numero_padre">
+                  <label for="numpa">Número:</label>
+                  <input type="text" class="form-control" id="numpa" name="numpa" value="{{ old('numpa', $numpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="colonia_padre">Colonia:</label>
-                  <input type="text" class="form-control" id="colonia_padre" name="colonia_padre">
+                  <label for="colest">Colonia:</label>
+                  <input type="text" class="form-control" id="colpa" name="colpa" value="{{ old('colpa', $colpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="pais_padre">País:</label>
-                  <input type="text" class="form-control" id="pais_padre" name="pais_padre">
+                  <label for="paispa">País:</label>
+                  <input type="text" class="form-control" id="paispa" name="paispa" value="{{ old('paispa', $paispa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="estado_padre">Estado:</label>
-                  <input type="text" class="form-control" id="estado_padre" name="estado_padre">
+                  <label for="estado2">Estado:</label>
+                  <select class="form-control" id="estado2" name="estado2">
+                    <option value="">Selecciona un estado</option>
+                    @foreach($estados as $IdEstado => $NombreEstado)
+                            <option value="{{ $IdEstado }}" {{ ($nombreEstado2 == $NombreEstado) ? 'selected' : '' }}>
+                                {{ $NombreEstado }}
+                            </option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="municipio_padre">Municipio:</label>
-                  <input type="text" class="form-control" id="municipio_padre" name="municipio_padre">
+                  <label for="municipio2">Municipio:</label>
+                  <select class="form-control" id="municipio2" name="municipio2">
+                    <option value="">Selecciona un municipio</option>
+                    <option value="{{ $nombreMunicipio2 ?: '' }}" selected>
+                      {{ $nombreMunicipio2 ?: 'Selecciona un municipio' }}
+                  </option>
+                  </select>
+                  <script>
+                    cargarMunicipios('estado2', 'municipio2');
+                  </script> 
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="localidad_padre">Localidad:</label>
-                  <input type="text" class="form-control" id="localidad_padre" name="localidad_padre">
+                  <label for="localidad2">Localidad:</label>
+                  <select class="form-control" id="localidad2" name="localidad2">
+                    <option value="">Selecciona una localidad</option>
+                    @isset($idlocalidadpadre)
+                    <option value="{{ $idlocalidadpadre }}" selected>{{ $nombreLocalidad2 }}</option>
+                    @endisset
+                  </select>
+                  <script>
+                    cargarLocalidades('municipio2', 'localidad2');
+                  </script> 
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="telefono_padre">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telefono_padre" name="telefono_padre">
+                  <label for="telpa">Teléfono Local:</label>
+                  <input type="text" class="form-control" id="telpa" name="telpa" value="{{ old('telpa', $telpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="codigoP_padre">Código Postal:</label>
-                  <input type="text" class="form-control" id="codigoP_padre" name="codigoP_padre">
+                  <label for="cppa">Código Postal:</label>
+                  <input type="text" class="form-control" id="cppa" name="cppa" value="{{ old('cppa', $cppa ?? '') }}">
                 </div>
               </div>
              
@@ -307,27 +261,28 @@
 
     <div class="container mb-4 bg-cremita pt-3 rounded" id="container_trabajo_madre">
 
-      <form method="POST" action="{{ route('form9') }}">
+      <form method="POST" action="{{ route('form9-post3') }}">
+        @csrf
         <div class="col-md-12 text-center">
             <h2 class="titulo-form"><strong>Trabajo de la Madre</strong><h2>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="nom_org_madre">Nombre de la Organización:</label>
-                  <input type="text" class="form-control" id="nom_org_madre" name="nom_org_madre">
+                  <label for="nomorgma">Nombre de la Organización:</label>
+                  <input type="text" class="form-control" id="nomorgma" name="nomorgma" value="{{ old('nomorgma', $nomorgma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="puesto_madre">Puesto:</label>
-                  <input type="text" class="form-control" id="puesto_madre" name="puesto_madre">
+                  <label for="puema">Puesto:</label>
+                  <input type="text" class="form-control" id="puema" name="puema" value="{{ old('puema', $puema ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="sueldo_madre">Sueldo:</label>
-                  <input type="text" class="form-control" id="sueldo_madre" name="sueldo_madre">
+                  <label for="suema">Sueldo:</label>
+                  <input type="text" class="form-control" id="suema" name="suema" value="{{ old('suema', $suema ?? '') }}">
                 </div>
               </div>
         </div>
@@ -335,62 +290,87 @@
         <div class="row border-form" >
             <div class="col-md-4">
                 <div class="form-group">
-                  <label for="calle_p_madre">Calle Principal:</label>
-                  <input type="text" class="form-control" id="calle_p_madre" name="callep_madre">
+                  <label for="callma">Calle Principal:</label>
+                  <input type="text" class="form-control" id="callma" name="callma" value="{{ old('callma', $callma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="calles_madre">Entre Calles:</label>
-                  <input type="text" class="form-control" id="calles_madre" name="calles_madre">
+                  <label for="calle2ma">Entre calles:</label>
+                  <input type="text" class="form-control" id="calle2ma" name="calle2ma" maxlength="100" value="{{ old('calle2ma', $calle2ma ?? '') }}">
+                  <p class="text-center">Y</p>
+                  <input type="text" class="form-control mt-1" id="calle3ma" name="calle3ma" maxlength="100" value="{{ old('calle3ma', $calle3ma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="numero_madre">Número:</label>
-                  <input type="text" class="form-control" id="numero_madre" name="numero_madre">
+                  <label for="numma">Número:</label>
+                  <input type="text" class="form-control" id="numma" name="numma" value="{{ old('numma', $numma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="colonia_madre">Colonia:</label>
-                  <input type="text" class="form-control" id="colonia_madre" name="colonia_madre">
+                  <label for="colma">Colonia:</label>
+                  <input type="text" class="form-control" id="colma" name="colma" value="{{ old('colma', $colma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="pais_madre">País:</label>
-                  <input type="text" class="form-control" id="pais_madre" name="pais_madre">
+                  <label for="paisma">País:</label>
+                  <input type="text" class="form-control" id="paisma" name="paisma" value="{{ old('paisma', $paisma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="estado_madre">Estado:</label>
-                  <input type="text" class="form-control" id="estado_madre" name="estado_madre">
+                  <label for="estado3">Estado:</label>
+                  <select class="form-control" id="estado3" name="estado3">
+                    <option value="">Selecciona un estado</option>
+                    @foreach($estados as $IdEstado => $NombreEstado)
+                            <option value="{{ $IdEstado }}" {{ ($nombreEstado3 == $NombreEstado) ? 'selected' : '' }}>
+                                {{ $NombreEstado }}
+                            </option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="municipio_madre">Municipio:</label>
-                  <input type="text" class="form-control" id="municipio_madre" name="municipio_madre">
+                  <label for="municipio3">Municipio:</label>
+                  <select class="form-control" id="municipio3" name="municipio3">
+                    <option value="">Selecciona un municipio</option>
+                    <option value="{{ $nombreMunicipio3 ?: '' }}" selected>
+                      {{ $nombreMunicipio3 ?: 'Selecciona un municipio' }}
+                  </option>
+                  </select>
+                  <script>
+                    cargarMunicipios('estado3', 'municipio3');
+                  </script> 
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="localidad_madre">Localidad:</label>
-                  <input type="text" class="form-control" id="localidad_madre" name="localidad_madre">
+                  <label for="localidad3">Localidad:</label>
+                  <select class="form-control" id="localidad3" name="localidad3">
+                    <option value="">Selecciona una localidad</option>
+                    @isset($idlocalidadmadre)
+                    <option value="{{ $idlocalidadmadre }}" selected>{{ $nombreLocalidad3 }}</option>
+                    @endisset
+                  </select>
+                <script>
+                  cargarLocalidades('municipio3', 'localidad3');
+                </script> 
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="telefono_madre">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telefono_madre" name="telefono_madre">
+                  <label for="telma">Teléfono Local:</label>
+                  <input type="text" class="form-control" id="telma" name="telma" value="{{ old('telma', $telma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="codigoP_madre">Código Postal:</label>
-                  <input type="text" class="form-control" id="codigoP_madre" name="codigoP_madre">
+                  <label for="cpma">Código Postal:</label>
+                  <input type="text" class="form-control" id="cpma" name="cpma" value="{{ old('cpma', $cpma ?? '') }}">
                 </div>
               </div>
              
@@ -405,213 +385,16 @@
     </div>
 
 
-    <div class="container mb-4 bg-cremita pt-3 rounded" id="container_trabajo_aval1">
-
-        <form method="POST" action="{{ route('form9') }}">
-            <div class="col-md-12 text-center">
-                <h2 class="titulo-form"><strong>Trabajo del AVAL 1</strong><h2>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="nom_org_aval1">Nombre de la Organización:</label>
-                      <input type="text" class="form-control" id="nom_org_aval1" name="nom_org_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="puesto_aval1">Puesto:</label>
-                      <input type="text" class="form-control" id="puesto_aval1" name="puesto_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="sueldo_aval1">Sueldo:</label>
-                      <input type="text" class="form-control" id="sueldo_aval1" name="sueldo_aval1">
-                    </div>
-                  </div>
-            </div>
-            <h2 class="subtitulo-form"> Domicilio de la Organización </h2>
-            <div class="row border-form" >
-                <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="calle_p_aval1">Calle Principal:</label>
-                      <input type="text" class="form-control" id="calle_p_aval1" name="callep_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="calles_aval1">Entre Calles:</label>
-                      <input type="text" class="form-control" id="calles_aval1" name="calles_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="numero_aval1">Número:</label>
-                      <input type="text" class="form-control" id="numero_aval1" name="numero_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="colonia_aval1">Colonia:</label>
-                      <input type="text" class="form-control" id="colonia_aval1" name="colonia_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="pais_aval1">País:</label>
-                      <input type="text" class="form-control" id="pais_aval1" name="pais_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="estado_aval1">Estado:</label>
-                      <input type="text" class="form-control" id="estado_aval1" name="estado_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="municipio_aval1">Municipio:</label>
-                      <input type="text" class="form-control" id="municipio_aval1" name="municipio_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="localidad_aval1">Localidad:</label>
-                      <input type="text" class="form-control" id="localidad_aval1" name="localidad_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="telefono_aval1">Teléfono Local:</label>
-                      <input type="text" class="form-control" id="telefono_aval1" name="telefono_aval1">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="codigoP_aval1">Código Postal:</label>
-                      <input type="text" class="form-control" id="codigoP_aval1" name="codigoP_aval1">
-                    </div>
-                  </div>
-                 
-            </div>
-            <div class="row">
-              <div class="col-md-12 text-right mb-3">
-                <!-- Botón "Guardar" -->
-                <button type="submit" class="boton btn-form">Guardar datos</button>
-              </div>
-            </div>
-        </form>
-    </div>
     
-
-    <div class="container mb-4 bg-cremita pt-3 rounded" id="container_trabajo_aval2">
-
-      <form method="POST" action="{{ route('form9') }}">
-        <div class="col-md-12 text-center">
-            <h2 class="titulo-form"><strong>Trabajo del AVAL 2</strong><h2>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="nom_org_aval2">Nombre de la Organización:</label>
-                  <input type="text" class="form-control" id="nom_org_aval2" name="nom_org_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="puesto_aval2">Puesto:</label>
-                  <input type="text" class="form-control" id="puesto_aval2" name="puesto_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="sueldo_aval2">Sueldo:</label>
-                  <input type="text" class="form-control" id="sueldo_aval2" name="sueldo_aval2">
-                </div>
-              </div>
-        </div>
-        <h2 class="subtitulo-form"> Domicilio de la Organización </h2>
-        <div class="row border-form" >
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="calle_p_aval2">Calle Principal:</label>
-                  <input type="text" class="form-control" id="calle_p_aval2" name="callep_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="calles_aval2">Entre Calles:</label>
-                  <input type="text" class="form-control" id="calles_aval2" name="calles_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="numero_aval2">Número:</label>
-                  <input type="text" class="form-control" id="numero_aval2" name="numero_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="colonia_aval2">Colonia:</label>
-                  <input type="text" class="form-control" id="colonia_aval2" name="colonia_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="pais_aval2">País:</label>
-                  <input type="text" class="form-control" id="pais_aval2" name="pais_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="estado_aval2">Estado:</label>
-                  <input type="text" class="form-control" id="estado_aval2" name="estado_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="municipio_aval2">Municipio:</label>
-                  <input type="text" class="form-control" id="municipio_aval2" name="municipio_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="localidad_aval2">Localidad:</label>
-                  <input type="text" class="form-control" id="localidad_aval2" name="localidad_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="telefono_aval2">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telefono_aval2" name="telefono_aval2">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="codigoP_aval2">Código Postal:</label>
-                  <input type="text" class="form-control" id="codigoP_aval2" name="codigoP_aval2-">
-                </div>
-              </div>
-             
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-right mb-3">
-            <!-- Botón "Guardar" -->
-            <button type="submit" class="boton btn-form">Guardar datos</button>
-          </div>
-        </div>
-      </form>
-    </div>
 
 
 </div>
 <div class="row mt-4 pl-5 pr-5">
   <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form8') }}'">Regresar</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form8-formulario') }}'">Regresar</button>
   </div>
   <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form10') }}'">Siguiente</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form10-formulario') }}'">Siguiente</button>
   </div>
 </div> 
 @endsection
