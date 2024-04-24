@@ -113,3 +113,31 @@ function existeR2(consultaR2, validarR2){
         document.getElementById('item2').classList.remove('d-none');
     }
 }
+//CODIGO DEL AVAL
+function existeAval(consultaAval, validarAval){
+    if(consultaAval==false){
+       //Si no tiene R1, muestrame el ingresar curp y oculta el mostrar datos
+       
+       document.getElementById('item2').classList.add('d-none');
+       document.getElementById('item1').classList.remove('d-none');
+       document.getElementById('btnGuardarAval').classList.remove('d-none');
+       document.getElementById('btnEliminarAval').classList.add('d-none');
+       
+    } 
+    
+    if(consultaAval==true){
+
+        //Si el usuario tiene R1, oculta el campo de ingresar curp y muestra el campo de ingresar datos
+        
+        document.getElementById('item1').classList.add('d-none');
+        document.getElementById('item2').classList.remove('d-none');
+        document.getElementById('btnGuardarAval').classList.add('d-none');
+        document.getElementById('btnEliminarAval').classList.remove('d-none');
+    }
+
+    if(validarAval==false){
+        document.getElementById('item1').classList.add('d-none');
+        document.getElementById('btnGuardarAval').classList.remove('d-none');
+        document.getElementById('item2').classList.remove('d-none');
+    }
+}

@@ -6,6 +6,7 @@
 
   <div class="container mb-4 bg-cremita pt-3 rounded">
     <form method="POST" action="{{ route('form10-post') }}">
+      @csrf
       <div class="row">
         <div class="col-md-12 text-center">
           <label>Nota: El mensaje debe ser solo si tienes problemas con el sistema, cualquier otra duda envía un correo a --> itabec@tamaulipas.gob.mx</label>

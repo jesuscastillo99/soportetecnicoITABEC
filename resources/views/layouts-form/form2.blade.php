@@ -2,6 +2,21 @@
 @section('title', 'form2')
 @section('content')
 <div class="section margin-top_50">
+  @if (session('success'))
+    <div class="alert alert-success text-center">
+         {{ session('success') }}
+    </div>
+  @endif
+  @if (session('success2'))
+    <div class="alert alert-success text-center">
+         {{ session('success2') }}
+    </div>
+  @endif
+  @if (session('success3'))
+    <div class="alert alert-success text-center">
+         {{ session('success3') }}
+    </div>
+  @endif
   <div class="container mb-2 bg-cremita pt-3 rounded">
     <form method="POST" action="{{ route('form2-post') }}">
       @csrf
@@ -127,11 +142,7 @@
                 <script>
                   cargarLocalidades('municipio', 'localidad');
                 </script> 
-                 @if (session('success'))
-                 <div class="alert alert-success mt-2">
-                     {{ session('success') }}
-                 </div>
-             @endif
+                 
              @if (session('error'))
              <div class="alert alert-error">
                  {{ session('error') }}
@@ -276,11 +287,7 @@
                   <script>
                     cargarLocalidades('municipio2', 'localidad2');
                   </script> 
-                  @if (session('success2'))
-                      <div class="alert alert-success mt-2">
-                          {{ session('success2') }}
-                      </div>
-                  @endif
+                  
                   @if (session('error2'))
                     <div class="alert alert-error">
                         {{ session('error2') }}
@@ -425,11 +432,7 @@
                   <script>
                     cargarLocalidades('municipio3', 'localidad3');
                   </script>
-                  @if (session('success3'))
-                      <div class="alert alert-success mt-2">
-                          {{ session('success3') }}
-                      </div>
-                  @endif
+                 
                   @if (session('error3'))
                     <div class="alert alert-error">
                         {{ session('error3') }}

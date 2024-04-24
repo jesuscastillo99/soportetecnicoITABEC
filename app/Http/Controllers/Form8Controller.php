@@ -62,7 +62,7 @@ class Form8Controller extends Controller
         $nombreLocalidadNacR1 = $localidadNac[0]->Localidad ?? null;
         $nombreMunicipioNacR1 = $localidadNac[0]->NombreMunicipio ?? null;
         $nombreEstadoNacR1 = $localidadNac[0]->NombreEstado ?? null;
-
+       // dd($nombreEstadoNacR1);
         //Se ejecuta el procedimiento para cargar el lugar del domicilio de r1
         $idLocalidadR1 = [$r1idlocalidad];
         $localidadR1 = $procedimiento2->proceSelect($nombreprocedimiento2, $idLocalidadR1); 

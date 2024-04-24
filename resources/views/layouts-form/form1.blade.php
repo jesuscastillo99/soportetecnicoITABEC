@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="section margin-top_50">
+  @if (session('success'))
+    <div class="alert alert-success text-center">
+         {{ session('success') }}
+    </div>
+  @endif
     <div class="container mb-4 bg-cremita pt-3 rounded">
       <form method="POST" action="{{ route('form1-post') }}">
         @csrf

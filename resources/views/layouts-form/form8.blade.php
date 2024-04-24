@@ -3,6 +3,16 @@
 @section('content')
 
 <div class="section margin-top_50">
+  @if (session('successR1'))
+    <div class="alert alert-success text-center">
+         {{ session('successR1') }}
+    </div>
+  @endif
+  @if (session('successR2'))
+    <div class="alert alert-success text-center">
+         {{ session('successR2') }}
+    </div>
+  @endif
   <div class="accordion mi-accordion col-md-8 mx-auto" id="accordionExample">
     
     <div class="accordion-item" id="item1">
@@ -117,7 +127,7 @@
                             <select class="form-control" id="estador1" name="estador1">
                               <option value="">Selecciona un estado</option>
                               @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
-                                  <option value="{{ $IdEstado }}" {{ ($nombreEstadoR1 ?? '' == $NombreEstado) ? 'selected' : '' }}>
+                                  <option value="{{ $IdEstado }}" {{ ($nombreEstadoR1 == $NombreEstado) ? 'selected' : '' }}>
                                       {{ $NombreEstado }}
                                   </option>
                               @endforeach
@@ -216,7 +226,7 @@
                               <select class="form-control" id="estado_nacr1" name="estado_nacr1">
                                 <option value="">Selecciona un estado</option>
                                 @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
-                                    <option value="{{ $IdEstado }}" {{ ($nombreEstadoNacR1 ?? '' == $NombreEstado) ? 'selected' : '' }}>
+                                    <option value="{{ $IdEstado }}" {{ ($nombreEstadoNacR1  == $NombreEstado) ? 'selected' : '' }}>
                                         {{ $NombreEstado }}
                                     </option>
                                 @endforeach

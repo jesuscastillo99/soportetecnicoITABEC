@@ -36,6 +36,7 @@
          {{ session('errorCF3') }}
     </div>
   @endif
+  
   <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
    
     <!-- Utiliza 'container' para centrar y 'd-flex' para establecer flexbox -->

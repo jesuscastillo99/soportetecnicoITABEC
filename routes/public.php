@@ -9,9 +9,11 @@ use App\Http\Controllers\Form2Controller;
 use App\Http\Controllers\Form3Controller;
 use App\Http\Controllers\Form4Controller;
 use App\Http\Controllers\Form5Controller;
+use App\Http\Controllers\Form6Controller;
 use App\Http\Controllers\Form7Controller;
 use App\Http\Controllers\Form8Controller;
 use App\Http\Controllers\Form9Controller;
+use App\Http\Controllers\Form10Controller;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VistasController;
@@ -112,9 +114,12 @@ Route::get('delete/{idtd}', [Form5Controller::class, 'delete_post'])->name('form
 Route::get('/form5-formulario/E/{estado}', [Form5Controller::class, 'cargarMunicipios'])->middleware('auth');
 
 //Rutas formulario 6
-Route::get('/form6', function() {
-    return view('layouts-form.form6');
-})->name('form6');
+Route::get('/form6-formulario', [Form6Controller::class, 'index'])->name('form6-formulario')->middleware('auth');
+Route::get('/form6-formulario/E/{estado}', [Form6Controller::class, 'cargarMunicipios'])->middleware('auth');
+Route::get('/form6-formulario/M/{municipio}', [Form6Controller::class, 'cargarLocalidades'])->middleware('auth');
+Route::post('/form6-formulariov1', [Form6Controller::class, 'form6ValidarAval'])->name('form6-post1')->middleware('auth');
+Route::post('/form6-formularior1', [FormsController::class, 'form6Registro1'])->name('form6-post2')->middleware('auth');
+Route::delete('/form6-formularioE', [FormsController::class, 'form6Eliminar'])->name('form6-post3')->middleware('auth');
 
 //Rutas formulario 7
 Route::get('/form7-formulario', [Form7Controller::class, 'index'])->name('form7-formulario')->middleware('auth');
@@ -143,9 +148,7 @@ Route::post('/form9-formularior', [FormsController::class, 'form9Registro1'])->n
 Route::post('/form9-formularior2', [FormsController::class, 'form9Registro2'])->name('form9-post2')->middleware('auth');
 Route::post('/form9-formularior3', [FormsController::class, 'form9Registro3'])->name('form9-post3')->middleware('auth');
 //Rutas formulario 10
-Route::get('/form10-formulario', function() {
-    return view('layouts-form.form10');
-})->name('form10-formulario');
+Route::get('/form10-formulario', [Form10Controller::class, 'index'])->name('form10-formulario')->middleware('auth');
 
 Route::post('/form10-formularior', [FormsController::class, 'form10Registro1'])->name('form10-post')->middleware('auth');
 

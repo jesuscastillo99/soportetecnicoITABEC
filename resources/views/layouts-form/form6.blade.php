@@ -1,377 +1,436 @@
 @extends('layouts.landingsinslider')
-@section('title', 'AVAL')
+@section('title', 'Información Personal del Solicitante')
 @section('content')
 
+
+
 <div class="section margin-top_50">
-
-    {{-- PRIMER CONTAINER | INFO GENERAL AVAL--}}
-    <div class="container mb-4 bg-cremita pt-3 rounded">
-      <form method="POST" action="{{ route('form6') }}">
-
-      {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 1 DEL FORMULARIO --}}
-       
-            <div class="col-md-12 text-center">
-                <h2 class="titulo-form"><strong>INFORMACIÓN GENERAL DEL AVAL</strong><h2>
-              </div>
-              <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="curp">CURP:</label>
-                  <input type="text" class="form-control" id="curp" name="curp" readonly>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="fecha_nac">Fecha de Nacimiento:</label>
-                  <input type="text" class="form-control" id="fecha_nac" name="fecha_nac" readonly>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="sexol">Sexo:</label>
-                  <select class="form-control" id="sexo" name="sexo">
-                    <option value="">Seleccione:</option>
-                    <option value="1">Masculino</option>
-                    <option value="0">Femenino</option>
-                  </select>
-                </div>
-              </div>
-        
-
-        {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 2 DEL FORMULARIO --}}
-        
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="apellido_pa">Apellido Paterno:</label>
-                <input type="text" class="form-control" id="apellido_pa" name="apellido_pa" readonly>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="apellido_ma">Apellido Materno:</label>
-                <input type="text" class="form-control" id="apellido_ma" name="apellido_ma" readonly>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" readonly>
-              </div>
-            </div>
-          </div>
-          {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 3 DEL FORMULARIO --}}
-
-          <h2 class="subtitulo-form">DOMICILIO</h2>
-          <div class="row border-form">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="estado">Estado:</label>
-                <select class="form-control" id="estado" name="estado">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="municipio">Municipio:</label>
-                <select class="form-control" id="municipio" name="municipio">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="localidad">Localidad:</label>
-                <select class="form-control" id="localidad" name="localidad">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-          
-
-          {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 4 DEL FORMULARIO --}}
-          
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="calle">Calle:</label>
-                  <input type="text" class="form-control" id="calle" name="calle">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="numero">Número:</label>
-                  <input type="text" class="form-control" id="numero" name="numero">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="colonia">Colonia:</label>
-                  <input type="text" class="form-control" id="colonia" name="colonia">
-                </div>
-            </div>
-        
-
-        {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 5 DEL FORMULARIO --}}
-        
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="entre_calle1">Entre que calles se encuentra:</label>
-                  <input type="text" class="form-control" id="entre_calle1" name="entre_calle1">
-                  <label for="y">y</label>
-                  <input type="text" class="form-control" id="entre_calle2" name="entre_calle2">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="cod_postal">Código Postal:</label>
-                  <input type="text" class="form-control" id="cod_postal" name="cod_postal">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="telefono">Télefono:</label>
-                  <input type="text" class="form-control" id="telefono" name="telefono">
-                </div>
-            </div>
-        
-
-        {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 6 DEL FORMULARIO --}}
-        
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="celular">Celular:</label>
-                  <input type="text" class="form-control" id="celular" name="celular">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="relacion_acred">Relación con el Acréditado:</label>
-                  <select class="form-control" id="relacion_acred" name="relacion_acred">
-                    <option value="">Seleccione:</option>
-                    <option value="1">Padre</option>
-                    <option value="2">Madre</option>
-                    <option value="3">Familiar</option>
-                    <option value="4">Otro</option>
-                    <option value="5">Conyugue</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="casa_propia">Tiene Casa Propia:</label>
-                  <select class="form-control" id="casa_propia" name="casa_propia">
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
-                  </select>
-                </div>
-              </div>
-       
-
-        {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 7 DEL FORMULARIO --}}
-        
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="trabaja">¿Trabaja?</label>
-                  <select class="form-control" id="trabaja" name="trabaja">
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
-                  </select>
-                </div>
-              </div>
-        </div>
-        
-        {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 8 DEL FORMULARIO --}}
-        <h2 class="subtitulo-form">LUGAR DONDE NACIÓ</h2>
-
-        {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 9 DEL FORMULARIO --}}
-        <div class="row border-form">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="estado_nac">Estado donde nació:</label>
-                <select class="form-control" id="estado_nac" name="estado_nac">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="municipio_nac">Municipio donde nació:</label>
-                <select class="form-control" id="municipio_nac" name="municipio_nac">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="localidad_nac">Localidad donde nació:</label>
-                <select class="form-control" id="localidad_nac" name="localidad_nac">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 10 DEL FORMULARIO --}}
-          <div class="row">
-            <div class="col-md-12 text-right mb-3">
-              <!-- Botón "Guardar" -->
-              <button type="submit" class="boton btn-form">Guardar datos</button>
-            </div>
-          </div>
-      </form>
+  <h2 class="text-center">Por favor ingresa los datos de tu AVAL</h2>
+  @if (session('successaF6'))
+    <div class="alert alert-success text-center">
+         {{ session('successF6') }}
     </div>
-
-    {{-- SEGUNDO CONTAINER | TRABAJO AVAL --}}
-    <div class="container mb-4 bg-cremita pt-3 rounded">
-      <form method="POST" action="{{ route('form6') }}">
-        <div class="col-md-12 text-center">
-          <h2 class="titulo-form"><strong>TRABAJO DEL AVAL</strong><h2>
-        </div>
-
-      {{-- SEGUNDO CONTAINER | TRABAJO AVAL | ROW 11 DEL FORMULARIO --}}
-              <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="nombre_org_trabajo">Nombre de la Organización donde Trabaja:</label>
-                  <input type="text" class="form-control" id="nombre_org_trabajo" name="nombre_org_trabajo">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="cargo">Cargo que Desempeña:</label>
-                  <input type="text" class="form-control" id="cargo" name="cargo">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="desc_actividad">Describa la Actividad que Desempeña:</label>
-                  <input type="text" class="form-control" id="desc_actividad" name="desc_actividad">
-                </div>
-            </div>
-        </div>
-
-        {{-- SEGUNDO CONTAINER | TRABAJO AVAL | ROW 12 DEL FORMULARIO --}}
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="ing_mensual">Ingreso Mensual:</label>
-                  <input type="text" class="form-control" id="ing_mensual" name="ing_mensual">
-                </div>
-            </div>
-        </div>
-
-        <h2 class="subtitulo-form">DOMICILIO DEL TRABAJO</h2>
-
-        {{-- SEGUNDO CONTAINER | TRABAJO AVAL | ROW 13 DEL FORMULARIO --}}
-        <div class="row border-form">
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="calle_trabajo">Calle:</label>
-                  <input type="text" class="form-control" id="calle_trabajo" name="calle_trabajo">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="numero_trabajo">Número:</label>
-                  <input type="text" class="form-control" id="numero_trabajo" name="numero_trabajo">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="colonia_trabajo">Colonia:</label>
-                  <input type="text" class="form-control" id="colonia_trabajo" name="colonia_trabajo">
-                </div>
-            </div>
-        
-
-        {{-- SEGUNDO CONTAINER | TRABAJO AVAL | ROW 15 DEL FORMULARIO --}}
-        
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="calle_trabajo">Entre que calles se encuentra:</label>
-                  <input type="text" class="form-control" id="calle1_trabajo" name="calle1_trabajo">
-                  <label for="y">y</label>
-                  <input type="text" class="form-control" id="calle2_trabajo" name="calle2_trabajo">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="telefono_trabajo">Télefono Local:</label>
-                  <input type="text" class="form-control" id="telefono_trabajo" name="telefono_trabajo">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                  <label for="cod_postal_trabajo">Código Postal:</label>
-                  <input type="text" class="form-control" id="cod_postal_trabajo" name="cod_postal_trabajo">
-                </div>
-            </div>
-       
-
-        {{-- SEGUNDO CONTAINER | TRABAJO AVAL | ROW 16 DEL FORMULARIO --}}
-        
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="estado_trabajo">Estado:</label>
-                <select class="form-control" id="estado_trabajo" name="estado_trabajo">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="municipio_trabajo">Municipio:</label>
-                <select class="form-control" id="municipio_trabajo" name="municipio_trabajo">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="localidad_trabajo">Localidad:</label>
-                <select class="form-control" id="localidad_trabajo" name="localidad_trabajo">
-                  <option value="seleccione">Seleccione:</option>
-                  <option value="prueba1">Prueba1</option>
-                  <option value="prueba2">Prueba2</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {{-- SEGUNDO CONTAINER | TRABAJO AVAL | ROW 17 DEL FORMULARIO --}}
-        <div class="row">
-            <div class="col-md-12 text-right mb-3">
-              <!-- Botón "Guardar" -->
-              <button type="submit" class="boton btn-form">Guardar datos</button>
-            </div>
-          </div>
-      </form>
+  @endif
+  @if (session('errorF6'))
+    <div class="alert alert-success text-center">
+         {{ session('errorF6') }}
     </div>
+  @endif
+  
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+   
+    <!-- Utiliza 'container' para centrar y 'd-flex' para establecer flexbox -->
+    
+    <div class="accordion mi-accordion" id="accordionExample">
+        <div class="accordion-item" id="item1">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Ingresar CURP del AVAL:
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="container mb-4 bg-cremita pt-3 rounded" id="container-aval">
+                    <form method="POST" action="{{ route('form6-post1') }}">
+                      @csrf
+                    {{-- PRIMER CONTAINER | PADRE | ROW 1 DEL FORMULARIO --}}
+                      <div class="row">
+                        <div class="col-md-12 text-center">
+                          <h2 class="titulo-form"><strong>DATOS GENERALES DEL AVAL</strong><h2>
+                          
+                        </div>
+                          <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="curpaval1">CURP AVAL:</label>
+                                <input type="text" class="form-control" id="curpaval1" name="curpaval1">  
+                                <p class="text-danger">{{ $errorMessage ?? '' }}</p>
+                              </div>
+                              @if(session('error'))
+                                  <div class="alert alert-danger">
+                                      {{ session('error') }}
+                                  </div>
+                              @endif
+                              @if (session('success'))
+                                  <div class="alert alert-success">
+                                      {{ session('success') }}
+                                  </div>
+                              @endif
+                            </div>
+                            <div class="row mt-4">
+                              <div class="col-md-12 text-right mb-3"> <!-- Botón derecho -->
+                                <button id="enviar-aval" type="submit" class="boton btn-form">Enviar</button>
+                              </div>
+                            </div>
+                      </div>
+                    </form>
+                  </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" id="item2">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Ver datos del AVAL:
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        
+             
+            <div class="accordion-body">
+                <div class="container mb-4 bg-cremita pt-3 rounded container-none" id="container-aval2">
+                    <form id="form-aval2" method="POST" action="{{ route('form6-post2') }}">  
+                      @csrf
+                      <div class="row">
+                      <div class="col-md-12 text-center">
+                        <h2 class="titulo-form"><strong>DATOS GENERALES DEL AVAL</strong><h2>
+                      </div>
+                      <p>{{$idAval ?? null}}</p>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="curpaval2">CURP:</label>
+                              <input type="text" class="form-control" id="curpaval2" name="curpaval2" value="{{ $xml1->curp ?? $avcurp ?? '' }}" readonly>
+                              @error('curpaval2')
+                                <p class="text-danger">{{ $message }}</p>
+                              @enderror
+                              @if (session('errorR'))
+                                  <div class="alert alert-danger">
+                                      {{ session('errorR') }}
+                                  </div>
+                              @endif
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="fechaaval">Fecha de Nacimiento:</label>
+                              <input type="text" class="form-control" id="fechaaval" name="fechaaval" value="{{ $xml1->fn ?? $avfechanac ?? '' }}" readonly>
+                              @error('fechaaval')
+                                <p class="text-danger">{{ $message }}</p>
+                              @enderror
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="sexo">Sexo:</label>
+                              <input type="text" class="form-control" id="sexo" name="sexo" value="{{ $xml1->sexo ?? $avsexo ?? '' }}" readonly>
+                            </div>
+                          </div>
+                        </div>
+              
+                       
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="apellidoaval1">Apellido Paterno:</label>
+                                <input type="text" class="form-control" id="apellidoaval1" name="apellidoaval1" value="{{ $xml1->paterno ?? $avpaterno ?? '' }}" readonly>
+                                @error('apellidoaval1')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="apellidoaval2">Apellido Materno:</label>
+                                <input type="text" class="form-control" id="apellidoaval2" name="apellidoaval2" value="{{ $xml1->materno ?? $avmaterno ?? '' }}" readonly>
+                                @error('apellidoaval2')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="nombreaval">Nombre:</label>
+                                <input type="text" class="form-control" id="nombreaval" name="nombreaval" value="{{ $xml1->nombre ?? $avnombre ?? '' }}" readonly>
+                                @error('nombreaval')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                              </div>
+                            </div>
+                          </div>
+                          <h2 class="subtitulo-form">DOMICILIO</h2>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="estado">Estado:</label>
+                                <select class="form-control" id="estado" name="estado">
+                                  <option value="">Selecciona un estado</option>
+                                  @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
+                                      <option value="{{ $IdEstado }}" {{ ($nombreEstadoAval == $NombreEstado) ? 'selected' : '' }}>
+                                          {{ $NombreEstado }}
+                                      </option>
+                                  @endforeach
+                                </select>
+                                @error('estado')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="municipio">Municipio:</label>
+                                <select class="form-control" id="municipio" name="municipio">
+                                  <option value="">Selecciona un municipio</option>
+                                  <option value="{{ $nombreMunicipioAval ?? '' }}" selected>
+                                      {{ $nombreMunicipioAval ?? 'Selecciona un municipio' }}
+                                  </option>
+                              </select>
+                                @error('municipio')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                                <script>
+                                  cargarMunicipios('estado', 'municipio');
+                                </script> 
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="localidad">Localidad:</label>
+                                <select class="form-control" id="localidad" name="localidad">
+                                  <option value="">Selecciona una localidad</option>
+                                  @isset($avidlocalidad)
+                                      <option value="{{ $avidlocalidad }}" selected>{{ $nombreLocalidadAval }}</option>
+                                  @endisset
+                                </select>
+                                @error('localidad')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                                <script>
+                                  cargarLocalidades('municipio', 'localidad');
+                                </script> 
+                              </div>
+                            </div>
+                          </div>
+
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="calle">Calle del domicilio:</label>
+                              <input type="text" class="form-control" id="calle" name="calle" value="{{ $consultaavcalle ?? $avcalle ?? '' }}">
+                            </div>
+                           </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="numero">Número del domicilio:</label>
+                              <input type="text" class="form-control" id="numero" name="numero" value="{{ $consultaavnum ?? $avnum ?? '' }}">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="colonia">Colonia:</label>
+                              <input type="text" class="form-control" id="colonia" name="colonia" value="{{ $consultaavcolonia ?? $avcolonia ?? '' }}">
+                            </div>
+                         </div>
+                        </div>
+            
+                    {{-- PRIMER CONTAINER | INFO GENERAL AVAL | ROW 5 DEL FORMULARIO --}}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="entrecalle1">Entre que calles se encuentra:</label>
+                              <input type="text" class="form-control" id="entrecalle1" name="entrecalle1" value="{{ $consultaavcalle2 ?? $avcalle2 ?? '' }}">
+                              <label for="y">y</label>
+                              <input type="text" class="form-control" id="entrecalle2" name="entrecalle2" value="{{ $consultaavcalle3 ?? $avcalle3 ?? '' }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="codpostal">Código Postal:</label>
+                              <input type="text" class="form-control" id="codpostal" name="codpostal" value="{{ $consultaavcp ?? $avcp ?? '' }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="telefono">Télefono:</label>
+                              <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $consultaavtelefono ?? $avtelefono ?? '' }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="celular">Celular:</label>
+                              <input type="text" class="form-control" id="celular" name="celular" value="{{ $consultaavcelular ?? $avcelular ?? '' }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="relacionacred">Relación con el Acréditado:</label>
+                              <select class="form-control" id="relacionacred" name="relacionacred">
+                                  <option value="" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "" ? 'selected' : '' }}>Seleccione:</option>
+                                    <option value="1" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "1" ? 'selected' : '' }}>Padre</option>
+                                    <option value="2" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "2" ? 'selected' : '' }}>Madre</option>
+                                    <option value="3" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "3" ? 'selected' : '' }}>Familiar</option>
+                                    <option value="4" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "4" ? 'selected' : '' }}>Otro</option>
+                                    <option value="5" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "5" ? 'selected' : '' }}>Conyuge</option>
+                                  </select>
+                            </div>
+                         </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="casapropia">Tiene Casa Propia:</label>
+                              <select class="form-control" id="casapropia" name="casapropia">
+                                <option value="1" {{ old('casapropia', $consultaavcasap ?? $avcasap ?? '') == "1" ? 'selected' : '' }}>Si</option>
+                                <option value="2" {{ old('casapropia', $consultaavcasap ?? $avcasap ?? '') == "2" ? 'selected' : '' }}>No</option>
+                              </select>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="trabaja">¿Trabaja?</label>
+                            <select class="form-control" id="trabaja" name="trabaja">
+                              <option value="1" {{ old('trabaja', $consultaavtrabaja ?? $avtrabaja ?? '') == "1" ? 'selected' : '' }}>Si</option>
+                                <option value="2" {{ old('trabaja', $consultaavtrabaja ?? $avtrabaja ?? '') == "2" ? 'selected' : '' }}>No</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12 text-center">
+                          <h2 class="titulo-form"><strong>TRABAJO DEL AVAL</strong><h2>
+                        </div>
+                         
+                        <div class="row">
+                          <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="nomorgt">Nombre de la Organización donde Trabaja:</label>
+                                <input type="text" class="form-control" id="nomorgt" name="nomorgt" value="{{ $consultaavnombreorg ?? $avnombreorg ?? '' }}">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="cargodesem">Cargo que desempeña:</label>
+                                <input type="text" class="form-control" id="cargodesem" name="cargodesem" value="{{ $consultaavpuesto ?? $avpuesto ?? '' }}">
+                              </div>
+                            </div>
+                           
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                  <label for="ingmens">Ingreso Mensual:</label>
+                                  <input type="text" class="form-control" id="ingmens" name="ingmens" value="{{ $consultaavsueldo ?? $avsueldo ?? '' }}">
+                                </div>
+                              </div>
+                            </div>
+                            </div>
+                              <div class="col-md-12 text-center">
+                                <h2 class="titulo-form"><strong>Domicilio del Trabajo</strong><h2>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="callet">Calle:</label>
+                                      <input type="text" class="form-control" id="callet" name="callet" value="{{ $consultaavcallet ?? $avcallet ?? '' }}">
+                                    </div>
+                                  </div>
+      
+                                  <div class="col-md-4">
+                                   <div class="form-group">
+                                   <label for="numerot">Número:</label>
+                                  <input type="text" class="form-control" id="numerot" name="numerot" value="{{ $consultaavnumerot ?? $avnumerot ?? '' }}">
+                                   </div>
+                                 </div>
+                               <div class="col-md-4">
+                                 <div class="form-group">
+                                 <label for="coloniat">Colonia:</label>
+                                <input type="text" class="form-control" id="coloniat" name="coloniat" value="{{ $consultaavcoloniat ?? $avcoloniat ?? '' }}">
+                               </div>
+                              </div>
+                              </div>
+                    
+                        <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="entrecalle1t">Entre que calles se encuentra:</label>
+                              <input type="text" class="form-control" id="ecalle1t" name="ecalle1t" value="{{ $consultaavcalle2t ?? $avcalle2t ?? '' }}">
+                              <label for="y">y</label>
+                              <input type="text" class="form-control" id="ecalle2t" name="ecalle2t" value="{{ $consultaavcalle3t ?? $avcalle3t ?? '' }}">
+                            </div>
+                        </div>
+                     
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="codpostalt">Código Postal:</label>
+                            <input type="text" class="form-control" id="codpostalt" name="codpostalt" value="{{ $consultaavcpt ?? $avcpt ?? '' }}">
+                          </div>
+                       </div>
+                       </div>
+                         
+                          <div class="row mt-4">
+                              <div class="col-md-12 text-right mb-3"> <!-- Botón derecho -->
+                                <button id="btnGuardarAval" type="submit" class="boton btn-form" name="btnGuardarAval" value="guardar">Guardar datos</button>
+                               
+                              </div>
+                            </div>
+                    </form>
+
+                    {{-- FORMULARIO PARA BOTON ELIMINAR --}}
+                    <form method="POST" action="{{ route('form6-post3') }}">
+                      @csrf
+                      @method('DELETE')
+                   
+                      <div class="row">
+                            <div class="row mt-4">
+                              <div class="col-md-12 text-right mb-3"> <!-- Botón derecho -->
+                                <button id="btnEliminarAval" type="submit" class="boton btn-form" name="btnEliminarAval" value="eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?')">
+                                  Eliminar Registro
+                                </button>
+                              </div>
+                            </div>
+                      </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+
+
+      </div>
+
+</div> 
 </div>
 
 <div class="row mt-4 pl-5 pr-5">
   <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form5-formulario') }}'">Regresar</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form2-formulario') }}'">Regresar</button>
   </div>
   <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form7') }}'">Siguiente</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form7-formulario') }}'">Siguiente</button>
   </div>
-</div> 
+</div>
+<script src="{{ asset('assets/js/eventosAcordeon.js')}}"></script>
+<script src="{{ asset('assets/js/eventosForm3.js')}}"></script>
+{{-- SCRIPTS PARA ACORDEONES AVAL --}}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var varAval = {{$consultaIdAval ?? null}};
+      var varAval2 = {{$consulta2IdAval ?? 1}};
+ 
+
+      if (varAval == 0) {
+          varAval = false;
+      } else {
+          varAval = true;
+      }
+
+      
+
+      if (varAval2 == 0) {
+          varAval2 = false;
+      } else {
+          varAval2 = true;
+      }
+
+      
+      console.log(varAval, varAval2);
+      
+
+      existeAval(varAval, varAval2);
+  });
+</script>
 
 @endsection
