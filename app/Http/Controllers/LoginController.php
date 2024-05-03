@@ -28,19 +28,28 @@ class LoginController extends Controller
         // Obtener el usuario por 'curp' y 'correo'
         $usuario = Usuario::where('curp', $request->curp)
             ->where('correo', $request->correo)
-            ->where('activo', 1)
+            //->where('activo', 1)
             ->first();
+        
+            //dd($usuario);
+         // Verificar si el usuario fue encontrado
+        if (!$usuario) {
+            return back()->withErrors(['error' => 'El CURP y el correo electrónico no coinciden.']);
+        }
 
-        if ($usuario) {
+        // Verificar si el usuario está activo
+        if ($usuario->activo != 1) {
+            return back()->withErrors(['error' => 'Debes activar tu cuenta antes de poder iniciar sesión.']);
+        }
+
+        
             // Autenticar al usuario manualmente
             Auth::login($usuario);
 
             // Autenticación exitosa
             return redirect()->intended('inicio'); // Redirige al usuario a la página deseada
-        }
-
-        // Autenticación fallida
-        return back()->withErrors(['message' => 'Las credenciales ingresadas son incorrectas.']);
+         
+            
     }
 
     // Método para cerrar sesión

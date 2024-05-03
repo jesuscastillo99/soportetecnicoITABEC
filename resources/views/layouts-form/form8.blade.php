@@ -35,7 +35,7 @@
                       <div class="col-md-4">
                           <div class="form-group">
                             <label for="curpvr1">CURP REFERENCIA 1:</label>
-                            <input type="text" class="form-control" id="curpvr1" name="curpvr1">  
+                            <input type="text" class="form-control" maxlength="18" id="curpvr1" name="curpvr1">  
                             <p class="text-danger">{{ $errorMessage ?? '' }}</p>
                           </div>
                           @if(session('error'))
@@ -169,19 +169,19 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="domr1">Calle del Domicilio:</label>
-                            <input type="text" class="form-control" id="domr1" name="domr1" value="{{ $consultaCalleR1 ?? $r1calledom ?? '' }}">
+                            <input type="text" class="form-control" id="domr1" maxlength="50" name="domr1" value="{{ $consultaCalleR1 ?? $r1calledom ?? '' }}">
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="nudomr1">Número del Domicilio:</label>
-                            <input type="text" class="form-control" id="nudomr1" name="nudomr1" value="{{ $consultaNumeroR1 ?? $r1num ?? '' }}">
+                            <input type="text" class="form-control" id="nudomr1" maxlength="20" name="nudomr1" value="{{ $consultaNumeroR1 ?? $r1num ?? '' }}">
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="colr1">Colonia del Domicilio:</label>
-                            <input type="text" class="form-control" id="colr1" name="colr1" value="{{ $consultaColoniaR1 ?? $r1colonia ?? '' }}">
+                            <input type="text" class="form-control" id="colr1" maxlength="50" name="colr1" value="{{ $consultaColoniaR1 ?? $r1colonia ?? '' }}">
                           </div>
                         </div>
                       
@@ -191,27 +191,27 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="entre1">Entre que calles se encuentra:</label>
-                          <input type="text" class="form-control" id="entre1" name="entre1" value="{{ $consultaCalle2R1 ?? $r1calle2 ?? '' }}">
+                          <input type="text" class="form-control" id="entre1" maxlength="50" name="entre1" value="{{ $consultaCalle2R1 ?? $r1calle2 ?? '' }}">
                           <label for="y">y</label>
-                          <input type="text" class="form-control" id="entre2" name="entre2"  value="{{ $consultaCalle3R1 ?? $r1calle3 ?? '' }}">
+                          <input type="text" class="form-control" id="entre2" maxlength="50" name="entre2"  value="{{ $consultaCalle3R1 ?? $r1calle3 ?? '' }}">
                         </div>
                       </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="cpr1">Código Postal:</label>
-                            <input type="text" class="form-control" id="cpr1" name="cpr1" value="{{ $consultaCpR1 ?? $r1cp ?? '' }}">
+                            <input type="text" class="form-control" id="cpr1" name="cpr1" value="{{ $consultaCpR1 ?? $r1cp ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="telr1">Télefono:</label>
-                            <input type="text" class="form-control" id="telr1" name="telr1" value="{{ $consultaTelefonoR1 ?? $r1telefono ?? '' }}">
+                            <input type="text" class="form-control" id="telr1" maxlength="10" name="telr1" value="{{ $consultaTelefonoR1 ?? $r1telefono ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                           </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="celr1">Celular:</label>
-                              <input type="text" class="form-control" id="celr1" name="celr1" value="{{ $consultaCelularR1 ?? $r1celular ?? '' }}">
+                              <input type="text" class="form-control" id="celr1" maxlength="10" name="celr1" value="{{ $consultaCelularR1 ?? $r1celular ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                             </div>
                           </div>
                       </div>
@@ -317,7 +317,7 @@
                       <div class="col-md-4">
                           <div class="form-group">
                             <label for="curpvr2">CURP REFERENTE 2:</label>
-                            <input type="text" class="form-control" id="curpvr2" name="curpvr2">  
+                            <input type="text" class="form-control" maxlength="18" id="curpvr2" name="curpvr2">  
                             <p class="text-danger">{{ $errorMessage ?? '' }}</p>
                           </div>
                           @if(session('error'))
@@ -412,7 +412,7 @@
                     <select class="form-control" id="estador2" name="estador2">
                       <option value="">Selecciona un estado</option>
                       @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
-                          <option value="{{ $IdEstado }}" {{ ($nombreEstadoR2 ?? '' == $NombreEstado) ? 'selected' : '' }}>
+                          <option value="{{ $IdEstado }}" {{ ($nombreEstadoR2 == $NombreEstado) ? 'selected' : '' }}>
                               {{ $NombreEstado }}
                           </option>
                       @endforeach
@@ -453,19 +453,19 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="domr2">Calle del Domicilio:</label>
-                    <input type="text" class="form-control" id="domr2" name="domr2" value="{{ $consultaCalleR2 ?? $r2calledom ?? '' }}">
+                    <input type="text" class="form-control uppercase-input" maxlength="50" id="domr2" name="domr2" value="{{ $consultaCalleR2 ?? $r2calledom ?? '' }}">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nudomr2">Número del Domicilio:</label>
-                    <input type="text" class="form-control" id="nudomr2" name="nudomr2" value="{{ $consultaNumeroR2 ?? $r2num ?? '' }}">
+                    <input type="text" class="form-control" id="nudomr2" maxlength="20" name="nudomr2" value="{{ $consultaNumeroR2 ?? $r2num ?? '' }}">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="colr2">Colonia del Domicilio:</label>
-                    <input type="text" class="form-control" id="colr2" name="colr2" value="{{ $consultaColoniaR2 ?? $r2colonia ?? '' }}">
+                    <input type="text" class="form-control uppercase-input" maxlength="50" id="colr2" name="colr2" value="{{ $consultaColoniaR2 ?? $r2colonia ?? '' }}">
                   </div>
                 </div>
               
@@ -474,27 +474,27 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="entre3">Entre que calles se encuentra:</label>
-                  <input type="text" class="form-control" id="entre3" name="entre3" value="{{ $consultaCalle2R2 ?? $r2calle2 ?? '' }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="entre3" name="entre3" value="{{ $consultaCalle2R2 ?? $r2calle2 ?? '' }}">
                   <label for="y">y</label>
-                  <input type="text" class="form-control" id="entre4" name="entre4" value="{{ $consultaCalle3R2 ?? $r2calle2 ?? '' }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="entre4" name="entre4" value="{{ $consultaCalle3R2 ?? $r2calle2 ?? '' }}">
                 </div>
               </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="cpr2">Código Postal:</label>
-                    <input type="text" class="form-control" id="cpr2" name="cpr2" value="{{ $consultaCpR2 ?? $r2cp ?? '' }}">
+                    <input type="text" class="form-control" id="cpr2" maxlength="10" name="cpr2" value="{{ $consultaCpR2 ?? $r2cp ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="telr2">Télefono:</label>
-                    <input type="text" class="form-control" id="telr2" name="telr2" value="{{ $consultaTelefonoR2 ?? $r2telefono ?? '' }}">
+                    <input type="text" class="form-control" id="telr2" maxlength="10" name="telr2" value="{{ $consultaTelefonoR2 ?? $r2telefono ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                   </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="celr2">Celular:</label>
-                      <input type="text" class="form-control" id="celr2" name="celr2" value="{{ $consultaCelularR2 ?? $r2celular ?? '' }}">
+                      <input type="text" class="form-control" id="celr2" maxlength="10" name="celr2" value="{{ $consultaCelularR2 ?? $r2celular ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                     </div>
                   </div>
               </div>
@@ -508,7 +508,7 @@
                           <select class="form-control" id="estado_nacr2" name="estado_nacr2">
                             <option value="">Selecciona un estado</option>
                             @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
-                                <option value="{{ $IdEstado }}" {{ ($nombreEstadoNacR2 ?? '' == $NombreEstado) ? 'selected' : '' }}>
+                                <option value="{{ $IdEstado }}" {{ ($nombreEstadoNacR2 == $NombreEstado) ? 'selected' : '' }}>
                                     {{ $NombreEstado }}
                                 </option>
                             @endforeach
@@ -630,5 +630,11 @@
       existeR2(varR2, var2R2);
   });
 </script>
-  
+<script>
+  document.querySelectorAll('.uppercase-input').forEach(function(input) {
+      input.addEventListener('input', function() {
+          this.value = this.value.toUpperCase();
+      });
+  });
+</script>
 @endsection

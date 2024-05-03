@@ -18,7 +18,7 @@
     </div>
   @endif
   <div class="container mb-2 bg-cremita pt-3 rounded">
-    <form method="POST" action="{{ route('form2-post') }}">
+    <form method="POST" action="{{ route('form2-post') }}" autocomplete="off">
       @csrf
       <div class="row">
           <div class="col-md-12 text-center">
@@ -29,7 +29,7 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="calle">Calle:</label>
-                <input type="text" class="form-control" id="calle" name="calle" maxlength="100" value="{{ old('calle', $datosDomicilio1->calle ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="calle" name="calle" maxlength="100" value="{{ old('calle', $datosDomicilio1->calle ?? '') }}">
                 @error('calle')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -38,7 +38,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="numero">Número:</label>
-                <input type="text" class="form-control" id="numero" name="numero" maxlength="10" value="{{ old('numero', $datosDomicilio1->numero ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10)">
+                <input type="text" class="form-control uppercase-input" id="numero" name="numero" maxlength="50" value="{{ old('numero', $datosDomicilio1->numero ?? '') }}">
                 @error('numero')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -47,7 +47,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="colonia">Colonia:</label>
-                <input type="text" class="form-control" id="colonia" name="colonia" maxlength="100" value="{{ old('colonia', $datosDomicilio1->colonia ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="colonia" name="colonia" maxlength="100" value="{{ old('colonia', $datosDomicilio1->colonia ?? '') }}">
                 @error('colonia')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -58,12 +58,12 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="entre_calles">Entre calles:</label>
-                <input type="text" class="form-control" id="entre_calles" name="entre_calles" maxlength="100" value="{{ old('entre_calles', $datosDomicilio1->calle2 ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="entre_calles" name="entre_calles" maxlength="100" value="{{ old('entre_calles', $datosDomicilio1->calle2 ?? '') }}">
                 @error('entre_calles')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <p class="text-center">Y</p>
-                <input type="text" class="form-control mt-1" id="entre_calles2" name="entre_calles2" maxlength="100" value="{{ old('entre_calles2', $datosDomicilio1->calle3 ?? '') }}">
+                <input type="text" class="form-control uppercase-input mt-1" id="entre_calles2" name="entre_calles2" maxlength="100" value="{{ old('entre_calles2', $datosDomicilio1->calle3 ?? '') }}">
                 @error('entre_calles2')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -72,12 +72,12 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="telefono_local">Telefono Local:</label>
-                <input type="text" class="form-control mb-3" id="telefono_local" name="telefono_local" maxlength="15" value="{{ old('telefono_local', $datosDomicilio1->telefono ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                <input type="text" class="form-control uppercase-input mb-3" id="telefono_local" name="telefono_local" maxlength="10" value="{{ old('telefono_local', $datosDomicilio1->telefono ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 @error('telefono_local')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <label for="telefono_celular">Telefono Celular:</label>
-                <input type="text" class="form-control" id="telefono_celular" name="telefono_celular" maxlength="15" value="{{ old('telefono_celular', $datosDomicilio1->celular ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                <input type="text" class="form-control uppercase-input" id="telefono_celular" name="telefono_celular" maxlength="10" value="{{ old('telefono_celular', $datosDomicilio1->celular ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 @error('telefono_celular')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -86,7 +86,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="codigo_postal">Codigo Postal:</label>
-                <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" value="{{ old('codigo_postal', $datosDomicilio1->cp ?? '') }}" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5)">
+                <input type="text" class="form-control uppercase-input" id="codigo_postal" name="codigo_postal" value="{{ old('codigo_postal', $datosDomicilio1->cp ?? '') }}" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5)">
                 @error('codigo_postal')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -175,7 +175,7 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="calle2">Calle:</label>
-                <input type="text" class="form-control" id="calle2" name="calle2" maxlength="100" value="{{ old('calle2', $datosDomicilio2->calle ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="calle2" name="calle2" maxlength="100" value="{{ old('calle2', $datosDomicilio2->calle ?? '') }}">
                 @error('calle2')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -184,7 +184,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="numero2">Número:</label>
-                <input type="text" class="form-control" id="numero2" name="numero2" maxlength="10" value="{{ old('numero2', $datosDomicilio2->numero ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10)">
+                <input type="text" class="form-control uppercase-input" id="numero2" name="numero2" maxlength="50" value="{{ old('numero2', $datosDomicilio2->numero ?? '') }}">
                 @error('numero2')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -193,7 +193,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="colonia2">Colonia:</label>
-                <input type="text" class="form-control" id="colonia2" name="colonia2" maxlength="100" value="{{ old('colonia2', $datosDomicilio2->colonia ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="colonia2" name="colonia2" maxlength="100" value="{{ old('colonia2', $datosDomicilio2->colonia ?? '') }}">
                 @error('colonia2')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -204,12 +204,12 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="entre_calles3">Entre calles:</label>
-                <input type="text" class="form-control" id="entre_calles3" name="entre_calles3" maxlength="100" value="{{ old('entre_calles3', $datosDomicilio2->calle2 ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="entre_calles3" name="entre_calles3" maxlength="100" value="{{ old('entre_calles3', $datosDomicilio2->calle2 ?? '') }}">
                 @error('entre_calles3')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <p class="text-center">Y</p>
-                <input type="text" class="form-control mt-1" id="entre_calles4" name="entre_calles4" maxlength="100" value="{{ old('entre_calles4', $datosDomicilio2->calle3 ?? '') }}">
+                <input type="text" class="form-control uppercase-input mt-1" id="entre_calles4" name="entre_calles4" maxlength="100" value="{{ old('entre_calles4', $datosDomicilio2->calle3 ?? '') }}">
                 @error('entre_calles4')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -218,12 +218,12 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="telefono_local2">Telefono Local:</label>
-                <input type="text" class="form-control mb-3" id="telefono_local2" name="telefono_local2" value="{{ old('telefono_local2', $datosDomicilio2->telefono ?? '') }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                <input type="text" class="form-control mb-3" id="telefono_local2" name="telefono_local2" value="{{ old('telefono_local2', $datosDomicilio2->telefono ?? '') }}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 @error('telefono_local2')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <label for="telefono_celular2">Telefono Celular:</label>
-                <input type="text" class="form-control" id="telefono_celular2" name="telefono_celular2" value="{{ old('telefono_celular2', $datosDomicilio2->celular ?? '') }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                <input type="text" class="form-control" id="telefono_celular2" name="telefono_celular2" value="{{ old('telefono_celular2', $datosDomicilio2->celular ?? '') }}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 @error('telefono_celular2')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -320,7 +320,7 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="calle3">Calle:</label>
-                <input type="text" class="form-control" id="calle3" name="calle3" maxlength="100" value="{{ old('calle3', $datosDomicilio3->calle ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="calle3" name="calle3" maxlength="100" value="{{ old('calle3', $datosDomicilio3->calle ?? '') }}">
                 @error('calle3')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -329,7 +329,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="numero3">Número:</label>
-                <input type="text" class="form-control" id="numero3" name="numero3" maxlength="10" value="{{ old('numero3', $datosDomicilio3->numero ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10)">
+                <input type="text" class="form-control uppercase-input" id="numero3" name="numero3" maxlength="50" value="{{ old('numero3', $datosDomicilio3->numero ?? '') }}">
                 @error('numero3')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -338,7 +338,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="colonia3">Colonia:</label>
-                <input type="text" class="form-control" id="colonia3" name="colonia3" maxlength="100" value="{{ old('colonia3', $datosDomicilio3->colonia ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="colonia3" name="colonia3" maxlength="100" value="{{ old('colonia3', $datosDomicilio3->colonia ?? '') }}">
                 @error('colonia3')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -349,12 +349,12 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="entre_calles5">Entre calles:</label>
-                <input type="text" class="form-control" id="entre_calles5" name="entre_calles5" maxlength="100" value="{{ old('entre_calles5', $datosDomicilio3->calle2 ?? '') }}">
+                <input type="text" class="form-control uppercase-input" id="entre_calles5" name="entre_calles5" maxlength="100" value="{{ old('entre_calles5', $datosDomicilio3->calle2 ?? '') }}">
                 @error('entre_calles5')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <p class="text-center">Y</p>
-                <input type="text" class="form-control mt-1" id="entre_calles6" name="entre_calles6" maxlength="100" value="{{ old('entre_calles6', $datosDomicilio3->calle3 ?? '') }}">
+                <input type="text" class="form-control uppercase-input mt-1" id="entre_calles6" name="entre_calles6" maxlength="100" value="{{ old('entre_calles6', $datosDomicilio3->calle3 ?? '') }}">
                 @error('entre_calles6')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -363,12 +363,12 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="telefono_local3">Telefono Local:</label>
-                <input type="text" class="form-control mb-3" id="telefono_local3" name="telefono_local3" maxlength="15" value="{{ old('telefono_local3', $datosDomicilio3->telefono ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                <input type="text" class="form-control mb-3" id="telefono_local3" name="telefono_local3" maxlength="10" value="{{ old('telefono_local3', $datosDomicilio3->telefono ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 @error('telefono_local3')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <label for="telefono_celular">Telefono Celular:</label>
-                <input type="text" class="form-control" id="telefono_celular3" name="telefono_celular3" maxlength="15" value="{{ old('telefono_celular3', $datosDomicilio3->celular ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                <input type="text" class="form-control" id="telefono_celular3" name="telefono_celular3" maxlength="10" value="{{ old('telefono_celular3', $datosDomicilio3->celular ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 @error('telefono_celular3')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -456,5 +456,16 @@
         <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form3-formulario') }}'">Siguiente</button>
       </div>
 </div>
+<script>
+  document.querySelectorAll('.uppercase-input').forEach(function(input) {
+      input.addEventListener('input', function() {
+          this.value = this.value.toUpperCase();
+      });
+  });
+</script>
+Swal.fire("SweetAlert2 is working!");
+<script>
+
+</script>
 <!-- end section -->
 @endsection

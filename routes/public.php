@@ -14,6 +14,7 @@ use App\Http\Controllers\Form7Controller;
 use App\Http\Controllers\Form8Controller;
 use App\Http\Controllers\Form9Controller;
 use App\Http\Controllers\Form10Controller;
+use App\Http\Controllers\Form11Controller;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\VistasController;
@@ -153,10 +154,10 @@ Route::get('/form10-formulario', [Form10Controller::class, 'index'])->name('form
 Route::post('/form10-formularior', [FormsController::class, 'form10Registro1'])->name('form10-post')->middleware('auth');
 
 //Rutas formulario 11
-Route::get('/form11', function() {
-    return view('layouts-form.form11');
-})->name('form11');
+Route::get('/form11-formulario', [Form11Controller::class, 'index'])->name('form11-formulario')->middleware('auth');
 
+Route::post('/form11-formulariov', [Form11Controller::class, 'form11Validacion'])->name('form11-validation')->middleware('auth');
+//Rutas form 12
 Route::get('/form12', function() {
     return view('layouts-form.form12');
 })->name('form12');

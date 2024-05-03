@@ -15,8 +15,13 @@ class Form5Controller extends Controller
   public function index()
     {
         $usuario = Auth::user();
-        $iduser = $usuario->idlog;
-        $registros = TablaDinamica::where('idpersona', $iduser)
+        $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
+        $registros = TablaDinamica::where('idpersona', $userId)
                                   ->with('municipio')
                                   ->get();
         $estados = Estado::pluck('NombreEstado', 'IdEstado');

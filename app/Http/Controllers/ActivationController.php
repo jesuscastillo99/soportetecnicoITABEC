@@ -26,6 +26,6 @@ class ActivationController extends Controller
 
         auth()->login($user);
 
-        return view('layouts.inicio'); // Vista después de la activación
+        return view('layouts-form.form0'); // Vista después de la activación
     }
 }

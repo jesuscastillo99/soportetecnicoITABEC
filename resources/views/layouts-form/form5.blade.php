@@ -27,7 +27,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="escuela">Nombre de la Escuela:</label>
-                        <input type="text" class="form-control" id="escuela" name="escuela" required>
+                        <input type="text" class="form-control uppercase-input" id="escuela" name="escuela" maxlength="50" required>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="estado_nac">Estado donde nació:</label>
+                        <label for="estado_nac">Estado:</label>
                         <select class="form-control" id="estado" name="estado">
                             <option value="">Selecciona un estado</option>
                             @foreach($estados as $IdEstado => $NombreEstado)
@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="municipio_nac">Municipio donde nació:</label>
+                        <label for="municipio_nac">Municipio:</label>
                         <select class="form-control" id="municipio" name="municipio">
                             <option value="">Selecciona un municipio</option>
                             <option value="" selected>{{ $consultaMunicipio }}</option>
@@ -123,8 +123,14 @@
     <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form4-formulario') }}'">Regresar</button>
   </div>
   <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form6') }}'">Siguiente</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form6-formulario') }}'">Siguiente</button>
   </div>
 </div>  
-
+<script>
+    document.querySelectorAll('.uppercase-input').forEach(function(input) {
+        input.addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+    });
+  </script>
 @endsection

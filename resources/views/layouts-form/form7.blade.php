@@ -141,7 +141,7 @@
                   <label for="colpri">¿Estudiaste en algun Colegio Privado?</label>
                   <select class="form-control" id="colpri" name="colpri">
                     <option value="seleccione">Seleccione:</option>
-                    <option value="0">{{ old('colpri', $consultaColPri) == '0' ? 'selected' : '' }}No</option>
+                    <option value="0"{{ old('colpri', $consultaColPri) == '0' ? 'selected' : '' }}>No</option>
                     <option value="1" {{ old('colpri', $consultaColPri) == '1' ? 'selected' : '' }}>Si</option>
                   </select>
                 </div>
@@ -152,7 +152,7 @@
                   <select class="form-control" id="cpup" name="cpup">
                     <option value="seleccione">Seleccione:</option>
                     <option value="0" {{ old('cpup', $consultaCpu) == '0' ? 'selected' : '' }}>No</option>
-                    <option value="1" {{ old('cpup', $consultaCpu) == '0' ? 'selected' : '' }}>Si</option>
+                    <option value="1" {{ old('cpup', $consultaCpu) == '1' ? 'selected' : '' }}>Si</option>
                   </select>
                 </div>
               </div>
@@ -254,7 +254,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="monmens">Indique el monto mensual de este apoyo:</label>
-              <input type="number" class="form-control" id="monmens" name="monmens" value="{{ old('monmens', $consultaMonMens) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+              <input type="number" class="form-control" id="monmens" name="monmens" maxlength="10" value="{{ old('monmens', $consultaMonMens) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
             </div>
           </div>
         </div>
@@ -263,7 +263,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="comapo">¿Cómo se entero de este apoyo?</label>
-              <input type="text" class="form-control" id="comapo" name="comapo" value="{{ old('comapo', $consultaComApo ?? '') }}">
+              <input type="text" class="form-control uppercase-input" id="comapo" maxlength="50" name="comapo" value="{{ old('comapo', $consultaComApo ?? '') }}">
             </div>
           </div>
           <div class="col-md-4">
@@ -348,19 +348,19 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre">
+                    <input type="text" class="form-control uppercase-input" maxlength="50" id="nombre" name="nombre">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="paterno">Apellido Paterno:</label>
-                    <input type="text" class="form-control" id="paterno" name="paterno">
+                    <input type="text" class="form-control uppercase-input" maxlength="50" id="paterno" name="paterno">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="materno">Apellido Materno:</label>
-                    <input type="text" class="form-control" id="materno" name="materno">
+                    <input type="text" class="form-control uppercase-input" maxlength="50" id="materno" name="materno">
                   </div>
                 </div>
              </div>
@@ -383,7 +383,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="escuela">Nombre de la Escuela:</label>
-                  <input type="text" class="form-control" id="escuela" name="escuela">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="escuela" name="escuela">
                 </div>
               </div>
               <div class="col-md-4">
@@ -401,7 +401,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="parentesco">Parentesco:</label>
-                  <input type="text" class="form-control" id="parentesco" name="parentesco">
+                  <input type="text" class="form-control uppercase-input" maxlength="15" id="parentesco" name="parentesco">
                 </div>
               </div>
               <div class="col-md-4">
@@ -476,10 +476,17 @@
 
 <div class="row mt-4 pl-5 pr-5">
   <div class="col-md-6 text-left mb-3"> <!-- Botón izquierdo -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form6') }}'">Regresar</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form6-formulario') }}'">Regresar</button>
   </div>
   <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
     <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form8-formulario') }}'">Siguiente</button>
   </div>
 </div> 
+<script>
+  document.querySelectorAll('.uppercase-input').forEach(function(input) {
+      input.addEventListener('input', function() {
+          this.value = this.value.toUpperCase();
+      });
+  });
+</script>
 @endsection

@@ -20,7 +20,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
           <div class="form-group">
-            <textarea id="mensaje" name="mensaje" rows="5" class="form-control"></textarea>
+            <textarea id="mensaje" name="mensaje" rows="5" class="form-control uppercase-input"></textarea>
           </div>
         </div>
       </div>
@@ -39,7 +39,14 @@
     <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form9-formulario') }}'">Regresar</button>
   </div>
   <div class="col-md-6 text-right mb-3"> <!-- Botón derecho -->
-    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form11') }}'">Siguiente</button>
+    <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form11-formulario') }}'">Siguiente</button>
   </div>
 </div> 
+<script>
+  document.querySelectorAll('.uppercase-input').forEach(function(input) {
+      input.addEventListener('input', function() {
+          this.value = this.value.toUpperCase();
+      });
+  });
+</script>
 @endsection

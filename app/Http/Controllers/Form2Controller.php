@@ -15,11 +15,16 @@ class Form2Controller extends Controller
     public function index()
     {
         $usuario = Auth::user();
-
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         // Obtener los datos del primer domicilio desde la tabla "catdomicilio"
         //Se declaran los parámetros para ejecutar el procedimiento "NombreProcedimiento" y "Array de Parametros"
         $proce1Domicilio = 'CargarDomicilioForm2';
-        $arrayIdDomicilio = [$usuario->idlog, 1];
+        $arrayIdDomicilio = [$userId, 1];
         //Se crea una instancia para poder utilizar la función 
         $contadorParametros = new ContadorParametros();
         $datosDomicilio1 = $contadorParametros->proceSelect($proce1Domicilio, $arrayIdDomicilio);
@@ -36,7 +41,7 @@ class Form2Controller extends Controller
 
 
         // Obtener los datos del segundo domicilio desde la tabla "catdomicilio"
-        $arrayIdDomicilio2 = [$usuario->idlog, 2];
+        $arrayIdDomicilio2 = [$userId, 2];
         $datosDomicilio2 = $contadorParametros->proceSelect($proce1Domicilio, $arrayIdDomicilio2);
         
         // Verificar si se obtuvieron resultados
@@ -49,7 +54,7 @@ class Form2Controller extends Controller
         }
 
         // Obtener los datos del segundo domicilio desde la tabla "catdomicilio"
-        $arrayIdDomicilio3 = [$usuario->idlog, 3];
+        $arrayIdDomicilio3 = [$userId, 3];
         $datosDomicilio3 = $contadorParametros->proceSelect($proce1Domicilio, $arrayIdDomicilio3);
         
         // Verificar si se obtuvieron resultados

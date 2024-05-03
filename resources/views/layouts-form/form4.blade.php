@@ -129,7 +129,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="numControl">Número de Control Escolar:</label>
-                  <input type="text" class="form-control" id="numControl" name="numControl" value="{{ old('numControl', $consultaNumControl) }}" maxlength="100" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 100)">
+                  <input type="text" class="form-control" id="numControl" maxlength="25" name="numControl" value="{{ old('numControl', $consultaNumControl) }}" maxlength="25" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 100)">
                 </div>
               </div>
               <div class="col-md-4">
@@ -143,7 +143,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="promUltGrado">Promedio del último grado:</label>
-                  <input type="number" class="form-control" id="promUltGrado" name="promUltGrado" value="{{ old('promUltGrado', $consultaPromUltGrado) }}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10)">
+                  <input type="number" class="form-control" id="promUltGrado" name="promUltGrado" maxlength="3" value="{{ old('promUltGrado', $consultaPromUltGrado) }}" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5)">
                 </div>
               </div>
             </div>
@@ -151,13 +151,13 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="impInscripcion">Importe de la inscripción:</label>
-                  <input type="text" class="form-control" id="impInscripcion" name="impInscripcion" value="{{ old('impInscripcion', $consultaImpInscripcion) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                  <input type="text" class="form-control" id="impInscripcion" maxlength="10" name="impInscripcion" value="{{ old('impInscripcion', $consultaImpInscripcion) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="impInscripcionCol">Importe de la colegiatura que cubrirá mensualmente:</label>
-                  <input type="text" class="form-control" id="impInscripcionCol" name="impInscripcionCol" value="{{ old('impInscripcionCol', $consultaImpInscripcionCol) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                  <input type="text" class="form-control" id="impInscripcionCol" maxlength="10" name="impInscripcionCol" value="{{ old('impInscripcionCol', $consultaImpInscripcionCol) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
               <div class="col-md-4">

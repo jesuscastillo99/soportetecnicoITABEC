@@ -20,7 +20,12 @@ class Form8Controller extends Controller
         //Procedimiento para obtener los datos del R1
         $nombreProcedimiento= 'ObtenerR1R2F8';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
         $array1= [$userId, 4];
         $claseproce = new ContadorParametros();
         $resultados = $claseproce->proceSelect($nombreProcedimiento, $array1);
@@ -220,6 +225,12 @@ class Form8Controller extends Controller
     {
         $curp1 = $request->curpvr1;
         $usuario = Auth::user();
+        $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
         //Validación para que la curp del papá no sea la misma que la del usuario
         if($curp1 == $usuario->curp){
             session()->flash('error', 'La CURP es la misma que el usuario.');
@@ -231,7 +242,7 @@ class Form8Controller extends Controller
             $xml1 = $this->consultarWebService($curp1);
     
             if ($xml1 ?? null) {
-                $userId= $usuario->idlog;
+               
                 //Obtener estados para cargarlos
                 $estados = Estado::pluck('NombreEstado', 'IdEstado');
                 //Obtener a la persona a través de su curp con el procedimiento almacenado
@@ -283,8 +294,8 @@ class Form8Controller extends Controller
                     $nombreLocalidadR1 = $localidadR1[0]->Localidad ?? null;
                     $nombreMunicipioR1 = $localidadR1[0]->NombreMunicipio ?? null;
                     $nombreEstadoR1 = $localidadR1[0]->NombreEstado ?? null;
-
-                   
+                    $nombreEstadoR2=NULL;
+                    $nombreEstadoNacR2=NULL;
                     return view('layouts-form.form8', [
                         'xml1' => $xml1,
                         'estados' => $estados,
@@ -308,6 +319,8 @@ class Form8Controller extends Controller
                         'consulta2IdR2' =>  $consulta2IdR2,
                         'consultaIdR1' => $consultaIdR1,
                         'consultaIdR2' => $consultaIdR2,
+                        'nombreEstadoR2' => $nombreEstadoR2,
+                        'nombreEstadoNacR2' => $nombreEstadoNacR2,
                     ]);
 
                 
@@ -325,6 +338,12 @@ class Form8Controller extends Controller
     {
         $curp2 = $request->curpvr2;
         $usuario = Auth::user();
+        $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
         //Validación para que la curp del papá no sea la misma que la del usuario
         if($curp2 == $usuario->curp){
             session()->flash('error', 'La CURP es la misma que el usuario.');
@@ -336,7 +355,7 @@ class Form8Controller extends Controller
             $xml2 = $this->consultarWebService($curp2);
     
             if ($xml2 ?? null) {
-                $userId= $usuario->idlog;
+                //$userId= $usuario->idlog;
                 //Obtener estados para cargarlos
                 $estados = Estado::pluck('NombreEstado', 'IdEstado');
                 //Obtener a la persona a través de su curp con el procedimiento almacenado
@@ -388,7 +407,8 @@ class Form8Controller extends Controller
                     $nombreLocalidadR2 = $localidadR2[0]->Localidad ?? null;
                     $nombreMunicipioR2 = $localidadR2[0]->NombreMunicipio ?? null;
                     $nombreEstadoR2 = $localidadR2[0]->NombreEstado ?? null;
-
+                    $nombreEstadoR1= NULL;
+                    $nombreEstadoNacR1= NULL;
 
                     return view('layouts-form.form8', [
                         'xml2' => $xml2,
@@ -413,6 +433,8 @@ class Form8Controller extends Controller
                         'consulta2IdR2' =>  $consulta2IdR2,
                         'consultaIdR1' => $consultaIdR1,
                         'consultaIdR2' => $consultaIdR2,
+                        'nombreEstadoR1' => $nombreEstadoR1,
+                        'nombreEstadoNacR1' => $nombreEstadoNacR1,
                     ]);
 
                 

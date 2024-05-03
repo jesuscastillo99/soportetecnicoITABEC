@@ -3,8 +3,21 @@
 @section('content')
 
 <div class="section margin-top_50">
-
-
+  @if (session('successT1'))
+  <div class="alert alert-success text-center">
+       {{ session('successT1') }}
+  </div>
+@endif
+@if (session('successT2'))
+  <div class="alert alert-success text-center">
+       {{ session('successT2') }}
+  </div>
+@endif
+@if (session('successT3'))
+  <div class="alert alert-success text-center">
+       {{ session('successT3') }}
+  </div>
+@endif
     <div class="container mb-4 bg-cremita pt-3 rounded" id="container_trabajo_estudiante">
 
       <form method="POST" action="{{ route('form9-post') }}">
@@ -16,19 +29,19 @@
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="nomorgest">Nombre de la Organización:</label>
-                  <input type="text" class="form-control" id="nomorgest" name="nomorgest" value="{{ old('nomorgest', $nomorgest ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="nomorgest" name="nomorgest" value="{{ old('nomorgest', $nomorgest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="pueest">Puesto:</label>
-                  <input type="text" class="form-control" id="pueest" name="pueest" value="{{ old('pueest', $pueest ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="pueest" name="pueest" value="{{ old('pueest', $pueest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="sueest">Sueldo:</label>
-                  <input type="text" class="form-control" id="sueest" name="sueest" value="{{ old('sueest', $sueest ?? '') }}">
+                  <input type="text" class="form-control" id="sueest" maxlength="10" name="sueest" value="{{ old('sueest', $sueest ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
         </div>
@@ -37,33 +50,33 @@
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="callest">Calle Principal:</label>
-                  <input type="text" class="form-control" id="callest" name="callest" value="{{ old('callest', $callest ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="callest" name="callest" value="{{ old('callest', $callest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="calle2est">Entre calles:</label>
-                  <input type="text" class="form-control" id="calle2est" name="calle2est" maxlength="100" value="{{ old('calle2est', $calle2est ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="calle2est" name="calle2est" maxlength="100" value="{{ old('calle2est', $calle2est ?? '') }}">
                   <p class="text-center">Y</p>
-                  <input type="text" class="form-control mt-1" id="calle3est" name="calle3est" maxlength="100" value="{{ old('calle3est', $calle3est ?? '') }}">
+                  <input type="text" class="form-control mt-1 uppercase-input" maxlength="50" id="calle3est" name="calle3est" maxlength="100" value="{{ old('calle3est', $calle3est ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="numest">Número:</label>
-                  <input type="text" class="form-control" id="numest" name="numest" value="{{ old('numest', $numest ?? '') }}">
+                  <input type="text" class="form-control" id="numest" maxlength="20" name="numest" value="{{ old('numest', $numest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="colest">Colonia:</label>
-                  <input type="text" class="form-control" id="colest" name="colest" value="{{ old('colest', $colest ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="colest" name="colest" value="{{ old('colest', $colest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="paisest">País:</label>
-                  <input type="text" class="form-control" id="paisest" name="paisest" value="{{ old('paisest', $paisest ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="20" id="paisest" name="paisest" value="{{ old('paisest', $paisest ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
@@ -110,13 +123,13 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="telest">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telest" name="telest" value="{{ old('telest', $telest ?? '') }}">
+                  <input type="text" class="form-control" id="telest" maxlength="10" name="telest" value="{{ old('telest', $telest ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="cpest">Código Postal:</label>
-                  <input type="text" class="form-control" id="cpest" name="cpest" value="{{ old('cpest', $cpest ?? '') }}">
+                  <input type="text" class="form-control" id="cpest" maxlength="6" name="cpest" value="{{ old('cpest', $cpest ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
              
@@ -144,19 +157,19 @@
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="nomorgpa">Nombre de la Organización:</label>
-                  <input type="text" class="form-control" id="nomorgpa" name="nomorgpa" value="{{ old('nomorgpa', $nomorgpa ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="nomorgpa" name="nomorgpa" value="{{ old('nomorgpa', $nomorgpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="puepa">Puesto:</label>
-                  <input type="text" class="form-control" id="puepa" name="puepa" value="{{ old('puepa', $puepa ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="puepa" name="puepa" value="{{ old('puepa', $puepa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="suepa">Sueldo:</label>
-                  <input type="text" class="form-control" id="suepa" name="suepa" value="{{ old('suepa', $suepa ?? '') }}">
+                  <input type="text" class="form-control" id="suepa" maxlength="10" name="suepa" value="{{ old('suepa', $suepa ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
         </div>
@@ -165,33 +178,33 @@
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="callpa">Calle Principal:</label>
-                  <input type="text" class="form-control" id="callpa" name="callpa" value="{{ old('callpa', $callpa ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="callpa" name="callpa" value="{{ old('callpa', $callpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="calle2pa">Entre calles:</label>
-                  <input type="text" class="form-control" id="calle2pa" name="calle2pa" maxlength="100" value="{{ old('calle2pa', $calle2pa ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="calle2pa" name="calle2pa" maxlength="100" value="{{ old('calle2pa', $calle2pa ?? '') }}">
                   <p class="text-center">Y</p>
-                  <input type="text" class="form-control mt-1" id="calle3pa" name="calle3pa" maxlength="100" value="{{ old('calle3pa', $calle3pa ?? '') }}">
+                  <input type="text" class="form-control mt-1 uppercase-input" maxlength="50" id="calle3pa" name="calle3pa" maxlength="100" value="{{ old('calle3pa', $calle3pa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="numpa">Número:</label>
-                  <input type="text" class="form-control" id="numpa" name="numpa" value="{{ old('numpa', $numpa ?? '') }}">
+                  <input type="text" class="form-control" id="numpa" maxlength="20" name="numpa" value="{{ old('numpa', $numpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="colest">Colonia:</label>
-                  <input type="text" class="form-control" id="colpa" name="colpa" value="{{ old('colpa', $colpa ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="colpa" name="colpa" value="{{ old('colpa', $colpa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="paispa">País:</label>
-                  <input type="text" class="form-control" id="paispa" name="paispa" value="{{ old('paispa', $paispa ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="20" id="paispa" name="paispa" value="{{ old('paispa', $paispa ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
@@ -238,13 +251,13 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="telpa">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telpa" name="telpa" value="{{ old('telpa', $telpa ?? '') }}">
+                  <input type="text" class="form-control" id="telpa" maxlength="10" name="telpa" value="{{ old('telpa', $telpa ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="cppa">Código Postal:</label>
-                  <input type="text" class="form-control" id="cppa" name="cppa" value="{{ old('cppa', $cppa ?? '') }}">
+                  <input type="text" class="form-control" id="cppa" maxlength="6" name="cppa" value="{{ old('cppa', $cppa ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
              
@@ -270,19 +283,19 @@
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="nomorgma">Nombre de la Organización:</label>
-                  <input type="text" class="form-control" id="nomorgma" name="nomorgma" value="{{ old('nomorgma', $nomorgma ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="nomorgma" name="nomorgma" value="{{ old('nomorgma', $nomorgma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="puema">Puesto:</label>
-                  <input type="text" class="form-control" id="puema" name="puema" value="{{ old('puema', $puema ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="puema" name="puema" value="{{ old('puema', $puema ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="suema">Sueldo:</label>
-                  <input type="text" class="form-control" id="suema" name="suema" value="{{ old('suema', $suema ?? '') }}">
+                  <input type="text" class="form-control" id="suema" maxlength="10" name="suema" value="{{ old('suema', $suema ?? '') }}">
                 </div>
               </div>
         </div>
@@ -291,33 +304,33 @@
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="callma">Calle Principal:</label>
-                  <input type="text" class="form-control" id="callma" name="callma" value="{{ old('callma', $callma ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="callma" name="callma" value="{{ old('callma', $callma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="calle2ma">Entre calles:</label>
-                  <input type="text" class="form-control" id="calle2ma" name="calle2ma" maxlength="100" value="{{ old('calle2ma', $calle2ma ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="calle2ma" name="calle2ma" maxlength="100" value="{{ old('calle2ma', $calle2ma ?? '') }}">
                   <p class="text-center">Y</p>
-                  <input type="text" class="form-control mt-1" id="calle3ma" name="calle3ma" maxlength="100" value="{{ old('calle3ma', $calle3ma ?? '') }}">
+                  <input type="text" class="form-control mt-1 uppercase-input" maxlength="50" id="calle3ma" name="calle3ma" maxlength="100" value="{{ old('calle3ma', $calle3ma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="numma">Número:</label>
-                  <input type="text" class="form-control" id="numma" name="numma" value="{{ old('numma', $numma ?? '') }}">
+                  <input type="text" class="form-control" id="numma" name="numma" maxlength="25" value="{{ old('numma', $numma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="colma">Colonia:</label>
-                  <input type="text" class="form-control" id="colma" name="colma" value="{{ old('colma', $colma ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" id="colma" maxlength="50" name="colma" value="{{ old('colma', $colma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="paisma">País:</label>
-                  <input type="text" class="form-control" id="paisma" name="paisma" value="{{ old('paisma', $paisma ?? '') }}">
+                  <input type="text" class="form-control uppercase-input" maxlength="15" id="paisma" name="paisma" value="{{ old('paisma', $paisma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
@@ -364,13 +377,13 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="telma">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telma" name="telma" value="{{ old('telma', $telma ?? '') }}">
+                  <input type="text" class="form-control" id="telma" maxlength="10" name="telma" value="{{ old('telma', $telma ?? '') }}">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="cpma">Código Postal:</label>
-                  <input type="text" class="form-control" id="cpma" name="cpma" value="{{ old('cpma', $cpma ?? '') }}">
+                  <input type="text" class="form-control" id="cpma" maxlength="6" name="cpma" value="{{ old('cpma', $cpma ?? '') }}">
                 </div>
               </div>
              
@@ -397,4 +410,11 @@
     <button type="button" class="boton btn-lg btn-form" onclick="window.location.href='{{ route('form10-formulario') }}'">Siguiente</button>
   </div>
 </div> 
+<script>
+  document.querySelectorAll('.uppercase-input').forEach(function(input) {
+      input.addEventListener('input', function() {
+          this.value = this.value.toUpperCase();
+      });
+  });
+</script>
 @endsection

@@ -55,7 +55,12 @@ class Form4Controller extends Controller
         //ESTRUCTURA PRINCIPAL PARA IMPLEMENTAR UN PROCEDIMIENTO 
         $nombreProcedimiento1= 'ObtenerDatosF4';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);

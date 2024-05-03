@@ -47,6 +47,7 @@ class Form1Controller extends Controller
             $nombreMunicipio = $localidad[0]->NombreMunicipio ?? null;
             $nombreEstado2 = $localidad[0]->NombreEstado ?? null;
 
+       
         return view('layouts-form.form1', ['datosPersona' => $datosPersona, 
         'estados' => $estados, 
         'nombreLocalidad' => $nombreLocalidad,
@@ -76,7 +77,12 @@ class Form1Controller extends Controller
     public function mostrarLocalidad(Request $request)
     {
         $usuario = Auth::user();
-        $idPersona = $usuario->id;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $idPersona = $resultId[0]->idpersona ?? null;
         $idLocalidad = DB::table('catpersonas')
         ->where('idpersona', $idPersona) 
         ->value('locnac');

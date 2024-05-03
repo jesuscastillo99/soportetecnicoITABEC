@@ -21,7 +21,12 @@ class Form6Controller extends Controller
          //Procedimiento para obtener los datos del aval
          $nombreProcedimiento= 'ObtenerF6J';
          $usuario = Auth::user();
-         $userId = $usuario->idlog;
+         $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
          $array1= [$userId];
          $claseproce = new ContadorParametros();
          $resultados = $claseproce->proceSelect($nombreProcedimiento, $array1);
@@ -160,6 +165,12 @@ class Form6Controller extends Controller
     {
         $curp1 = $request->curpaval1;
         $usuario = Auth::user();
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         //Validación para que la curp del papá no sea la misma que la del usuario
         if($curp1 == $usuario->curp){
             session()->flash('error', 'La CURP es la misma que el usuario.');
@@ -171,7 +182,7 @@ class Form6Controller extends Controller
             $xml1 = $this->consultarWebService($curp1);
             
             if ($xml1 ?? null) {
-                $userId= $usuario->idlog;
+                //$userId= $usuario->idlog;
                 //Obtener estados para cargarlos
                 $estados = Estado::pluck('NombreEstado', 'IdEstado');
                 //Obtener a la persona a través de su curp con el procedimiento almacenado

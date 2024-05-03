@@ -31,12 +31,14 @@ class FormsController extends Controller
                     'municipio' => 'required',
                     'localidad' => 'required',
                     'estado_civil' => 'required|in:0,1',
+                    'vivecon' => 'required|in:0,4',
                 ]);
                 $nombreProcedimiento = 'SalvarPersona';
                 $curp = $request->input('curp');
                 $idlocalidad = $request->input('localidad');
                 $ecivil = $request->input('estado_civil');
-                $arrayP = [$curp, $idlocalidad, $ecivil];
+                $vivecon = $request->input('vivecon');
+                $arrayP = [$curp, $idlocalidad, $ecivil, $vivecon];
                 $contadorParametros = new ContadorParametros();
                 $resultados= $contadorParametros->proceUpdate($nombreProcedimiento, $arrayP);
                 session()->flash('success', 'Datos guardados con éxito.');
@@ -55,8 +57,13 @@ class FormsController extends Controller
     {
     
             $usuario = Auth::user();
-            $userId = $usuario->idlog;
-            $idPersona = $usuario->idlog;
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
+            //$idPersona = $usuario->idlog;
             // Valida y guarda los datos del primer formulario de la segunda vista
             $request->validate([
                 'calle' => 'required',
@@ -103,8 +110,13 @@ class FormsController extends Controller
     public function form2Registro2(Request $request)
     {
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
-        $idPersona = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
+        //$idPersona = $usuario->idlog;
         // Valida y guarda los datos del primer formulario de la segunda vista
         $request->validate([
             'calle2' => 'required',
@@ -151,8 +163,13 @@ class FormsController extends Controller
     public function form2Registro3(Request $request)
     {
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
-        $idPersona = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
+        //$idPersona = $usuario->idlog;
         // Valida y guarda los datos del primer formulario de la segunda vista
         $request->validate([
             'calle3' => 'required',
@@ -216,14 +233,20 @@ class FormsController extends Controller
                     $nombreproceInsertarPadre = 'ActualizarInsertarPersonas';
                     //Se crea una instancia para poder utilizar la función 
                     //$proceInsertarPadre = new ContadorParametros();
-
+                            
                     
                     // Obtener el usuario autenticado (persona)
                     $usuario = Auth::user();
+                    $curpId = $usuario->curp;
+                    $arrayIdCurp = [$curpId];
+                    $proceUser = 'ObtenerUserId';
+                    $obtenerId = new ContadorParametros();
+                    $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+                    $userId = $resultId[0]->idsolicitante ?? null;
                     
-                        //Se usa un trycatch en caso de error en el procedimiento para guardar 
+                    //Se usa un trycatch en caso de error en el procedimiento para guardar 
                         try {
-                            $idSolicitante = $usuario->idlog;
+                            $idSolicitante = $userId;
                             //Aqui se almacena el idpadre con la consulta anterior    
                             $curpPadre= $request->input('curppadre2');
                             $paterno= $request->input('apellidopadre1');
@@ -247,6 +270,7 @@ class FormsController extends Controller
                             //Se pasan los parámetros al array
                             $arrayPIP = [$idSolicitante, $curpPadre, $paterno, $materno, $nombre, $sexo, $tipo, $nuevaFecha, $locnac, $fechaRegistro, $trabaja, $ult_grad_estudios];
                             //Se ejecuta el procedimiento
+                            //dd($arrayPIP);
                             $proceInsertarPadre = new ContadorParametros();
                             $actualizarDomicilio1= $proceInsertarPadre->proceUpdate($nombreproceInsertarPadre, $arrayPIP);
                             session()->flash('success', 'Padre guardado con éxito.');
@@ -271,11 +295,14 @@ class FormsController extends Controller
     public function form3Registro1Eliminar(Request $request){
         try{
             $usuario = Auth::user();
-            $userId = $usuario->idlog;
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
 
             $nombreProcedimiento1= 'ObtenerPadre';
-            $usuario = Auth::user();
-            $userId = $usuario->idlog;
             $arrayOP= [$userId];
             $procedimiento = new ContadorParametros();
             $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayOP);
@@ -326,10 +353,15 @@ class FormsController extends Controller
             
             // Obtener el usuario autenticado (persona)
             $usuario = Auth::user();
-           
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
              //Se usa un trycatch en caso de error en el procedimiento para guardar 
              try {
-                $idSolicitante = $usuario->idlog;
+                $idSolicitante = $userId;
                 //Aqui se almacena el idpadre con la consulta anterior    
                 $curpMadre= $request->input('curpmadre2');
                 $paterno= $request->input('apellidomadre1');
@@ -375,11 +407,14 @@ class FormsController extends Controller
         public function form3Registro2Eliminar(Request $request){
             try{
                 $usuario = Auth::user();
-                $userId = $usuario->idlog;
+                $curpId = $usuario->curp;
+                $arrayIdCurp = [$curpId];
+                $proceUser = 'ObtenerUserId';
+                $obtenerId = new ContadorParametros();
+                $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+                $userId = $resultId[0]->idsolicitante ?? null;
     
                 $nombreProcedimiento1= 'ObtenerMadreF3';
-                $usuario = Auth::user();
-                $userId = $usuario->idlog;
                 $arrayOP= [$userId];
                 $procedimiento = new ContadorParametros();
                 $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayOP);
@@ -426,10 +461,15 @@ class FormsController extends Controller
                 
                 // Obtener el usuario autenticado (persona)
                 $usuario = Auth::user();
-               
+                $curpId = $usuario->curp;
+                $arrayIdCurp = [$curpId];
+                $proceUser = 'ObtenerUserId';
+                $obtenerId = new ContadorParametros();
+                $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+                $userId = $resultId[0]->idsolicitante ?? null;
                  //Se usa un trycatch en caso de error en el procedimiento para guardar 
                  try {
-                        $idSolicitante = $usuario->idlog;
+                        $idSolicitante = $userId;
                         //Aqui se almacena el idpadre con la consulta anterior    
                         $padres_civil= $request->input('padres_cas_sol');
                         $num_herm_dep= $request->input('herm_dep_ing_familiar');
@@ -482,10 +522,15 @@ class FormsController extends Controller
             
             // Obtener el usuario autenticado (persona)
             $usuario = Auth::user();
-           
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
              //Se usa un trycatch en caso de error en el procedimiento para guardar 
              try {
-                    $idSolicitante = $usuario->idlog;
+                    $idSolicitante = $userId;
                     //Aqui se almacena el idpadre con la consulta anterior    
                     $idcarrera= $request->input('carrera');
                     $semestre = $request->input('semestre');
@@ -520,8 +565,14 @@ class FormsController extends Controller
     {
         try{
             $usuario = Auth::user();
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
             $registro = new TablaDinamica();
-            $registro->idpersona = $usuario->idlog;
+            $registro->idpersona = $userId;
             $registro->nivel = $request->input('nivel');
             $registro->escuela = $request->input('escuela');
             $registro->tipo = $request->input('tipo');
@@ -576,9 +627,15 @@ class FormsController extends Controller
 
              // Obtener el usuario autenticado (persona)
              $usuario = Auth::user();
+             $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
               //Se usa un trycatch en caso de error en el procedimiento para guardar 
               try {
-                $idSolicitante = $usuario->idlog;
+                $idSolicitante = $userId;
                 //Aqui se almacena el idpadre con la consulta anterior    
                 $curp= $request->input('curpaval2');
                 // // Obtener la cadena de fecha del input
@@ -645,7 +702,12 @@ class FormsController extends Controller
             
             $nombreProcedimiento1= 'ObtenerF6J';
             $usuario = Auth::user();
-            $userId = $usuario->idlog;
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
             $array= [$userId];
             $procedimiento = new ContadorParametros();
             $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $array);
@@ -681,7 +743,12 @@ class FormsController extends Controller
             
 
             $usuario = Auth::user();
-           
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
             //Se declara el nombre del procedimiento
             $nombreproceInsertarF7 = 'actualizarInsertarF7';
             //Se crea una instancia para poder utilizar la función 
@@ -693,7 +760,7 @@ class FormsController extends Controller
                 //Se usa un trycatch en caso de error en el procedimiento para guardar 
                 
 
-                    $idPersona = $usuario->idlog;
+                    $idPersona = $userId;
                     //Aqui se almacena el idpadre con la consulta anterior    
                     $escpa = $request->input('escpa');
                     $escma = $request->input('escma');
@@ -746,10 +813,15 @@ class FormsController extends Controller
             
             // Obtener el usuario autenticado (persona)
             $usuario = Auth::user();
-            
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
                 //Se usa un trycatch en caso de error en el procedimiento para guardar 
                 try {
-                    $idPersona = $usuario->idlog;
+                    $idPersona = $userId;
                     //Aqui se almacena el idpadre con la consulta anterior    
                     $tipapo = $request->input('tipapo');
                     $monmens = $request->input('monmens');
@@ -782,8 +854,14 @@ class FormsController extends Controller
         
         try{
             $usuario = Auth::user();
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
             $registro = new TablaDinamicaF7();
-            $registro->idpersona = $usuario->idlog;
+            $registro->idpersona = $userId;
             $registro->nombre = $request->input('nombre');
             $registro->paterno = $request->input('paterno');
             $registro->materno = $request->input('materno');
@@ -829,9 +907,15 @@ class FormsController extends Controller
 
              // Obtener el usuario autenticado (persona)
              $usuario = Auth::user();
+             $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
               //Se usa un trycatch en caso de error en el procedimiento para guardar 
               try {
-                $idSolicitante = $usuario->idlog;
+                $idSolicitante = $userId;
                 //Aqui se almacena el idpadre con la consulta anterior    
                 $curpr1= $request->input('curpr1');
                 $paternor1= $request->input('paternor1');
@@ -885,11 +969,14 @@ class FormsController extends Controller
     public function form8R1Eliminar(Request $request){
         try{
             $usuario = Auth::user();
-            $userId = $usuario->idlog;
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
 
             $nombreProcedimiento1= 'ObtenerR1R2F8';
-            $usuario = Auth::user();
-            $userId = $usuario->idlog;
             $arrayOR1= [$userId, 4];
             $procedimiento = new ContadorParametros();
             $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayOR1);
@@ -951,9 +1038,15 @@ class FormsController extends Controller
 
              // Obtener el usuario autenticado (persona)
              $usuario = Auth::user();
+             $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
               //Se usa un trycatch en caso de error en el procedimiento para guardar 
               try {
-                $idSolicitante = $usuario->idlog;
+                $idSolicitante = $userId;
                 //Aqui se almacena el idpadre con la consulta anterior    
                 $curpr2= $request->input('curpr2');
                 $paternor2= $request->input('paternor2');
@@ -982,11 +1075,11 @@ class FormsController extends Controller
                 $celr2 = $request->input('celr2');
                 $localidad_nacr2 = $request->input('localidad_nacr2');
                 //Se pasan los parámetros al array
-                $arrayR2 = [$idSolicitante, $curpr2, $paternor2, $maternor2, $nombrer2, $sexor2, $tipor2, $nuevaFecha, $localidad_nacr2, $fechaRegistror2, $domr2, $entre3, $entre4, $nudomr2, $colr2, $localidadr2, $telr2, $celr2, $cpr2, null, null, null];
+                $arrayR2 = [$idSolicitante, $curpr2, $paternor2, $maternor2, $nombrer2, $sexor2, $tipor2, $nuevaFecha, $localidad_nacr2, $fechaRegistror2, $domr2, $entre3, $entre4, $nudomr2, $colr2, $localidadr2, $telr2, $celr2, $cpr2, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
                 //Se ejecuta el procedimiento
                 $proceInsertarR2 = new ContadorParametros();
                 $actualizarR2= $proceInsertarR2->proceUpdate($nombreproceInsertarR2, $arrayR2);
-                session()->flash('success', 'Referencia 2 guardado con éxito.');
+                session()->flash('successR2', 'Referencia 2 guardado con éxito.');
                 return redirect()->route('form8-formulario')->with(['success' => session('success')]);  
                 
                 // return redirect()->route('form3-formulario');
@@ -1003,10 +1096,13 @@ class FormsController extends Controller
     public function form8R2Eliminar(Request $request){
         try{
             $usuario = Auth::user();
-            $userId = $usuario->idlog;
+            $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
             $nombreProcedimiento1= 'ObtenerR1R2F8';
-            $usuario = Auth::user();
-            $userId = $usuario->idlog;
             $arrayOR1= [$userId, 5];
             $procedimiento = new ContadorParametros();
             $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayOR1);
@@ -1045,7 +1141,7 @@ class FormsController extends Controller
             $proceUser = 'ObtenerUserId';
             $obtenerId = new ContadorParametros();
             $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
-            $userId = $resultId[0]->idpersona ?? null;
+            $userId = $resultId[0]->idsolicitante ?? null;
             
             // Valida y guarda los datos del primer formulario de la segunda vista
             $request->validate([
@@ -1089,7 +1185,7 @@ class FormsController extends Controller
                     $arrayT1 = [$userId, $tipo, $callest, $calle2est, $calle3est, $numest, $colest, $localidad, $telest, $cpest, $paisest, $nomorgest, $pueest, $sueest];
                     //Se ejecuta el procedimiento
                     $actualizarTrabajo1= $contadorParametros->proceUpdate($proceActualizarF9, $arrayT1);
-                    session()->flash('success', 'Domicilio guardado con éxito.');
+                    session()->flash('successT1', 'Trabajo del estudiante guardado con éxito.');
                     
                     return redirect()->route('form9-formulario');
                 } catch (QueryException $e) {
@@ -1101,7 +1197,12 @@ class FormsController extends Controller
     private function obtenerIdPadre(){
         $nombreProcedimiento1= 'ObtenerPadre';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
@@ -1124,7 +1225,12 @@ class FormsController extends Controller
     private function obtenerIdMadre(){
         $nombreProcedimiento1= 'ObtenerMadreF3';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
@@ -1192,7 +1298,7 @@ class FormsController extends Controller
                     $arrayT2 = [$idpapa, $tipo, $callpa, $calle2pa, $calle3pa, $numpa, $colpa, $localidad2, $telpa, $cppa, $paispa, $nomorgpa, $puepa, $suepa];
                     //Se ejecuta el procedimiento
                     $actualizarTrabajo1= $contadorParametros->proceUpdate($proceActualizarF9, $arrayT2);
-                    session()->flash('success', 'Domicilio guardado con éxito.');
+                    session()->flash('successT2', 'Trabajo del padre guardado con éxito.');
                     
                     return redirect()->route('form9-formulario');
                 }   catch (QueryException $e) {
@@ -1248,7 +1354,7 @@ class FormsController extends Controller
                     $arrayT3 = [$idmama, $tipo, $callma, $calle2ma, $calle3ma, $numma, $colma, $localidad3, $telma, $cpma, $paisma, $nomorgma, $puema, $suema];
                     //Se ejecuta el procedimiento
                     $actualizarTrabajo3= $contadorParametros->proceUpdate($proceActualizarF9, $arrayT3);
-                    session()->flash('success', 'Domicilio guardado con éxito.');
+                    session()->flash('successT3', 'Trabajo de la madre guardado con éxito.');
                     
                     return redirect()->route('form9-formulario');
                 }   catch (QueryException $e) {
@@ -1266,7 +1372,7 @@ class FormsController extends Controller
         $proceUser = 'ObtenerUserId';
         $obtenerId = new ContadorParametros();
         $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
-        $userId = $resultId[0]->idpersona ?? null;
+        $userId = $resultId[0]->idsolicitante ?? null;
 
         $request->validate([
             'mensaje' => 'required',

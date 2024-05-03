@@ -133,7 +133,24 @@
                       @enderror
                      
                     </div>
-                  </div>    
+                  </div>   
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="vivecon">Vive con:</label>
+                      <select class="form-control" id="vivecon" name="vivecon">
+                        <option value="seleccione">Seleccione:</option>
+                        <option value="0" {{ old('vivecon', $datosPersona->vivecon ?? null) == '0' ? 'selected' : '' }}>Ambos padres</option>
+                        <option value="1" {{ old('vivecon', $datosPersona->vivecon ?? null) == '1' ? 'selected' : '' }}>Mamá</option>
+                        <option value="2" {{ old('vivecon', $datosPersona->vivecon ?? null) == '2' ? 'selected' : '' }}>Papá</option>
+                        <option value="3" {{ old('vivecon', $datosPersona->vivecon ?? null) == '3' ? 'selected' : '' }}>Cónyuge</option>
+                        <option value="4" {{ old('vivecon', $datosPersona->vivecon ?? null) == '4' ? 'selected' : '' }}>Otro</option>
+                      </select>
+                      @error('vivecon')
+                      <p class="text-danger">{{ $message }}</p>
+                      @enderror
+                     
+                    </div>
+                  </div>   
               </div>
               <div class="row mt-4">
                 <div class="col-md-12 text-right mb-3"> <!-- Botón derecho -->

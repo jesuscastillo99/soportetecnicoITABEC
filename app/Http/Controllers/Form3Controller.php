@@ -24,7 +24,12 @@ class Form3Controller extends Controller
     {      
         $nombreProcedimiento1= 'ObtenerPadre';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
@@ -216,6 +221,12 @@ class Form3Controller extends Controller
     {
         $curp1 = $request->curppadre1;
         $usuario = Auth::user();
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         //Validación para que la curp del papá no sea la misma que la del usuario
         if($curp1 == $usuario->curp){
             session()->flash('error', 'La CURP es la misma que el usuario.');
@@ -338,6 +349,12 @@ class Form3Controller extends Controller
     {
         $curp1 = $request->curpmadre1;
         $usuario = Auth::user();
+        $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
         //Validación para que la curp del papá no sea la misma que la del usuario
         if($curp1 == $usuario->curp){
             session()->flash('error', 'La CURP es la misma que el usuario.');
@@ -474,7 +491,12 @@ class Form3Controller extends Controller
     private function obtenerIdPadre(){
         $nombreProcedimiento1= 'ObtenerPadre';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
@@ -497,7 +519,12 @@ class Form3Controller extends Controller
     private function obtenerIdMadre(){
         $nombreProcedimiento1= 'ObtenerMadreF3';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
@@ -520,7 +547,12 @@ class Form3Controller extends Controller
     public function obtenerDatosF3R3(){
         $nombreProcedimiento1= 'ObtenerDatosFamF3';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
         $array = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $array);

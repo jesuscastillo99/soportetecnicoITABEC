@@ -63,7 +63,7 @@
                           <div class="col-md-4">
                               <div class="form-group">
                                 <label for="curppadre1">CURP PAPÁ:</label>
-                                <input type="text" class="form-control" id="curppadre1" name="curppadre1">  
+                                <input type="text" class="form-control" maxlength="18" id="curppadre1" name="curppadre1">  
                                 <p class="text-danger">{{ $errorMessage ?? '' }}</p>
                               </div>
                               @if(session('error'))
@@ -308,7 +308,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                           <label for="curpmadre1">CURP MAMÁ:</label>
-                          <input type="text" class="form-control" id="curpmadre1" name="curpmadre1">
+                          <input type="text" class="form-control" maxlength="18" id="curpmadre1" name="curpmadre1">
                           <p class="text-danger">{{ $errorMessageM ?? '' }}</p>
                         </div>
                         @if(session('error2'))

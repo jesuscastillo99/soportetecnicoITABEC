@@ -19,7 +19,7 @@ class Form9Controller extends Controller
         $proceUser = 'ObtenerUserId';
         $obtenerId = new ContadorParametros();
         $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
-        $userId = $resultId[0]->idpersona ?? null;
+        $userId = $resultId[0]->idsolicitante ?? null;
         
         $proce1 = 'ObtenerDatosF9J';
         $proce2= 'ObtenerLugarNacimiento';
@@ -178,7 +178,12 @@ class Form9Controller extends Controller
     private function obtenerIdPadre(){
         $nombreProcedimiento1= 'ObtenerPadre';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
@@ -201,7 +206,12 @@ class Form9Controller extends Controller
     private function obtenerIdMadre(){
         $nombreProcedimiento1= 'ObtenerMadreF3';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
         $arrayCurp = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);

@@ -17,7 +17,12 @@ class Form7Controller extends Controller
         //ESTRUCTURA PRINCIPAL PARA IMPLEMENTAR UN PROCEDIMIENTO 
         $nombreProcedimiento1= 'ObtenerDatosF7';
         $usuario = Auth::user();
-        $userId = $usuario->idlog;
+        $curpId = $usuario->curp;
+            $arrayIdCurp = [$curpId];
+            $proceUser = 'ObtenerUserId';
+            $obtenerId = new ContadorParametros();
+            $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+            $userId = $resultId[0]->idsolicitante ?? null;
         $arrayId = [$userId];
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayId);
@@ -61,7 +66,7 @@ class Form7Controller extends Controller
         
         //CODIGO PARA TRAERME EL NOMBRE DEL MUNICIPIO
         $nombreMunicipio2 = Municipio::where('IdMunicipio', $consultaIdMunicipio)->value('NombreMunicipio');
-      
+        
             return view('layouts-form.form7',[
                'consultaEscPa' => $consultaEscPa,
                'consultaEscMa' => $consultaEscMa,

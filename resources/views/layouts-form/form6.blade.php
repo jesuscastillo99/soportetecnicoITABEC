@@ -207,19 +207,19 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="calle">Calle del domicilio:</label>
-                              <input type="text" class="form-control" id="calle" name="calle" value="{{ $consultaavcalle ?? $avcalle ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="calle" maxlength="100" name="calle" value="{{ $consultaavcalle ?? $avcalle ?? '' }}">
                             </div>
                            </div>
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="numero">Número del domicilio:</label>
-                              <input type="text" class="form-control" id="numero" name="numero" value="{{ $consultaavnum ?? $avnum ?? '' }}">
+                              <input type="text" class="form-control" id="numero" name="numero" maxlength="25" value="{{ $consultaavnum ?? $avnum ?? '' }}">
                             </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="colonia">Colonia:</label>
-                              <input type="text" class="form-control" id="colonia" name="colonia" value="{{ $consultaavcolonia ?? $avcolonia ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="colonia" maxlength="100" name="colonia" value="{{ $consultaavcolonia ?? $avcolonia ?? '' }}">
                             </div>
                          </div>
                         </div>
@@ -229,21 +229,21 @@
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="entrecalle1">Entre que calles se encuentra:</label>
-                              <input type="text" class="form-control" id="entrecalle1" name="entrecalle1" value="{{ $consultaavcalle2 ?? $avcalle2 ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="entrecalle1" maxlength="50" name="entrecalle1" value="{{ $consultaavcalle2 ?? $avcalle2 ?? '' }}">
                               <label for="y">y</label>
-                              <input type="text" class="form-control" id="entrecalle2" name="entrecalle2" value="{{ $consultaavcalle3 ?? $avcalle3 ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="entrecalle2" maxlength="50" name="entrecalle2" value="{{ $consultaavcalle3 ?? $avcalle3 ?? '' }}">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="codpostal">Código Postal:</label>
-                              <input type="text" class="form-control" id="codpostal" name="codpostal" value="{{ $consultaavcp ?? $avcp ?? '' }}">
+                              <input type="text" class="form-control" id="codpostal" maxlength="5" name="codpostal" value="{{ $consultaavcp ?? $avcp ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="telefono">Télefono:</label>
-                              <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $consultaavtelefono ?? $avtelefono ?? '' }}">
+                              <input type="text" class="form-control" id="telefono" maxlength="10" name="telefono" value="{{ $consultaavtelefono ?? $avtelefono ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                             </div>
                         </div>
                     </div>
@@ -251,7 +251,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="celular">Celular:</label>
-                              <input type="text" class="form-control" id="celular" name="celular" value="{{ $consultaavcelular ?? $avcelular ?? '' }}">
+                              <input type="text" class="form-control" id="celular" maxlength="10" name="celular" value="{{ $consultaavcelular ?? $avcelular ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -298,20 +298,20 @@
                           <div class="col-md-4">
                               <div class="form-group">
                                 <label for="nomorgt">Nombre de la Organización donde Trabaja:</label>
-                                <input type="text" class="form-control" id="nomorgt" name="nomorgt" value="{{ $consultaavnombreorg ?? $avnombreorg ?? '' }}">
+                                <input type="text" class="form-control uppercase-input" maxlength="50" id="nomorgt" name="nomorgt" value="{{ $consultaavnombreorg ?? $avnombreorg ?? '' }}">
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="cargodesem">Cargo que desempeña:</label>
-                                <input type="text" class="form-control" id="cargodesem" name="cargodesem" value="{{ $consultaavpuesto ?? $avpuesto ?? '' }}">
+                                <input type="text" class="form-control uppercase-input" maxlength="50" id="cargodesem" name="cargodesem" value="{{ $consultaavpuesto ?? $avpuesto ?? '' }}">
                               </div>
                             </div>
                            
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <label for="ingmens">Ingreso Mensual:</label>
-                                  <input type="text" class="form-control" id="ingmens" name="ingmens" value="{{ $consultaavsueldo ?? $avsueldo ?? '' }}">
+                                  <input type="text" class="form-control" id="ingmens" maxlength="10" name="ingmens" value="{{ $consultaavsueldo ?? $avsueldo ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                                 </div>
                               </div>
                             </div>
@@ -323,20 +323,20 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                       <label for="callet">Calle:</label>
-                                      <input type="text" class="form-control" id="callet" name="callet" value="{{ $consultaavcallet ?? $avcallet ?? '' }}">
+                                      <input type="text" class="form-control uppercase-input" maxlength="50" id="callet" name="callet" value="{{ $consultaavcallet ?? $avcallet ?? '' }}">
                                     </div>
                                   </div>
       
                                   <div class="col-md-4">
                                    <div class="form-group">
                                    <label for="numerot">Número:</label>
-                                  <input type="text" class="form-control" id="numerot" name="numerot" value="{{ $consultaavnumerot ?? $avnumerot ?? '' }}">
+                                  <input type="text" class="form-control" id="numerot" maxlength="20" name="numerot" value="{{ $consultaavnumerot ?? $avnumerot ?? '' }}">
                                    </div>
                                  </div>
                                <div class="col-md-4">
                                  <div class="form-group">
                                  <label for="coloniat">Colonia:</label>
-                                <input type="text" class="form-control" id="coloniat" name="coloniat" value="{{ $consultaavcoloniat ?? $avcoloniat ?? '' }}">
+                                <input type="text" class="form-control uppercase-input" id="coloniat" maxlength="50" name="coloniat" value="{{ $consultaavcoloniat ?? $avcoloniat ?? '' }}">
                                </div>
                               </div>
                               </div>
@@ -345,16 +345,16 @@
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="entrecalle1t">Entre que calles se encuentra:</label>
-                              <input type="text" class="form-control" id="ecalle1t" name="ecalle1t" value="{{ $consultaavcalle2t ?? $avcalle2t ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="ecalle1t" maxlength="50" name="ecalle1t" value="{{ $consultaavcalle2t ?? $avcalle2t ?? '' }}">
                               <label for="y">y</label>
-                              <input type="text" class="form-control" id="ecalle2t" name="ecalle2t" value="{{ $consultaavcalle3t ?? $avcalle3t ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="ecalle2t" maxlength="50" name="ecalle2t" value="{{ $consultaavcalle3t ?? $avcalle3t ?? '' }}">
                             </div>
                         </div>
                      
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="codpostalt">Código Postal:</label>
-                            <input type="text" class="form-control" id="codpostalt" name="codpostalt" value="{{ $consultaavcpt ?? $avcpt ?? '' }}">
+                            <input type="text" class="form-control" id="codpostalt" maxlength="5" name="codpostalt" value="{{ $consultaavcpt ?? $avcpt ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                           </div>
                        </div>
                        </div>
@@ -432,5 +432,11 @@
       existeAval(varAval, varAval2);
   });
 </script>
-
+<script>
+  document.querySelectorAll('.uppercase-input').forEach(function(input) {
+      input.addEventListener('input', function() {
+          this.value = this.value.toUpperCase();
+      });
+  });
+</script>
 @endsection
