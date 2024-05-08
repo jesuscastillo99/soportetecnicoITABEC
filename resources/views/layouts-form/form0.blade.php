@@ -1,7 +1,8 @@
 @extends('layouts.landingsinslider')
 @section('title', 'Formulario')
 @section('content')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
 <div class="section margin-top_50 mb-4">
     <div class="container d-flex justify-content-center align-items-center">
         <!-- Utiliza 'container' para centrar y 'd-flex' para establecer flexbox -->

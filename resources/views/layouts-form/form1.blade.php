@@ -1,13 +1,9 @@
 @extends('layouts.landingsinslider')
 @section('title', 'Formulario')
 @section('content')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
 <div class="section margin-top_50">
-  @if (session('success'))
-    <div class="alert alert-success text-center">
-         {{ session('success') }}
-    </div>
-  @endif
     <div class="container mb-4 bg-cremita pt-3 rounded">
       <form method="POST" action="{{ route('form1-post') }}">
         @csrf
@@ -138,12 +134,12 @@
                     <div class="form-group">
                       <label for="vivecon">Vive con:</label>
                       <select class="form-control" id="vivecon" name="vivecon">
-                        <option value="seleccione">Seleccione:</option>
+                        <option value="">Seleccione:</option>
                         <option value="0" {{ old('vivecon', $datosPersona->vivecon ?? null) == '0' ? 'selected' : '' }}>Ambos padres</option>
                         <option value="1" {{ old('vivecon', $datosPersona->vivecon ?? null) == '1' ? 'selected' : '' }}>Mamá</option>
                         <option value="2" {{ old('vivecon', $datosPersona->vivecon ?? null) == '2' ? 'selected' : '' }}>Papá</option>
-                        <option value="3" {{ old('vivecon', $datosPersona->vivecon ?? null) == '3' ? 'selected' : '' }}>Cónyuge</option>
-                        <option value="4" {{ old('vivecon', $datosPersona->vivecon ?? null) == '4' ? 'selected' : '' }}>Otro</option>
+                        {{-- <option value="3" {{ old('vivecon', $datosPersona->vivecon ?? null) == '3' ? 'selected' : '' }}>Cónyuge</option>
+                        <option value="4" {{ old('vivecon', $datosPersona->vivecon ?? null) == '4' ? 'selected' : '' }}>Otro</option> --}}
                       </select>
                       @error('vivecon')
                       <p class="text-danger">{{ $message }}</p>

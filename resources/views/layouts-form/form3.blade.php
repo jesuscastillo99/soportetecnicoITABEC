@@ -1,41 +1,15 @@
 @extends('layouts.landingsinslider')
 @section('title', 'Información Personal del Solicitante')
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
+
 
 
 
 <div class="section margin-top_50">
   <h2 class="text-center">Por favor ingresa los datos de tus padres</h2>
-  @if (session('success'))
-    <div class="alert alert-success text-center">
-         {{ session('success') }}
-    </div>
-  @endif
-  @if (session('padreEli'))
-    <div class="alert alert-danger text-center">
-         {{ session('padreEli') }}
-    </div>
-  @endif
-  @if (session('successM'))
-    <div class="alert alert-success text-center">
-         {{ session('successM') }}
-    </div>
-  @endif
-  @if (session('madreEli'))
-    <div class="alert alert-danger text-center">
-         {{ session('madreEli') }}
-    </div>
-  @endif
-  @if (session('successF3R3'))
-    <div class="alert alert-success text-center">
-         {{ session('successF3R3') }}
-    </div>
-  @endif
-  @if (session('errorCF3'))
-    <div class="alert alert-success text-center">
-         {{ session('errorCF3') }}
-    </div>
-  @endif
+  
   
   <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
    
@@ -181,7 +155,7 @@
                                 <select class="form-control" id="estado" name="estado">
                                   <option value="">Selecciona un estado</option>
                                   @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
-                                      <option value="{{ $IdEstado }}" {{ ($nombreEstado2 == $NombreEstado) ? 'selected' : '' }}>
+                                      <option value="{{ $IdEstado }}" {{ ($nombreEstado2 ?? null == $NombreEstado) ? 'selected' : '' }}>
                                           {{ $NombreEstado }}
                                       </option>
                                   @endforeach
@@ -370,7 +344,7 @@
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label for="fechamadre">Sexo:</label>
+                          <label for="sexomadre">Sexo:</label>
                           <input type="text" class="form-control" id="sexomadre" name="sexomadre" value="{{ $xml2->sexo ?? $consultaMSexo ?? '' }}" readonly>
                           @error('fechamadre')
                             <p class="text-danger">{{ $message }}</p>
@@ -498,7 +472,7 @@
                         </div>
                 </form>
                  {{-- FORMULARIO PARA BOTON ELIMINAR --}}
-                 <form method="POST" action="{{ route('form3-post6') }}">
+                 <form method="POST" action="{{ route('form3-postEM') }}">
                   @csrf
                   @method('DELETE')
                 {{-- CONTAINER PARA BOTON ELIMINAR | MADRE | ROW 1 DEL FORMULARIO --}}
@@ -517,7 +491,9 @@
           </div>
         </div>
 
-
+{{-- CONTENEDOR PARA EL OTRO/CONYUGE--}}
+      
+{{--FIN DEL CONTENEDOR PARA EL OTRO/CONYUGE--}}
       </div>
 
 </div>
@@ -686,6 +662,7 @@ console.log('existe curppadre o no', varpadre)
 existeCurpPadre(varexistepadre);
 </script>
 
+
 {{-- SCRIPTS PARA OCULTAR Y MOSTRAR LOS ITEMS DEL ACORDEON MADRE--}}
 <script>
   varmadre = {{$consultaIdMadre}};
@@ -710,4 +687,40 @@ existeCurpPadre(varexistepadre);
   console.log('existe curppadre o no', varmadre)
   existeCurpMadre(varexistemadre);
 </script>
+
+{{-- SCRIPTS PARA OCULTAR Y MOSTRAR LOS ITEMS DEL ACORDEON CONYUGE
+<script>
+  varconyuge = {{$consultaIdConyuge}};
+  if(varconyuge==0){
+    varconyuge= false;
+  } else {
+    varconyuge=true;
+  }
+  
+  
+  existeCon(varconyuge);
+  
+</script>
+  
+<script>
+  varexisteconyuge= {{$existeCurpConyuge}}
+  if(varexisteconyuge==0){
+    varexisteconyuge= false;
+  } else {
+    varexisteconyuge=true;
+  }
+
+  existeCurpCon(varexisteconyuge);
+</script> --}}
+
+
+{{--- SCRIPT PARA OCULTAR FORMS DEPENDIENDO SI TIENE PAPA O MAMA--}}
+<script>
+vartienepapa= {{$vivecon ?? null}}
+tienePadre(vartienepapa);
+</script>
+
+
+
+
 @endsection

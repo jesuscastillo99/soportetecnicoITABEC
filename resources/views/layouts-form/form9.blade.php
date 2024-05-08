@@ -1,23 +1,10 @@
 @extends('layouts.landingsinslider')
 @section('title', 'Encuesta de Trabajo')
 @section('content')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
 <div class="section margin-top_50">
-  @if (session('successT1'))
-  <div class="alert alert-success text-center">
-       {{ session('successT1') }}
-  </div>
-@endif
-@if (session('successT2'))
-  <div class="alert alert-success text-center">
-       {{ session('successT2') }}
-  </div>
-@endif
-@if (session('successT3'))
-  <div class="alert alert-success text-center">
-       {{ session('successT3') }}
-  </div>
-@endif
+
     <div class="container mb-4 bg-cremita pt-3 rounded" id="container_trabajo_estudiante">
 
       <form method="POST" action="{{ route('form9-post') }}">
@@ -295,7 +282,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="suema">Sueldo:</label>
-                  <input type="text" class="form-control" id="suema" maxlength="10" name="suema" value="{{ old('suema', $suema ?? '') }}">
+                  <input type="text" class="form-control" id="suema" maxlength="10" name="suema" value="{{ old('suema', $suema ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
         </div>
@@ -377,13 +364,13 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="telma">Teléfono Local:</label>
-                  <input type="text" class="form-control" id="telma" maxlength="10" name="telma" value="{{ old('telma', $telma ?? '') }}">
+                  <input type="text" class="form-control" id="telma" maxlength="10" name="telma" value="{{ old('telma', $telma ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="cpma">Código Postal:</label>
-                  <input type="text" class="form-control" id="cpma" maxlength="6" name="cpma" value="{{ old('cpma', $cpma ?? '') }}">
+                  <input type="text" class="form-control" id="cpma" maxlength="6" name="cpma" value="{{ old('cpma', $cpma ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
                 </div>
               </div>
              

@@ -1,6 +1,8 @@
 @extends('layouts.landing')
 @section('title', 'Inicio')
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
  <!-- LOADER -->
  <div id="preloader">
     <div class="loader">

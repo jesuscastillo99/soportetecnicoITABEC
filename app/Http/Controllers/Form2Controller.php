@@ -10,10 +10,12 @@ use App\Models\Persona;
 use App\Models\Domicilio;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 class Form2Controller extends Controller
 {
     public function index()
     {
+        
         $usuario = Auth::user();
         $curpId = $usuario->curp;
         $arrayIdCurp = [$curpId];
@@ -118,7 +120,10 @@ class Form2Controller extends Controller
         $nombreLocalidad3 = $localidad3[0]->Localidad ?? null;
         $nombreMunicipio3 = $localidad3[0]->NombreMunicipio ?? null;
         $nombreEstado23 = $localidad3[0]->NombreEstado ?? null;
-        
+        //dd($prueba);
+       
+
+        //alert()->success('Título de la Alerta', 'Mensaje de la Alerta');
         // Pasar los datos a la vista
         return view('layouts-form.form2', 
             ['datosDomicilio1' => $datosDomicilio1, 

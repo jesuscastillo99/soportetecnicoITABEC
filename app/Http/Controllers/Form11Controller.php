@@ -21,6 +21,13 @@ class Form11Controller extends Controller
         $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
         $userId = $resultId[0]->idsolicitante ?? null;
 
+
+        //codigo para obtener vivecon del solicitante
+        $nombreproceODP= 'ObtenerDatosPersona';
+        $arrayODP = [$curpId];
+        $viveconResult = $obtenerId->proceSelect($nombreproceODP, $arrayODP);
+        $vivecon= $viveconResult[0]->vivecon;
+        dd($vivecon);
         $arrayValidar = [$userId];
         $proceValidar = 'ValidarForms';
         $obtenerValidacion = new ContadorParametros();
@@ -112,8 +119,10 @@ class Form11Controller extends Controller
         if($textoConcatenado==''){
             return view('layouts-form.form12');
         } else {
-            return view('layouts-form.form11', 
-            ['textoConcatenado' => $textoConcatenado]);
+            alert()
+            ->error($textoConcatenado,  'Si deseas terminar el formulario completa los datos faltantes')
+            ->showConfirmButton('Aceptar', '#ab0033');
+            return view('layouts-form.form11');
         }
         
        

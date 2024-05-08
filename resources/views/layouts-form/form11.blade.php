@@ -1,7 +1,8 @@
 @extends('layouts.landingsinslider')
 @section('title', 'Finalizar Solicitud')
 @section('content')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
 <div class="section margin-top_50">
 
   <div class="container mb-4 bg-cremita pt-3 rounded">
@@ -20,7 +21,7 @@
       <button class="boton btn-form ml-6" onclick="window.location.href='{{ route('form1-formulario') }}'">Regresar al inicio</button>
     </div>
         
-        <p class="text-center">{{ $textoConcatenado }}</p>
+        {{-- <p class="text-center">{{ $textoConcatenado }}</p> --}}
     </div>
 
 </div>

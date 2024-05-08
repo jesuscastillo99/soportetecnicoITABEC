@@ -47,7 +47,7 @@ class Form1Controller extends Controller
             $nombreMunicipio = $localidad[0]->NombreMunicipio ?? null;
             $nombreEstado2 = $localidad[0]->NombreEstado ?? null;
 
-       
+      // dd($datosPersona);
         return view('layouts-form.form1', ['datosPersona' => $datosPersona, 
         'estados' => $estados, 
         'nombreLocalidad' => $nombreLocalidad,

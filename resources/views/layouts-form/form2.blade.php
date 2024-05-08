@@ -1,22 +1,9 @@
 @extends('layouts.landingsinslider')
 @section('title', 'form2')
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="section margin-top_50">
-  @if (session('success'))
-    <div class="alert alert-success text-center">
-         {{ session('success') }}
-    </div>
-  @endif
-  @if (session('success2'))
-    <div class="alert alert-success text-center">
-         {{ session('success2') }}
-    </div>
-  @endif
-  @if (session('success3'))
-    <div class="alert alert-success text-center">
-         {{ session('success3') }}
-    </div>
-  @endif
+  
   <div class="container mb-2 bg-cremita pt-3 rounded">
     <form method="POST" action="{{ route('form2-post') }}" autocomplete="off">
       @csrf
@@ -463,9 +450,11 @@
       });
   });
 </script>
-Swal.fire("SweetAlert2 is working!");
-<script>
 
-</script>
+
+
+@include('sweetalert::alert')
+
+
 <!-- end section -->
 @endsection

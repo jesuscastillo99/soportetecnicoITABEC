@@ -1,21 +1,13 @@
 @extends('layouts.landingsinslider')
 @section('title', 'Información Personal del Solicitante')
 @section('content')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
 
 
 <div class="section margin-top_50">
   <h2 class="text-center">Por favor ingresa los datos de tu AVAL</h2>
-  @if (session('successaF6'))
-    <div class="alert alert-success text-center">
-         {{ session('successF6') }}
-    </div>
-  @endif
-  @if (session('errorF6'))
-    <div class="alert alert-success text-center">
-         {{ session('errorF6') }}
-    </div>
-  @endif
+ 
   
   <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
    

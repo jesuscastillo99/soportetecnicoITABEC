@@ -25,7 +25,10 @@ class ActivationController extends Controller
         ]);
 
         auth()->login($user);
-
+        alert()
+            ->success('Activación exitosa', 'Bienvenido al formulario de crédito educativo')
+            ->showConfirmButton('Aceptar', '#3085d6');
+         
         return view('layouts-form.form0'); // Vista después de la activación
     }
 }

@@ -1,7 +1,8 @@
 @extends('layouts.landingsinslider')
 @section('title', 'Historial Académico')
 @section('content')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
 <div class="section margin-top_50">
     <div class="container mb-4 bg-cremita pt-3 rounded">
       <div class="container">

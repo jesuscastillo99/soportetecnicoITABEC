@@ -165,6 +165,7 @@
     <script src="{{ asset('assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/js/form.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- ALL PLUGINS -->
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js')}}"></script> 
     <script src="{{ asset('assets/js/jquery.pogo-slider.min.js')}}"></script>

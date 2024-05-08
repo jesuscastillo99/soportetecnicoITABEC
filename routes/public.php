@@ -94,14 +94,20 @@ Route::post('/form2-formularior3', [FormsController::class, 'form2Registro3'])->
 Route::get('/form3-formulario', [Form3Controller::class, 'index'])->name('form3-formulario')->middleware('auth');
 Route::get('/form3-formulario/E/{estado}', [Form3Controller::class, 'cargarMunicipios'])->middleware('auth');
 Route::get('/form3-formulario/M/{municipio}', [Form3Controller::class, 'cargarLocalidades'])->middleware('auth');
+
 Route::post('/form3-formulariov1', [Form3Controller::class, 'validarCurpPadre'])->name('form3-post1')->middleware('auth');
 Route::post('/form3-formularior1', [FormsController::class, 'form3Registro1'])->name('form3-post2')->middleware('auth');
 Route::delete('/form3-formularioe1', [FormsController::class, 'form3Registro1Eliminar'])->name('form3-post5')->middleware('auth');
-Route::delete('/form3-formularioe2', [FormsController::class, 'form3Registro2Eliminar'])->name('form3-post6')->middleware('auth');
+
 Route::post('/form3-formulariov2', [Form3Controller::class, 'validarCurpMadre'])->name('form3-post3')->middleware('auth');
 Route::post('/form3-formularior2', [FormsController::class, 'form3Registro2'])->name('form3-post4')->middleware('auth');
+Route::delete('/form3-formularioe2', [FormsController::class, 'form3Registro2Eliminar'])->name('form3-postEM')->middleware('auth');
+
 Route::post('/form3-formularior3', [FormsController::class, 'form3Registro3'])->name('form3-fam')->middleware('auth');
 
+// Route::post('/form3-formulariov3', [Form3Controller::class, 'validarCurpCon'])->name('form3-post7')->middleware('auth');
+// Route::post('/form3-formularior4', [FormsController::class, 'form3Registro4'])->name('form3-post8')->middleware('auth');
+// Route::delete('/form3-formularioe3', [FormsController::class, 'form3Registro4Eliminar'])->name('form3-post9')->middleware('auth');
 //Rutas formulario 4
 Route::get('/form4-formulario', [Form4Controller::class, 'index'])->name('form4-formulario')->middleware('auth');
 Route::get('/form4-formulario/E/{estado}', [Form4Controller::class, 'cargarMunicipios'])->middleware('auth');

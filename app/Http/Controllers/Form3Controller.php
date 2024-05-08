@@ -30,7 +30,34 @@ class Form3Controller extends Controller
         $obtenerId = new ContadorParametros();
         $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
         $userId = $resultId[0]->idsolicitante ?? null;
+
         $arrayCurp = [$userId];
+        
+        //PROCEDIMIENTO PARA OBTENER PERSONA VIVECON
+        $proceObtenerPersona = 'ObtenerDatosPersona';
+        $procedimientoPerso = new ContadorParametros();
+        $viveconPerso = $procedimientoPerso->proceSelect($proceObtenerPersona,  $arrayIdCurp);
+        $vivecon = $viveconPerso[0]->vivecon ?? null;
+       
+        //Si vive con ambos padres, se iguala a cero el null
+        if($vivecon==null){
+            $vivecon=12;
+        }
+        //Si vive con la mamá solamente entonces se manda un 10 como variable para ocultar los campos del padre
+        if($vivecon==1){
+            $vivecon=10;
+        }
+
+        //Si vive con el papá solamente se manda un 11 como variable
+        if($vivecon==2){
+            $vivecon=11;
+        }
+
+        //dd($vivecon);
+        
+
+         
+        //PROCEDIMIENTO PARA OBTENER PADRE
         $procedimiento = new ContadorParametros();
         $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
         
@@ -72,7 +99,7 @@ class Form3Controller extends Controller
             $consultaIdPadre = null;
         }
 
-        if($consultaIdPadre==null){
+        if( $consultaIdPadre==null){
             $existeCurpPadre=0;
             $consultaIdPadre=0;
         }
@@ -152,9 +179,44 @@ class Form3Controller extends Controller
         $nombreMunicipio2 = $localidad2[0]->NombreMunicipio ?? null;
         $nombreEstado22 = $localidad2[0]->NombreEstado ?? null;
 
-        //dd($localidad);
-        //dd($consultaIdPadre);
 
+        //CODIGO SOBRE EL CONYUGE
+        // $datosConyuge=$this->obtenerDatosConyuge();
+        // $consultaIdConyuge=$datosConyuge->idpersona ?? null;
+        // $existeCurpConyuge=$datosConyuge->idpersona ?? null;
+        // $curpcon=$datosConyuge->curp ?? null;
+        // $paternocon=$datosConyuge->paterno ?? null;
+        // $maternocon=$datosConyuge->materno ?? null;
+        // $nombrecon=$datosConyuge->nombre ?? null;
+        // $sexocon=$datosConyuge->sexo ?? null;
+        // if ($sexocon !== null) {
+        //     if ($sexocon == 1) {
+        //         $sexocon = 'Masculino';
+        //     } else if ($sexocon == 0) {
+        //         $sexocon = 'Femenino';
+        //     }
+        // }
+        // $fechanac=$datosConyuge->fechanac ?? null;
+        // $idLocalidadCon= $datosConyuge->locnac ?? null;
+        // $trabajacon=$datosConyuge->trabaja ?? null;
+        // $ultgradcon=$datosConyuge->ult_grad_estudios ?? null;
+
+        // if( $consultaIdConyuge==null){
+        //     $existeCurpConyuge=0;
+        //     $consultaIdConyuge=0;
+        // }
+
+        // //Se ejecuta el procedimiento para cargar el lugar de nacimiento del conyuge
+        // $idLocalidad3 = [$idLocalidadCon];
+        // $nombreprocedimientoLCon= 'ObtenerLugarNacimiento';
+        // $procedimientoLCon = new ContadorParametros();
+        // $localidad3 = $procedimientoLCon->proceSelect($nombreprocedimientoLCon, $idLocalidad3); 
+
+        // //En caso de que sea nulo
+        // $nombreLocalidad3 = $localidad3[0]->Localidad ?? null;
+        // $nombreMunicipio3 = $localidad3[0]->NombreMunicipio ?? null;
+        // $nombreEstado3 = $localidad3[0]->NombreEstado ?? null;
+        
 
         //CODIGO SOBRE EL REGISTRO 3 DEL FORM 3
         $datosF3R3= $this->obtenerDatosF3R3();
@@ -193,7 +255,8 @@ class Form3Controller extends Controller
                 'nombreEstado22' => $nombreEstado22,
                 'consultaIdMadre' => $consultaIdMadre,
                 'existeCurpMadre' => $existeCurpMadre,
-                'datosF3R3' => $datosF3R3]);
+                'datosF3R3' => $datosF3R3,
+                'vivecon' => $vivecon]);
     }
 
     public function cargarMunicipios($estado)
@@ -238,6 +301,9 @@ class Form3Controller extends Controller
             $xml1 = $this->consultarWebService($curp1);
     
             if ($xml1 ?? null) {
+                alert()
+                ->success('CURP ENCONTRADA')
+                ->showConfirmButton('Aceptar', '#ab0033');
                 //Obtener estados para cargarlos
                 $estados = Estado::pluck('NombreEstado', 'IdEstado');
                 //Obtener a la persona a través de su curp con el procedimiento almacenado
@@ -269,6 +335,28 @@ class Form3Controller extends Controller
                 $existeCurpMadre = $this->obtenerIdMadre();
                 $consultaIdMadre = $this->obtenerIdMadre();
                 //dd($consultaIdPadre);
+
+                 //PROCEDIMIENTO PARA OBTENER PERSONA VIVECON
+                $proceObtenerPersona = 'ObtenerDatosPersona';
+                $procedimientoPerso = new ContadorParametros();
+                $viveconPerso = $procedimientoPerso->proceSelect($proceObtenerPersona,  $arrayIdCurp);
+                $vivecon = $viveconPerso[0]->vivecon ?? null;
+        
+                //Si vive con ambos padres, se iguala a cero el null
+                if($vivecon==null){
+                    $vivecon=0;
+                }
+                //Si vive con la mamá solamente entonces se manda un 10 como variable para ocultar los campos del padre
+                if($vivecon==1){
+                    $vivecon=10;
+                }
+
+                //Si vive con el papá solamente se manda un 11 como variable
+                if($vivecon==2){
+                    $vivecon=11;
+                }
+
+              
              
                 //Si la validacion arroja que es valida la curp para registrar a su padre
                 if($existeCurpPadre!=0){
@@ -285,6 +373,7 @@ class Form3Controller extends Controller
                     //dd($consultaTrabaja);
                     $curpEsValida= true;
                     //dd($consultaIdPadre);
+                  
                     return view('layouts-form.form3', [
                         'xml1' => $xml1,
                         'estados' => $estados,
@@ -298,11 +387,12 @@ class Form3Controller extends Controller
                         'existeCurpPadre' => $existeCurpPadre,
                         'consultaIdPadre' => $consultaIdPadre,
                         'existeCurpMadre' => $existeCurpMadre,
-                        'consultaIdMadre' => $consultaIdMadre 
+                        'consultaIdMadre' => $consultaIdMadre,
+                        'vivecon' => $vivecon 
                     ]);
 
                 } else {
-
+                    dd($noentro=2);
                     //Si el usuario no tienen un papá registrado
                     $consultaLocNacPadre = '';
 
@@ -332,12 +422,14 @@ class Form3Controller extends Controller
                         'existeCurpPadre' => $existeCurpPadre,
                         'consultaIdPadre' => $consultaIdPadre,
                         'existeCurpMadre' => $existeCurpMadre,
-                        'consultaIdMadre' => $consultaIdMadre 
+                        'consultaIdMadre' => $consultaIdMadre,
+                        'vivecon' => $vivecon 
                     ]);
                 }
                   
 
             } else {
+                
                 $errorMessage = "Tu curp no se encuentra en el sistema.";
                 return view('layouts-form.form3', ['errorMessage' => $errorMessage]);
             }
@@ -366,6 +458,9 @@ class Form3Controller extends Controller
             $xml2 = $this->consultarWebService($curp1);
 
             if ($xml2 ?? null) {
+                alert()
+                ->success('CURP ENCONTRADA')
+                ->showConfirmButton('Aceptar', '#ab0033');
                 //Obtener estados para cargarlos
                 $estados2 = Estado::pluck('NombreEstado', 'IdEstado');
                 //Obtener a la persona a través de su curp con el procedimiento almacenado
@@ -395,6 +490,29 @@ class Form3Controller extends Controller
 
                 $existeCurpPadre = $this->obtenerIdPadre();
                 $consultaIdPadre = $this->obtenerIdPadre();
+                
+
+                 //PROCEDIMIENTO PARA OBTENER PERSONA VIVECON
+                $proceObtenerPersona = 'ObtenerDatosPersona';
+                $procedimientoPerso = new ContadorParametros();
+                $viveconPerso = $procedimientoPerso->proceSelect($proceObtenerPersona,  $arrayIdCurp);
+                $vivecon = $viveconPerso[0]->vivecon ?? null;
+                
+                //Si vive con ambos padres, se iguala a cero el null
+                if($vivecon==null){
+                    $vivecon=0;
+                }
+                //Si vive con la mamá solamente entonces se manda un 10 como variable para ocultar los campos del padre
+                if($vivecon==1){
+                    $vivecon=10;
+                }
+
+                //Si vive con el papá solamente se manda un 11 como variable
+                if($vivecon==2){
+                    $vivecon=11;
+                }
+
+                
              
                 //Si la consulta arroja que ya tiene un papá registrado
                 if($existeCurpMadre!=0){
@@ -422,7 +540,8 @@ class Form3Controller extends Controller
                         'existeCurpMadre' => $existeCurpMadre,
                         'consultaIdMadre' => $consultaIdMadre,
                         'existeCurpPadre' => $existeCurpPadre,
-                        'consultaIdPadre' => $consultaIdPadre   // Agregar la variable aquí
+                        'consultaIdPadre' => $consultaIdPadre,
+                        'vivecon' => $vivecon   // Agregar la variable aquí
                     ]);
 
                 } else {
@@ -442,7 +561,6 @@ class Form3Controller extends Controller
                     //dd($estados2);
                     $curpEsValida2 = true;
                     $existeCurpMadre=1;
-                    echo '<script>alert("Datos de la madre encontrados");</script>';
                     return view('layouts-form.form3', [
                         'xml2' => $xml2,
                         'estados2' => $estados2,
@@ -456,7 +574,8 @@ class Form3Controller extends Controller
                         'existeCurpMadre' => $existeCurpMadre,
                         'consultaIdMadre' => $consultaIdMadre,
                         'existeCurpPadre' => $existeCurpPadre,
-                        'consultaIdPadre' => $consultaIdPadre   // Agregar la variable aquí
+                        'consultaIdPadre' => $consultaIdPadre,
+                        'vivecon' => $vivecon   // Agregar la variable aquí
                     ]);
                 }
                   
@@ -468,6 +587,139 @@ class Form3Controller extends Controller
 
         }
     }
+
+    // public function validarCurpCon(Request $request)
+    // {
+    //     $curp1 = $request->curpcon;
+    //     $usuario = Auth::user();
+    //     $curpId = $usuario->curp;
+    //     $arrayIdCurp = [$curpId];
+    //     $proceUser = 'ObtenerUserId';
+    //     $obtenerId = new ContadorParametros();
+    //     $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+    //     $userId = $resultId[0]->idsolicitante ?? null;
+    //     //Validación para que la curp del papá no sea la misma que la del usuario
+    //     if($curp1 == $usuario->curp){
+    //         session()->flash('error', 'La CURP es la misma que el usuario.');
+    //         return view('layouts-form.form3');
+    //     }else {
+    //         session()->forget('error');
+    //         if($curp1)
+    //         //Validación para saber si existe esa persona en el sistema de CURPS del gobierno
+    //         $xml3 = $this->consultarWebService($curp1);
+            
+    //         if ($xml3 ?? null) {
+    //             alert()
+    //             ->success('CURP ENCONTRADA')
+    //             ->showConfirmButton('Aceptar', '#ab0033');
+    //             //$userId= $usuario->idlog;
+    //             //Obtener estados para cargarlos
+    //             $estados = Estado::pluck('NombreEstado', 'IdEstado');
+    //             //Obtener a la persona a través de su curp con el procedimiento almacenado
+    //             $nombreProcedimiento1= 'ObtenerConyuge';
+    //             $arrayCurp = [$userId];
+    //             $procedimiento = new ContadorParametros();
+    //             $resultados = $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
+                
+    //             // Verificar si se obtuvieron resultados para almacenar el id y la localidad de la personna (papá)
+    //             $consultaaccurp= $resultados[0]->curp ?? null;
+    //             $consultaacfechanac = $resultados[0]->fechanac ?? null;
+    //             $consultaacsexo = $resultados[0]->sexo ?? null;
+    //             if ($consultaacsexo !== null) {
+    //                 if ($consultaacsexo == 1) {
+    //                     $consultaacsexo = 'Masculino';
+    //                 } else if ($consultaacsexo == 0) {
+    //                     $consultaacsexo = 'Femenino';
+    //                 }
+    //             }
+    //             $consultacpaterno = $resultados[0]->paterno ?? null;
+    //             $consultacmaterno = $resultados[0]->materno ?? null;
+    //             $consultacnombre = $resultados[0]->nombre ?? null;
+    //             $consultacidlocalidad = $resultados[0]->locnac ?? null;
+    //             $consultactrabaja = $resultados[0]->trabaja ?? null;
+    //             $consultacultgrad = $resultados[0]->ult_grad_estudios ?? null;
+
+              
+    //             $existeCurpPadre = $this->obtenerIdPadre();
+    //             $consultaIdPadre = $this->obtenerIdPadre();
+                
+    //             $existeCurpMadre = $this->obtenerIdMadre();
+    //             $consultaIdMadre = $this->obtenerIdMadre();
+
+    //             $existeCurpConyuge = $this->obtenerIdConyuge();
+    //             $consultaIdConyuge = $this->obtenerIdConyuge();
+                
+    //             // $consultaIdConyuge = 1;  
+    //             // $consulta2IdConyuge = 0;
+    //             //dd($consultaIdPadre);
+
+    //              //PROCEDIMIENTO PARA OBTENER PERSONA VIVECON
+    //             $proceObtenerPersona = 'ObtenerDatosPersona';
+    //             $procedimientoPerso = new ContadorParametros();
+    //             $viveconPerso = $procedimientoPerso->proceSelect($proceObtenerPersona,  $arrayIdCurp);
+    //             $vivecon = $viveconPerso[0]->vivecon ?? null;
+        
+    //             //Si vive con ambos padres, se iguala a cero el null
+    //             if($vivecon==null){
+    //                 $vivecon=0;
+    //             }
+    //             //Si vive con la mamá solamente entonces se manda un 10 como variable para ocultar los campos del padre
+    //             if($vivecon==1){
+    //                 $vivecon=10;
+    //             }
+
+    //             //Si vive con el papá solamente se manda un 11 como variable
+    //             if($vivecon==2){
+    //                 $vivecon=11;
+    //             }
+             
+    //             //Si vive con el conyuge u otro
+    //             if($vivecon==3||$vivecon=4){
+    //                 $vivecon=12;
+    //             }
+             
+            
+    //                 //Se ejecuta el procedimiento para cargar el lugar de nacimiento del papá
+    //                 $idLocalidad = [$consultacidlocalidad];
+    //                 $nombreprocedimiento3= 'ObtenerLugarNacimiento';
+    //                 $procedimiento3 = new ContadorParametros();
+    //                 $localidad = $procedimiento3->proceSelect($nombreprocedimiento3, $idLocalidad);    
+
+    //                 //En caso de que sea nulo
+    //                 $nombreLocalidad4 = $localidad[0]->Localidad ?? null;
+    //                 $nombreMunicipio4 = $localidad[0]->NombreMunicipio ?? null;
+    //                 $nombreEstado4 = $localidad[0]->NombreEstado ?? null;
+    //                 //dd($consultaTrabaja);
+    //                 $curpEsValida= true;
+    //                 //dd($consultaIdPadre);
+                  
+    //                 return view('layouts-form.form3', [
+    //                     'xml3' => $xml3,
+    //                     'estados' => $estados,
+    //                     'consultacidlocalidad' => $consultacidlocalidad,
+    //                     'nombreLocalidad4' => $nombreLocalidad4,
+    //                     'nombreMunicipio4' => $nombreMunicipio4,
+    //                     'nombreEstado4' => $nombreEstado4,
+    //                     'consultactrabaja' => $consultactrabaja,
+    //                     'consultacultgrad' => $consultacultgrad,
+    //                     'curpEsValida' => $curpEsValida,
+    //                     'vivecon' => $vivecon,
+    //                     'existeCurpMadre' => $existeCurpMadre,
+    //                     'consultaIdMadre' => $consultaIdMadre,
+    //                     'existeCurpPadre' => $existeCurpPadre,
+    //                     'consultaIdPadre' => $consultaIdPadre,
+    //                     'existeCurpConyuge' => $existeCurpConyuge, 
+    //                 ]);
+
+                  
+
+    //         } else {
+    //             $errorMessage = "Tu curp no se encuentra en el sistema.";
+    //             return view('layouts-form.form3', ['errorMessage' => $errorMessage]);
+    //         }
+
+    //     }
+    // }
 
     private function consultarWebService($valor)
     {
@@ -544,6 +796,34 @@ class Form3Controller extends Controller
         return $consultaIdMadre;
     }
 
+    private function obtenerIdConyuge(){
+        $nombreProcedimiento1= 'ObtenerConyuge';
+        $usuario = Auth::user();
+        $curpId = $usuario->curp;
+        $arrayIdCurp = [$curpId];
+        $proceUser = 'ObtenerUserId';
+        $obtenerId = new ContadorParametros();
+        $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+        $userId = $resultId[0]->idsolicitante ?? null;
+        $arrayCurp = [$userId];
+        $procedimiento = new ContadorParametros();
+        $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayCurp);
+
+        if (!empty($resultados)) {
+            $consultaIdConyuge = $resultados[0]->idpersona;
+           
+      
+        } else {
+            // Si no se obtienen resultados, se declara null por cualquier cosa      
+            $consultaIdConyuge = null;
+        }
+
+        if($consultaIdConyuge==null){
+            $consultaIdConyuge=0;
+        }
+        return $consultaIdConyuge;
+    }
+
     public function obtenerDatosF3R3(){
         $nombreProcedimiento1= 'ObtenerDatosFamF3';
         $usuario = Auth::user();
@@ -565,6 +845,27 @@ class Form3Controller extends Controller
         return $datosF3R3;
 
     }
+
+    // public function obtenerDatosConyuge(){
+    //     $nombreProce='ObtenerConyuge';
+    //     $usuario = Auth::user();
+    //     $curpId = $usuario->curp;
+    //     $arrayIdCurp = [$curpId];
+    //     $proceUser = 'ObtenerUserId';
+    //     $obtenerId = new ContadorParametros();
+    //     $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+    //     $userId = $resultId[0]->idsolicitante ?? null;
+    //     $array = [$userId];
+    //     $procedimiento = new ContadorParametros();
+    //     $resultados= $procedimiento->proceSelect($nombreProce, $array);
+    //     if(!empty($resultados)) {
+    //         $datosConyuge= $resultados[0];
+    //     } else {
+    //         $datosConyuge=null;
+    //     }
+
+    //     return $datosConyuge;
+    // }
    
 
    

@@ -1,18 +1,10 @@
 @extends('layouts.landingsinslider')
 @section('title', 'Referencias')
 @section('content')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
 <div class="section margin-top_50">
-  @if (session('successR1'))
-    <div class="alert alert-success text-center">
-         {{ session('successR1') }}
-    </div>
-  @endif
-  @if (session('successR2'))
-    <div class="alert alert-success text-center">
-         {{ session('successR2') }}
-    </div>
-  @endif
+  
   <div class="accordion mi-accordion col-md-8 mx-auto" id="accordionExample">
     
     <div class="accordion-item" id="item1">

@@ -31,7 +31,7 @@ class FormsController extends Controller
                     'municipio' => 'required',
                     'localidad' => 'required',
                     'estado_civil' => 'required|in:0,1',
-                    'vivecon' => 'required|in:0,4',
+                    'vivecon' => 'required',
                 ]);
                 $nombreProcedimiento = 'SalvarPersona';
                 $curp = $request->input('curp');
@@ -42,6 +42,9 @@ class FormsController extends Controller
                 $contadorParametros = new ContadorParametros();
                 $resultados= $contadorParametros->proceUpdate($nombreProcedimiento, $arrayP);
                 session()->flash('success', 'Datos guardados con éxito.');
+                alert()
+                ->success('Datos personales guardados con éxito')
+                ->showConfirmButton('Aceptar', '#ab0033');
                 // Agregar mensaje de éxito
                 return redirect()->route('form1-formulario')->with(['success' => session('success')]);
                 } catch (QueryException $e) {
@@ -99,6 +102,9 @@ class FormsController extends Controller
                     $arrayP2 = [$idpersona, $tipo, $calle, $calle2, $calle3, $numero, $colonia, $idlocalidad, $telefono, $celular, $cp];
                     //Se ejecuta el procedimiento
                     $actualizarDomicilio1= $contadorParametros->proceUpdate($proceActualizarDomic, $arrayP2);
+                    alert()
+                    ->success('Domicilio familiar guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     session()->flash('success', 'Domicilio guardado con éxito.');
                     return redirect()->route('form2-formulario')->with(['success' => session('success')]);  
                 } catch (QueryException $e) {
@@ -152,6 +158,9 @@ class FormsController extends Controller
                 $arrayP2 = [$idpersona, $tipo, $calle, $calle2, $calle3, $numero, $colonia, $idlocalidad, $telefono, $celular, $cp];
                 //Se ejecuta el procedimiento
                 $actualizarDomicilio1= $contadorParametros->proceUpdate($proceActualizarDomic, $arrayP2);
+                alert()
+                    ->success('Otro domicilio guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                 session()->flash('success2', 'Domicilio 2 guardado con éxito.');
                 return redirect()->route('form2-formulario')->with(['success2' => session('success2')]); 
             } catch (QueryException $e) {  
@@ -205,6 +214,9 @@ class FormsController extends Controller
                 $arrayP2 = [$idpersona, $tipo, $calle, $calle2, $calle3, $numero, $colonia, $idlocalidad, $telefono, $celular, $cp];
                 //Se ejecuta el procedimiento
                 $actualizarDomicilio1= $contadorParametros->proceUpdate($proceActualizarDomic, $arrayP2);
+                alert()
+                    ->success('Domicilio foráneo guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                 session()->flash('success3', 'Domicilio 3 guardado con éxito.');
                 return redirect()->route('form2-formulario')->with(['success3' => session('success3')]); 
             } catch (QueryException $e) {
@@ -273,6 +285,9 @@ class FormsController extends Controller
                             //dd($arrayPIP);
                             $proceInsertarPadre = new ContadorParametros();
                             $actualizarDomicilio1= $proceInsertarPadre->proceUpdate($nombreproceInsertarPadre, $arrayPIP);
+                            alert()
+                                ->success('Padre guardado con éxito')
+                                ->showConfirmButton('Aceptar', '#ab0033');
                             session()->flash('success', 'Padre guardado con éxito.');
                             //dd($actualizarDomicilio1);
                             $curpGuardar=true;
@@ -292,8 +307,133 @@ class FormsController extends Controller
                
         }
 
+        public function form3Registro4(Request $request)
+        {
+            if ($request->input('btnGuardarCon') == 'guardar') {
+                    // Validación de los campos
+                    $request->validate([
+                        'curpcon2' => 'required',
+                        'fechacon' => 'required',
+                        'paternocon' => 'required',
+                        'maternocon' => 'required',
+                        'nombrecon' => 'required',
+                        'sexocon' => 'required',
+                        'estado3' => 'required',
+                        'municipio3' => 'required',
+                        'localidad3' => 'required',
+                        'trabajacon' => 'required',
+                        'estudioscon' => 'required',]);
+
+                    //Se declara el nombre del procedimiento
+                    $nombreproceInsertarCon = 'ActualizarInsertarPersonas';
+                    //Se crea una instancia para poder utilizar la función 
+                    //$proceInsertarPadre = new ContadorParametros();
+                            
+                    
+                    // Obtener el usuario autenticado (persona)
+                    $usuario = Auth::user();
+                    $curpId = $usuario->curp;
+                    $arrayIdCurp = [$curpId];
+                    $proceUser = 'ObtenerUserId';
+                    $obtenerId = new ContadorParametros();
+                    $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+                    $userId = $resultId[0]->idsolicitante ?? null;
+                    
+                    //Se usa un trycatch en caso de error en el procedimiento para guardar 
+                        try {
+                            $idSolicitante = $userId;
+                            //Aqui se almacena el idpadre con la consulta anterior    
+                            $curpcon= $request->input('curpcon2');
+                            $paterno= $request->input('paternocon');
+                            $materno= $request->input('maternocon');
+                            $nombre = $request->input('nombrecon');
+                            $sexo = $request->input('sexocon');
+                            if ($sexo == 'H') {
+                                $sexo = 1;  // Hombre
+                            } elseif ($sexo == 'M') {
+                                $sexo = 0;  // Mujer
+                            }
+                            // // Obtener la cadena de fecha del input
+                            $fechaInput = $request->input('fechacon');
+                            $fechaCarbon = Carbon::createFromFormat('d/m/Y', $fechaInput);
+                            $nuevaFecha = $fechaCarbon->format('Y-m-d');
+                            $locnac = $request->input('localidad3');
+                            $fechaRegistro = Carbon::now();
+                            $trabaja = $request->input('trabajacon');
+                            $ult_grad_estudios = $request->input('estudioscon');
+                            $tipo=8;
+                            //Se pasan los parámetros al array
+                            $arrayPIP = [$idSolicitante, $curpcon, $paterno, $materno, $nombre, $sexo, $tipo, $nuevaFecha, $locnac, $fechaRegistro, $trabaja, $ult_grad_estudios];
+                            //Se ejecuta el procedimiento
+                            //dd($arrayPIP);
+                            $proceInsertarCon = new ContadorParametros();
+                            $actualizarDomicilio1= $proceInsertarCon->proceUpdate($nombreproceInsertarCon, $arrayPIP);
+                            alert()
+                                ->success('Cónyuge/otro guardado con éxito')
+                                ->showConfirmButton('Aceptar', '#ab0033');
+                            session()->flash('success', 'Padre guardado con éxito.');
+                            //dd($actualizarDomicilio1);
+                            $curpGuardar=true;
+                            $consultaIdPadre = 1;
+                            // $controlform3= new Form3Controller();
+                            // $vistaCon = $controlform3->index()->with('success', session('success'));;
+                            // return $vistaCon;
+                            return redirect()->route('form3-formulario')->with(['success' => session('success')]);  
+                            
+                        // return redirect()->route('form3-formulario');
+                        } catch (QueryException $e) {
+                            dd($e);
+                            session()->flash('errorCF3', 'Error al insertar datos.');
+                            return redirect()->route('form3-formulario');  
+                        }
+            }
+               
+        }
+
+        public function form3Registro4Eliminar(Request $request){
+            try{
+                //dd($xd=1);
+                $usuario = Auth::user();
+                $curpId = $usuario->curp;
+                $arrayIdCurp = [$curpId];
+                $proceUser = 'ObtenerUserId';
+                $obtenerId = new ContadorParametros();
+                $resultId = $obtenerId->proceSelect($proceUser, $arrayIdCurp);
+                $userId = $resultId[0]->idsolicitante ?? null;
+    
+                $nombreProcedimiento1= 'ObtenerConyuge';
+                $arrayOP= [$userId];
+                $procedimiento = new ContadorParametros();
+                $resultados= $procedimiento->proceSelect($nombreProcedimiento1, $arrayOP);
+    
+                if (!empty($resultados)) {
+                    $consultaIdConyu = $resultados[0]->idpersona;
+            
+                } else {
+                    $consultaIdConyu = null;
+                }
+    
+                //dd($xd=1);
+                $nombreProcedimiento2 = 'EliminarConyuge';
+                $arrayEP = [$consultaIdConyu, $userId];
+                $procedimiento2 = new ContadorParametros();
+                $resultados2= $procedimiento2->proceUpdate($nombreProcedimiento2, $arrayEP);
+                alert()
+                ->success('Cónyuge/otro eliminado con éxito')
+                ->showConfirmButton('Aceptar', '#ab0033');
+                //dd($xd=2);
+                return redirect()->route('form3-formulario')->with(['success' => session('success')]);  
+            } catch (QueryException $e) {
+                session()->flash('padreEli', 'Se ha eliminado el registro de tu padre.');
+                return redirect()->route('form3-formulario');  
+            }
+               
+            
+        }
+
     public function form3Registro1Eliminar(Request $request){
         try{
+            //dd($xd=1);
             $usuario = Auth::user();
             $curpId = $usuario->curp;
             $arrayIdCurp = [$curpId];
@@ -314,12 +454,15 @@ class FormsController extends Controller
                 $consultaIdPadre = null;
             }
 
-
+            //dd($xd=1);
             $nombreProcedimiento2 = 'Eliminarpadres';
             $arrayEP = [$consultaIdPadre, $userId];
             $procedimiento2 = new ContadorParametros();
-            $resultados2= $procedimiento2->proceSelect($nombreProcedimiento2, $arrayEP);
-            session()->flash('success', 'Padre eliminado con éxito.');
+            $resultados2= $procedimiento2->proceUpdate($nombreProcedimiento2, $arrayEP);
+            alert()
+            ->success('Padre eliminado con éxito')
+            ->showConfirmButton('Aceptar', '#ab0033');
+            //dd($xd=2);
             return redirect()->route('form3-formulario')->with(['success' => session('success')]);  
         } catch (QueryException $e) {
             session()->flash('padreEli', 'Se ha eliminado el registro de tu padre.');
@@ -390,6 +533,9 @@ class FormsController extends Controller
                 $proceInsertarPadre = new ContadorParametros();
                 $actualizarDomicilio1= $proceInsertarPadre->proceUpdate($nombreproceInsertarPadre, $arrayPIM);
                 session()->flash('successM', 'Madre guardada con éxito.');
+                alert()
+                ->success('Madre guardado con éxito')
+                ->showConfirmButton('Aceptar', '#ab0033');
                 $consultaIdMadre = 1;
                 //return redirect()->route('form3-formulario');
                 $curpGuardar2=true;
@@ -430,8 +576,11 @@ class FormsController extends Controller
                 $nombreProcedimiento2 = 'Eliminarpadres';
                 $arrayEP = [$consultaIdMadre, $userId];
                 $procedimiento2 = new ContadorParametros();
-                $resultados2= $procedimiento2->proceSelect($nombreProcedimiento2, $arrayEP);
+                $resultados2= $procedimiento2->proceUpdate($nombreProcedimiento2, $arrayEP);
                 session()->flash('successM', 'Madre eliminado con éxito.');
+                alert()
+                ->success('Madre eliminado con éxito')
+                ->showConfirmButton('Aceptar', '#ab0033');
                 return redirect()->route('form3-formulario')->with(['successM' => session('successM')]);  
             } catch (QueryException $e) {
                 session()->flash('madreEli', 'Se ha eliminado el registro de tu Madre.');
@@ -482,6 +631,9 @@ class FormsController extends Controller
                         $proceInsertarF3R3 = new ContadorParametros();
                         $resultados= $proceInsertarF3R3->proceUpdate( $nombreproceInsertarF3R3, $arrayF3R3);
                         session()->flash('successF3R3', 'Datos familiares guardados con éxito.');            
+                        alert()
+                        ->success('Datos familiares guardados con éxito')
+                        ->showConfirmButton('Aceptar', '#ab0033');
                         return redirect()->route('form3-formulario')->with(['successF3R3' => session('successF3R3')]);  
                 }   catch (QueryException $e) {
                         //dd($e);
@@ -551,6 +703,9 @@ class FormsController extends Controller
                     $proceInsertarF4R1 = new ContadorParametros();
                     $resultados= $proceInsertarF4R1->proceUpdate( $nombreproceInsertarF4R1, $arrayF4R1);
                     session()->flash('successF4R1', 'Datos guardados con éxito.');            
+                    alert()
+                    ->success('Datos guardados con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     return redirect()->route('form4-formulario')->with(['successF4R1' => session('successF4R1')]);  
             }   catch (QueryException $e) {
                     dd($e);
@@ -686,6 +841,9 @@ class FormsController extends Controller
                 // $controlform3= new Form3Controller();
                 // $vistaCon = $controlform3->index()->with('success', session('success'));;
                 // return $vistaCon;
+                alert()
+                    ->success('Aval guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                 return redirect()->route('form6-formulario')->with(['successF6' => session('successF6')]);  
                 
                 // return redirect()->route('form3-formulario');
@@ -723,8 +881,11 @@ class FormsController extends Controller
             $nombreProcedimiento2 = 'EliminarAvalF6';
             $arrayEF6 = [$userId];
             $procedimiento2 = new ContadorParametros();
-            $resultados2= $procedimiento2->proceSelect($nombreProcedimiento2, $arrayEF6);
+            $resultados2= $procedimiento2->proceUpdate($nombreProcedimiento2, $arrayEF6);
             session()->flash('success', 'Aval eliminado con éxito.');
+            alert()
+                    ->success('Aval eliminado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
             return redirect()->route('form6-formulario')->with(['success' => session('success')]);  
            
         } catch (QueryException $e) {
@@ -780,6 +941,9 @@ class FormsController extends Controller
                     $proceInsertarF7R1 = new ContadorParametros();
                     $resultados= $proceInsertarF7R1->proceUpdate( $nombreproceInsertarF7, $arrayF7R1);
                     session()->flash('successF7R1', 'Datos guardados con éxito.');            
+                    alert()
+                    ->success('Datos guardados con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     return redirect()->route('form7-formulario')->with(['successF7R1' => session('successF7R1')]);  
         }   catch (QueryException $e) {
                     dd($e);
@@ -839,6 +1003,9 @@ class FormsController extends Controller
                     $proceInsertarF7R2 = new ContadorParametros();
                     $resultados= $proceInsertarF7R2->proceUpdate( $nombreproceInsertarF72, $arrayF7R2);
                     session()->flash('successF7R2', 'Datos guardados con éxito.');            
+                    alert()
+                    ->success('Datos guardados con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     return redirect()->route('form7-formulario')->with(['successF7R2' => session('successF7R2')]);  
             }   catch (QueryException $e) {
                     dd($e);
@@ -955,6 +1122,9 @@ class FormsController extends Controller
                 // $controlform3= new Form3Controller();
                 // $vistaCon = $controlform3->index()->with('success', session('success'));;
                 // return $vistaCon;
+                alert()
+                    ->success('Referencia 1 guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                 return redirect()->route('form8-formulario')->with(['successR1' => session('successR1')]);  
                 
                 // return redirect()->route('form3-formulario');
@@ -992,8 +1162,11 @@ class FormsController extends Controller
             $nombreProcedimiento2 = 'EliminarR1R2F8';
             $arrayER1 = [$consultaIdR1, $userId];
             $procedimiento2 = new ContadorParametros();
-            $resultados2= $procedimiento2->proceSelect($nombreProcedimiento2, $arrayER1);
+            $resultados2= $procedimiento2->proceUpdate($nombreProcedimiento2, $arrayER1);
             session()->flash('success', 'Referencia 1 eliminada con éxito.');
+            alert()
+                    ->success('Referencia 1 eliminado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
             return redirect()->route('form8-formulario')->with(['success' => session('success')]);  
            
         } catch (QueryException $e) {
@@ -1080,6 +1253,9 @@ class FormsController extends Controller
                 $proceInsertarR2 = new ContadorParametros();
                 $actualizarR2= $proceInsertarR2->proceUpdate($nombreproceInsertarR2, $arrayR2);
                 session()->flash('successR2', 'Referencia 2 guardado con éxito.');
+                alert()
+                    ->success('Referencia 2 guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                 return redirect()->route('form8-formulario')->with(['success' => session('success')]);  
                 
                 // return redirect()->route('form3-formulario');
@@ -1118,8 +1294,11 @@ class FormsController extends Controller
             $nombreProcedimiento2 = 'EliminarR1R2F8';
             $arrayER2 = [$consultaIdR2, $userId];
             $procedimiento2 = new ContadorParametros();
-            $resultados2= $procedimiento2->proceSelect($nombreProcedimiento2, $arrayER2);
+            $resultados2= $procedimiento2->proceUpdate($nombreProcedimiento2, $arrayER2);
             session()->flash('success', 'Referencia 2 eliminada con éxito.');
+            alert()
+                    ->success('Referencia 2 eliminado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
             return redirect()->route('form8-formulario')->with(['success' => session('success')]);  
            
         } catch (QueryException $e) {
@@ -1186,7 +1365,9 @@ class FormsController extends Controller
                     //Se ejecuta el procedimiento
                     $actualizarTrabajo1= $contadorParametros->proceUpdate($proceActualizarF9, $arrayT1);
                     session()->flash('successT1', 'Trabajo del estudiante guardado con éxito.');
-                    
+                    alert()
+                    ->success('Trabajo del estudiante guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     return redirect()->route('form9-formulario');
                 } catch (QueryException $e) {
                     dd($e);
@@ -1299,7 +1480,9 @@ class FormsController extends Controller
                     //Se ejecuta el procedimiento
                     $actualizarTrabajo1= $contadorParametros->proceUpdate($proceActualizarF9, $arrayT2);
                     session()->flash('successT2', 'Trabajo del padre guardado con éxito.');
-                    
+                    alert()
+                    ->success('Trabajo del padre guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     return redirect()->route('form9-formulario');
                 }   catch (QueryException $e) {
                     dd($e);
@@ -1355,7 +1538,9 @@ class FormsController extends Controller
                     //Se ejecuta el procedimiento
                     $actualizarTrabajo3= $contadorParametros->proceUpdate($proceActualizarF9, $arrayT3);
                     session()->flash('successT3', 'Trabajo de la madre guardado con éxito.');
-                    
+                    alert()
+                    ->success('Trabajo de la madre guardado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     return redirect()->route('form9-formulario');
                 }   catch (QueryException $e) {
                     dd($e);
@@ -1391,7 +1576,9 @@ class FormsController extends Controller
                  //Se ejecuta el procedimiento
                  $actualizarM1= $contadorParametros->proceUpdate($proceActualizarF10, $arrayM1);
                  session()->flash('success', 'Mensaje guardado con éxito.');
-                 
+                 alert()
+                    ->success('Mensaje enviado con éxito')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                  return redirect()->route('form10-formulario');
              } catch (QueryException $e) {
                  dd($e);

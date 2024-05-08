@@ -141,3 +141,33 @@ function existeAval(consultaAval, validarAval){
         document.getElementById('item2').classList.remove('d-none');
     }
 }
+
+//CODIGO CONYUGE
+
+// function existeConyuge(consultaConyuge, validarConyuge){
+//     if(consultaConyuge==false){
+//        //Si no tiene R1, muestrame el ingresar curp y oculta el mostrar datos
+       
+//        document.getElementById('item2').classList.add('d-none');
+//        document.getElementById('item1').classList.remove('d-none');
+//        document.getElementById('btnGuardarCon').classList.remove('d-none');
+//        document.getElementById('btnEliminarCon').classList.add('d-none');
+       
+//     } 
+    
+//     if(consultaConyuge==true){
+
+//         //Si el usuario tiene R1, oculta el campo de ingresar curp y muestra el campo de ingresar datos
+        
+//         document.getElementById('item1').classList.add('d-none');
+//         document.getElementById('item2').classList.remove('d-none');
+//         document.getElementById('btnGuardarCon').classList.add('d-none');
+//         document.getElementById('btnEliminarCon').classList.remove('d-none');
+//     }
+
+//     if(validarConyuge==false){
+//         document.getElementById('item1').classList.add('d-none');
+//         document.getElementById('btnGuardarCon').classList.remove('d-none');
+//         document.getElementById('item2').classList.remove('d-none');
+//     }
+// }

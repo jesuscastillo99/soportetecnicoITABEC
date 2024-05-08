@@ -1,17 +1,10 @@
 @extends('layouts.landingsinslider')
 @section('title', 'form4')
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
 <div class="section margin-top_50">
-  @if (session('successF4R1'))
-    <div class="alert alert-success text-center">
-         {{ session('successF4R1') }}
-    </div>
-  @endif
-  @if (session('errorF4R1'))
-    <div class="alert alert-success text-center">
-         {{ session('errorF4R1') }}
-    </div>
-  @endif
+ 
     <div class="container mb-2 bg-cremita pt-3 rounded">
       <form method="POST" action="{{ route('form4-post') }}" id="formulario-historial">
         @csrf

@@ -6,7 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Routing\Redirector;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class LoginController extends Controller
 {
     //protected $redirectTo = 'inicio';
@@ -42,10 +42,13 @@ class LoginController extends Controller
             return back()->withErrors(['error' => 'Debes activar tu cuenta antes de poder iniciar sesión.']);
         }
 
-        
+
             // Autenticar al usuario manualmente
             Auth::login($usuario);
-
+            alert()
+            ->success('Inicio de sesión exitosa', 'Bienvenido al sistema de crédito educativo')
+            ->showConfirmButton('Comenzar', '#3085d6');
+         
             // Autenticación exitosa
             return redirect()->intended('inicio'); // Redirige al usuario a la página deseada
          

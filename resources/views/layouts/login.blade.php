@@ -1,6 +1,8 @@
 @extends('layouts.landinglogin')
 @section('title', 'Login')
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
     <section class="h-100 gradient-form" style="background-color: #eee;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -31,7 +33,7 @@
                         </div>
       
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="inputCorreo">CORREO</label>
+                          <label class="form-label" for="inputCorreo">CORREO:</label>
                           <input type="email" name="correo" id="inputCorreo" value="{{ old('correo') }}" class="form-control" 
                             placeholder=""/>
                             @error('correo')
