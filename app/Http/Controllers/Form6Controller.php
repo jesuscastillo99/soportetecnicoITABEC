@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use SimpleXMLElement;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Redirect;
 class Form6Controller extends Controller
 {
     
@@ -248,7 +249,9 @@ class Form6Controller extends Controller
                 
                 $nombreEstadoAval=null;
 
-                   
+                alert()
+                ->success('CURP ENCONTRADA')
+                ->showConfirmButton('Aceptar', '#ab0033');  
                     return view('layouts-form.form6', [
                         'xml1' => $xml1,
                         'consultaavcurp' => $consultaavcurp,
@@ -291,6 +294,10 @@ class Form6Controller extends Controller
                   
 
             } else {
+                alert()
+                ->error('CURP NO ENCONTRADA')
+                ->showConfirmButton('Aceptar', '#ab0033');
+                return Redirect::route('form6-formulario');
                 $errorMessage = "Tu curp no se encuentra en el sistema.";
                 return view('layouts-form.form6', ['errorMessage' => $errorMessage]);
             }

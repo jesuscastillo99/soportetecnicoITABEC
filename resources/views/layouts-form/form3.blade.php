@@ -37,7 +37,7 @@
                           <div class="col-md-4">
                               <div class="form-group">
                                 <label for="curppadre1">CURP PAPÁ:</label>
-                                <input type="text" class="form-control" maxlength="18" id="curppadre1" name="curppadre1">  
+                                <input type="text" class="form-control" maxlength="18" id="curppadre1" name="curppadre1" required>  
                                 <p class="text-danger">{{ $errorMessage ?? '' }}</p>
                               </div>
                               @if(session('error'))
@@ -152,7 +152,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="estado">Estado donde nació:</label>
-                                <select class="form-control" id="estado" name="estado">
+                                <select class="form-control" id="estado" name="estado" required>
                                   <option value="">Selecciona un estado</option>
                                   @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
                                       <option value="{{ $IdEstado }}" {{ ($nombreEstado2 ?? null == $NombreEstado) ? 'selected' : '' }}>
@@ -168,7 +168,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="municipio">Municipio donde nació:</label>
-                                <select class="form-control" id="municipio" name="municipio">
+                                <select class="form-control" id="municipio" name="municipio" required>
                                   <option value="">Selecciona un municipio</option>
                                   <option value="{{ $nombreMunicipio ?? '' }}" selected>
                                       {{ $nombreMunicipio ?? 'Selecciona un municipio' }}
@@ -185,7 +185,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="localidad">Localidad donde nació:</label>
-                                <select class="form-control" id="localidad" name="localidad">
+                                <select class="form-control" id="localidad" name="localidad" required>
                                   <option value="">Selecciona una localidad</option>
                                   @isset($localidadPadre)
                                       <option value="{{ $localidadPadre }}" selected>{{ $nombreLocalidad }}</option>
@@ -206,7 +206,7 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <label for="trabajapadre">¿Trabaja?</label>
-                                  <select class="form-control" id="trabajapadre" name="trabajapadre">
+                                  <select class="form-control" id="trabajapadre" name="trabajapadre" required>
                                     <option value="" {{ old('trabajapadre', $consultaTrabaja ?? $consultaPTrabaja ?? '') == "" ? 'selected' : '' }}>Seleccione:</option>
                                     <option value="1" {{ old('trabajapadre', $consultaTrabaja ?? $consultaPTrabaja ?? '') == "1" ? 'selected' : '' }}>Si</option>
                                     <option value="0" {{ old('trabajapadre', $consultaTrabaja ?? $consultaPTrabaja ?? '') == "0" ? 'selected' : '' }}>No</option>
@@ -219,7 +219,7 @@
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <label for="estudiospadre">Último Grado de Estudios:</label>
-                                  <select class="form-control" id="estudiospadre" name="estudiospadre">
+                                  <select class="form-control" id="estudiospadre" name="estudiospadre" required>
                                     {{-- El "old" sirve para que laravel pueda detectar variables que aun no han sido definidas --}}
                                     <option value="" {{ old('estudiospadre', $consultaUltEstudios ?? $consultaPEstudios ?? '' ) == "" ? 'selected' : '' }}>Seleccione:</option>
                                     <option value="Primaria" {{ old('estudiospadre', $consultaUltEstudios ?? $consultaPEstudios ?? '' ) == "Primaria" ? 'selected' : '' }}>Primaria</option>
@@ -282,7 +282,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                           <label for="curpmadre1">CURP MAMÁ:</label>
-                          <input type="text" class="form-control" maxlength="18" id="curpmadre1" name="curpmadre1">
+                          <input type="text" class="form-control" maxlength="18" id="curpmadre1" name="curpmadre1" required>
                           <p class="text-danger">{{ $errorMessageM ?? '' }}</p>
                         </div>
                         @if(session('error2'))
@@ -388,7 +388,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="estado2">Estado donde nació:</label>
-                            <select class="form-control" id="estado2" name="estado2">
+                            <select class="form-control" id="estado2" name="estado2" required>
                               <option value="">Selecciona un estado</option>
                               @foreach(($estados2 ?? []) as $IdEstado => $NombreEstado)
                                   <option value="{{ $IdEstado }}" {{ ($nombreEstado22 == $NombreEstado) ? 'selected' : '' }}>
@@ -404,7 +404,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="municipio2">Municipio donde nació:</label>
-                            <select class="form-control" id="municipio2" name="municipio2">
+                            <select class="form-control" id="municipio2" name="municipio2" required>
                               <option value="">Selecciona un municipio</option>
                               <option value="{{ $nombreMunicipio2 ?? '' }}" selected>
                                   {{ $nombreMunicipio2 ?? 'Selecciona un municipio' }}
@@ -421,7 +421,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="localidad2">Localidad donde nació:</label>
-                            <select class="form-control" id="localidad2" name="localidad2">
+                            <select class="form-control" id="localidad2" name="localidad2" required>
                               <option value="">Selecciona una localidad</option>
                               @isset($localidadMadre)
                                   <option value="{{ $localidadMadre }}" selected>{{ $nombreLocalidad2 }}</option>
@@ -442,7 +442,7 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="trabajamadre">¿Trabaja?</label>
-                              <select class="form-control" id="trabajamadre" name="trabajamadre">
+                              <select class="form-control" id="trabajamadre" name="trabajamadre" required>
                                 <option value="" {{ old('trabajamadre', $consultaTrabaja2 ?? $consultaMTrabaja ?? '') == "" ? 'selected' : '' }}>Seleccione:</option>
                                 <option value="1" {{ old('trabajamadre', $consultaTrabaja2 ?? $consultaMTrabaja ?? '') == "1" ? 'selected' : '' }}>Si</option>
                                 <option value="0" {{ old('trabajamadre', $consultaTrabaja2 ?? $consultaMTrabaja ?? '') == "0" ? 'selected' : '' }}>No</option>
@@ -452,7 +452,7 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="estudiosmadre">Último Grado de Estudios:</label>
-                              <select class="form-control" id="estudiosmadre" name="estudiosmadre">
+                              <select class="form-control" id="estudiosmadre" name="estudiosmadre" required>
                                 {{-- El "old" sirve para que laravel pueda detectar variables que aun no han sido definidas --}}
                                 <option value="" {{ old('estudiosmadre', $consultaUltEstudios2 ?? $consultaMEstudios ?? '' ) == "" ? 'selected' : '' }}>Seleccione:</option>
                                     <option value="Primaria" {{ old('estudiosmadre', $consultaUltEstudios2 ?? $consultaMEstudios ?? '' ) == "Primaria" ? 'selected' : '' }}>Primaria</option>
@@ -508,8 +508,8 @@
             <div class="col-md-4">
                 <div class="form-group">
                   <label class="mb-4 mt-3" for="padres_cas_sol">Sus Padres están:</label>
-                  <select class="form-control" id="padres_cas_sol" name="padres_cas_sol">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="padres_cas_sol" name="padres_cas_sol" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('padres_cas_sol', $datosF3R3->padres_civil ?? null) == '1' ? 'selected' : '' }}>Casados</option>
                     <option value="2" {{ old('padres_cas_sol', $datosF3R3->padres_civil ?? null) == '2' ? 'selected' : '' }}>Divorciados</option>
                     <option value="3" {{ old('padres_cas_sol', $datosF3R3->padres_civil ?? null) == '3' ? 'selected' : '' }}>Otro</option>
@@ -519,8 +519,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="herm_dep_ing_familiar" >Núm de Hermanos que Dependen del ingreso familiar:</label>
-                  <select class="form-control" id="herm_dep_ing_familiar" name="herm_dep_ing_familiar">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="herm_dep_ing_familiar" name="herm_dep_ing_familiar" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('herm_dep_ing_familiar', $datosF3R3->num_herm_dep ?? null) == '1' ? 'selected' : '' }}>1</option>
                     <option value="2" {{ old('herm_dep_ing_familiar', $datosF3R3->num_herm_dep ?? null) == '2' ? 'selected' : '' }}>2</option>
                     <option value="3" {{ old('herm_dep_ing_familiar', $datosF3R3->num_herm_dep ?? null) == '3' ? 'selected' : '' }}>3</option>
@@ -543,14 +543,14 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="edad_hermanos">Edades Hermanos:</label>
-            <input type="text" class="form-control" id="edad_hermanos" name="edad_hermanos" value="{{ old('edad_hermanos', $datosF3R3->edad_hermanos ?? '') }}">
+            <input type="text" class="form-control" id="edad_hermanos" name="edad_hermanos" value="{{ old('edad_hermanos', $datosF3R3->edad_hermanos ?? '') }}" required>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="casa_familiar">La Casa Familiar es:</label>
-            <select class="form-control" id="casa_familiar" name="casa_familiar">
-              <option value="0">Seleccione:</option>
+            <select class="form-control" id="casa_familiar" name="casa_familiar" required>
+              <option value="">Seleccione:</option>
               <option value="Propia" {{ old('casa_familiar', $datosF3R3->casa_familiar ?? null) == 'Propia' ? 'selected' : '' }}>Propia</option>
               <option value="Rentada" {{ old('casa_familiar', $datosF3R3->casa_familiar ?? null) == 'Rentada' ? 'selected' : '' }}>Rentada</option>
               <option value="Hipotecada" {{ old('casa_familiar', $datosF3R3->casa_familiar ?? null) == 'Hipotecada' ? 'selected' : '' }}>Hipotecada</option>
@@ -566,7 +566,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-            <input type="text" class="form-control" id="cantidad_renta" name="cantidad_renta" value="{{ old('cantidad_renta', $datosF3R3->pago_renta ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+            <input type="text" class="form-control" id="cantidad_renta" name="cantidad_renta" value="{{ old('cantidad_renta', $datosF3R3->pago_renta ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
           </div>
         </div>
         </div>
@@ -665,7 +665,7 @@ existeCurpPadre(varexistepadre);
 
 {{-- SCRIPTS PARA OCULTAR Y MOSTRAR LOS ITEMS DEL ACORDEON MADRE--}}
 <script>
-  varmadre = {{$consultaIdMadre}};
+  varmadre = {{$consultaIdMadre ?? null}};
   if(varmadre==0){
     varmadre= false;
   } else {
@@ -678,7 +678,7 @@ existeCurpPadre(varexistepadre);
 </script>
   
 <script>
-  varexistemadre= {{$existeCurpMadre}}
+  varexistemadre= {{$existeCurpMadre ?? null}}
   if(varexistemadre==0){
     varexistemadre= false;
   } else {

@@ -21,7 +21,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
           <div class="form-group">
-            <textarea id="mensaje" name="mensaje" rows="5" class="form-control uppercase-input"></textarea>
+            <textarea id="mensaje" name="mensaje" rows="5" class="form-control uppercase-input" required></textarea>
           </div>
         </div>
       </div>

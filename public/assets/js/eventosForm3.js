@@ -140,3 +140,22 @@ function tienePadre(tienepadre){
         document.getElementById('item4').classList.add('d-none');
     }
 }
+
+//FUNCION PARA OCULTAR TRABAJOS DEPENDIENDO CON QUIEN VIVA
+function tieneTrabajo(tienepadre){
+    if(tienepadre==0){
+        
+    } else if(tienepadre==10){
+        
+        document.getElementById('container_trabajo_padre').classList.add('d-none');
+       
+    } else if(tienepadre==11){
+       
+        document.getElementById('container_trabajo_madre').classList.add('d-none');
+
+        
+    } else if(tienepadre==12){
+        document.getElementById('container_trabajo_madre').classList.add('d-none');
+        document.getElementById('container_trabajo_padre').classList.add('d-none');
+    }
+}

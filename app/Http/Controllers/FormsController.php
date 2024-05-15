@@ -227,8 +227,10 @@ class FormsController extends Controller
 
     public function form3Registro1(Request $request)
         {
+            //dd($var1=1);
             if ($request->input('btnGuardarPadre') == 'guardar') {
                     // Validación de los campos
+                    //dd($var1=2);
                     $request->validate([
                         'curppadre2' => 'required',
                         'fechapadre' => 'required',
@@ -241,6 +243,7 @@ class FormsController extends Controller
                         'trabajapadre' => 'required',
                         'estudiospadre' => 'required',]);
 
+                       
                     //Se declara el nombre del procedimiento
                     $nombreproceInsertarPadre = 'ActualizarInsertarPersonas';
                     //Se crea una instancia para poder utilizar la función 

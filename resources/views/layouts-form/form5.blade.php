@@ -14,8 +14,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nivel">Nivel:</label>
-                        <select class="form-control" id="nivel" name="nivel">
-                            <option value="0">Seleccione:</option>
+                        <select class="form-control" id="nivel" name="nivel" required>
+                            <option value="">Seleccione:</option>
                             <option value="inicial">Inicial</option>
                             <option value="primaria">Primaria</option>
                             <option value="secundaria">Secundaria</option>
@@ -36,8 +36,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="tipo">Tipo:</label>
-                        <select class="form-control" id="tipo" name="tipo">
-                            <option value="0">Seleccione:</option>
+                        <select class="form-control" id="tipo" name="tipo" required>
+                            <option value="">Seleccione:</option>
                             <option value="publico">Público</option>
                             <option value="privado">Privado</option>
                         </select>
@@ -46,7 +46,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="promedio">Promedio:</label>
-                        <input type="number" class="form-control" id="promedio" name="promedio" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3)">
+                        <input type="number" class="form-control" id="promedio" name="promedio" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3)" required>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="estado_nac">Estado:</label>
-                        <select class="form-control" id="estado" name="estado">
+                        <select class="form-control" id="estado" name="estado" required>
                             <option value="">Selecciona un estado</option>
                             @foreach($estados as $IdEstado => $NombreEstado)
                                 <option value="{{ $IdEstado }}" {{ ($consultaEstado == $NombreEstado) ? 'selected' : '' }}>
@@ -67,7 +67,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="municipio_nac">Municipio:</label>
-                        <select class="form-control" id="municipio" name="municipio">
+                        <select class="form-control" id="municipio" name="municipio" required>
                             <option value="">Selecciona un municipio</option>
                             <option value="" selected>{{ $consultaMunicipio }}</option>
                         </select>

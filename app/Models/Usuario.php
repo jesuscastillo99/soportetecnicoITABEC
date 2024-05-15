@@ -20,6 +20,6 @@ class Usuario extends Model implements Authenticatable
     public $timestamps = false;
     protected $table = 'usuarioslog'; // Nombre de la tabla en la base de datos
     protected $primaryKey = 'idlog';
-    protected $fillable = ['curp', 'correo', 'activo', 'fecha', 'act_token'];
+    protected $fillable = ['curp', 'correo', 'activo', 'fecha', 'act_token', 'finalizado'];
 
 }

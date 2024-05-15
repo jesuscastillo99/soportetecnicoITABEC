@@ -25,6 +25,26 @@ class Form9Controller extends Controller
         $proce2= 'ObtenerLugarNacimiento';
         $estados = Estado::pluck('NombreEstado', 'IdEstado');
 
+         //PROCEDIMIENTO PARA OBTENER PERSONA VIVECON
+         $proceObtenerPersona = 'ObtenerDatosPersona';
+         $procedimientoPerso = new ContadorParametros();
+         $viveconPerso = $procedimientoPerso->proceSelect($proceObtenerPersona,  $arrayIdCurp);
+         $vivecon = $viveconPerso[0]->vivecon ?? null;
+ 
+         //Si vive con ambos padres, se iguala a cero el null
+         if($vivecon==null){
+             $vivecon=12;
+         }
+         //Si vive con la mamá solamente entonces se manda un 10 como variable para ocultar los campos del padre
+         if($vivecon==1){
+             $vivecon=10;
+         }
+
+         //Si vive con el papá solamente se manda un 11 como variable
+         if($vivecon==2){
+             $vivecon=11;
+         }
+
         //CODIGO PARA OBTENER DATOS DEL TRABAJO DEL ESTUDIANTE
         $array1= [$userId];
         $procedimiento = new ContadorParametros();
@@ -104,7 +124,7 @@ class Form9Controller extends Controller
         $nombreLocalidad3 = $localidad3[0]->Localidad ?? null;
         $nombreMunicipio3 = $localidad3[0]->NombreMunicipio ?? null;
         $nombreEstado3 = $localidad3[0]->NombreEstado ?? null;
-        
+       
         return view('layouts-form.form9',
             [
              'nomorgest' => $nomorgest,
@@ -154,7 +174,8 @@ class Form9Controller extends Controller
              'nombreLocalidad3' => $nombreLocalidad3,
              'nombreMunicipio3' => $nombreMunicipio3,
              'nombreEstado3' => $nombreEstado3, 
-             'estados' => $estados]);
+             'estados' => $estados,
+             'vivecon' => $vivecon]);
     }
 
     public function cargarMunicipios($estado)

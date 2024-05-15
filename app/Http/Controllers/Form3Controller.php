@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use SimpleXMLElement;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Redirect;
+
 
 
 class Form3Controller extends Controller
@@ -344,7 +346,7 @@ class Form3Controller extends Controller
         
                 //Si vive con ambos padres, se iguala a cero el null
                 if($vivecon==null){
-                    $vivecon=0;
+                    $vivecon=12;
                 }
                 //Si vive con la mamá solamente entonces se manda un 10 como variable para ocultar los campos del padre
                 if($vivecon==1){
@@ -356,7 +358,7 @@ class Form3Controller extends Controller
                     $vivecon=11;
                 }
 
-              
+                
              
                 //Si la validacion arroja que es valida la curp para registrar a su padre
                 if($existeCurpPadre!=0){
@@ -392,7 +394,7 @@ class Form3Controller extends Controller
                     ]);
 
                 } else {
-                    dd($noentro=2);
+                    //dd($noentro=2);
                     //Si el usuario no tienen un papá registrado
                     $consultaLocNacPadre = '';
 
@@ -429,9 +431,13 @@ class Form3Controller extends Controller
                   
 
             } else {
+                alert()
+                ->error('CURP NO ENCONTRADA')
+                ->showConfirmButton('Aceptar', '#ab0033');
+                return Redirect::route('form3-formulario');
                 
-                $errorMessage = "Tu curp no se encuentra en el sistema.";
-                return view('layouts-form.form3', ['errorMessage' => $errorMessage]);
+                //$errorMessage = "Tu curp no se encuentra en el sistema.";
+                return view('layouts-form.form3');
             }
 
         }
@@ -500,7 +506,7 @@ class Form3Controller extends Controller
                 
                 //Si vive con ambos padres, se iguala a cero el null
                 if($vivecon==null){
-                    $vivecon=0;
+                    $vivecon=12;
                 }
                 //Si vive con la mamá solamente entonces se manda un 10 como variable para ocultar los campos del padre
                 if($vivecon==1){
@@ -581,6 +587,10 @@ class Form3Controller extends Controller
                   
 
             } else {
+                alert()
+                ->error('CURP NO ENCONTRADA')
+                ->showConfirmButton('Aceptar', '#ab0033');
+                return Redirect::route('form3-formulario');
                 $errorMessage = "Tu curp no se encuentra en el sistema.";
                 return view('layouts-form.form3', ['errorMessage' => $errorMessage]);
             }

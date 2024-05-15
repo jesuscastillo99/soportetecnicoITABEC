@@ -20,8 +20,8 @@
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="escpa">¿Escolaridad más alta alcanzada de tu padre?</label>
-                  <select class="form-control" id="escpa" name="escpa">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="escpa" name="escpa" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('escpa', $consultaEscPa) == '1' ? 'selected' : '' }}>Sin escolaridad/algunos años en primaria</option>
                     <option value="2" {{ old('escpa', $consultaEscPa) == '2' ? 'selected' : '' }}>Primaria terminada, Secundaria incompleta</option>
                     <option value="3" {{ old('escpa', $consultaEscPa) == '3' ? 'selected' : '' }}>Secundaria o Comercio terminado, Bachillerato incompleto</option>
@@ -35,8 +35,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="escma">¿Escolaridad más alta alcanzada de tu madre?</label>
-                  <select class="form-control" id="escma" name="escma">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="escma" name="escma" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('escma', $consultaEscMa) == '1' ? 'selected' : '' }}>Sin escolaridad/algunos años en primaria</option>
                     <option value="2" {{ old('escma', $consultaEscMa) == '2' ? 'selected' : '' }}>Primaria terminada, Secundaria incompleta</option>
                     <option value="3" {{ old('escma', $consultaEscMa) == '3' ? 'selected' : '' }}>Secundaria o Comercio terminado, Bachillerato incompleto</option>
@@ -54,8 +54,8 @@
           <div class="col-md-4">
               <div class="form-group">
                 <label for="actpa">¿Actividad a lo largo de la vida de Tu Padre?</label>
-                <select class="form-control" id="actpa" name="actpa">
-                  <option value="0">Seleccione:</option>
+                <select class="form-control" id="actpa" name="actpa" required>
+                  <option value="">Seleccione:</option>
                   <option value="1" {{ old('actpa', $consultaActPa) == '1' ? 'selected' : '' }}>Desempleado</option>
                   <option value="2" {{ old('actpa', $consultaActPa) == '2' ? 'selected' : '' }}>Jubilado</option>
                   <option value="3" {{ old('actpa', $consultaActPa) == '3' ? 'selected' : '' }}>Pequeño comerciante (Instalado o ambulante).</option>
@@ -86,8 +86,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="actma">¿Actividad a lo largo de la vida de Tu Madre?</label>
-                <select class="form-control" id="actma" name="actma">
-                  <option value="0">Seleccione:</option>
+                <select class="form-control" id="actma" name="actma" required>
+                  <option value="">Seleccione:</option>
                   <option value="1" {{ old('actma', $consultaActMa) == '1' ? 'selected' : '' }}>Desempleado</option>
                   <option value="2" {{ old('actma', $consultaActMa) == '2' ? 'selected' : '' }}>Jubilado</option>
                   <option value="3" {{ old('actma', $consultaActMa) == '3' ? 'selected' : '' }}>Pequeño comerciante (Instalado o ambulante).</option>
@@ -121,8 +121,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="autopr">¿Tienes Automovil Propio?</label>
-                  <select class="form-control" id="autopr" name="autopr">
-                    <option value="seleccione">Seleccione:</option>
+                  <select class="form-control" id="autopr" name="autopr" required>
+                    <option value="">Seleccione:</option>
                     <option value="0" {{ old('autopr', $consultaAuPro) == '0' ? 'selected' : '' }}>No</option>
                     <option value="1" {{ old('autopr', $consultaAuPro) == '1' ? 'selected' : '' }}>Si</option>
                   </select>
@@ -131,8 +131,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="colpri">¿Estudiaste en algun Colegio Privado?</label>
-                  <select class="form-control" id="colpri" name="colpri">
-                    <option value="seleccione">Seleccione:</option>
+                  <select class="form-control" id="colpri" name="colpri" required>
+                    <option value="">Seleccione:</option>
                     <option value="0"{{ old('colpri', $consultaColPri) == '0' ? 'selected' : '' }}>No</option>
                     <option value="1" {{ old('colpri', $consultaColPri) == '1' ? 'selected' : '' }}>Si</option>
                   </select>
@@ -141,8 +141,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="cpup">¿Tienes Computadora para uso Personal?</label>
-                  <select class="form-control" id="cpup" name="cpup">
-                    <option value="seleccione">Seleccione:</option>
+                  <select class="form-control" id="cpup" name="cpup" required>
+                    <option value="">Seleccione:</option>
                     <option value="0" {{ old('cpup', $consultaCpu) == '0' ? 'selected' : '' }}>No</option>
                     <option value="1" {{ old('cpup', $consultaCpu) == '1' ? 'selected' : '' }}>Si</option>
                   </select>
@@ -155,8 +155,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="autmad">¿Tu Madre, tiene automovil Propio?</label>
-                  <select class="form-control" id="autmad" name="autmad">
-                    <option value="seleccione">Seleccione:</option>
+                  <select class="form-control" id="autmad" name="autmad" required>
+                    <option value="">Seleccione:</option>
                     <option value="0" {{ old('autmad', $consultaAuMa) == '0' ? 'selected' : '' }}>No</option>
                     <option value="1" {{ old('autmad', $consultaAuMa) == '1' ? 'selected' : '' }}>Si</option>
                   </select>
@@ -165,8 +165,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="tamcasa">¿Cual es el tamaño de la casa donde vive tu familia?</label>
-                  <select class="form-control" id="tamcasa" name="tamcasa">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="tamcasa" name="tamcasa" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('tamcasa', $consultaTamCas) == '1' ? 'selected' : '' }}>Menos de 100 metros cuadrados</option>
                     <option value="2" {{ old('tamcasa', $consultaTamCas) == '2' ? 'selected' : '' }}>De 101 a 200 metros cuadrados</option>
                     <option value="3" {{ old('tamcasa', $consultaTamCas) == '3' ? 'selected' : '' }}>De 201 a 300 metros cuadrados</option>
@@ -178,8 +178,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="matcasa">¿Material del cual esta hecha?</label>
-                  <select class="form-control" id="matcasa" name="matcasa">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="matcasa" name="matcasa" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('matcasa', $consultaMatCas) == '1' ? 'selected' : '' }}>Block</option>
                     <option value="2" {{ old('matcasa', $consultaMatCas) == '2' ? 'selected' : '' }}>Madera</option>
                     <option value="3" {{ old('matcasa', $consultaMatCas) == '3' ? 'selected' : '' }}>Adobe</option>
@@ -194,8 +194,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="ingeco">Actualmente, ¿Cuál es el ingreso economico?</label>
-                  <select class="form-control" id="ingeco" name="ingeco">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="ingeco" name="ingeco" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('ingeco', $consultaIngEco) == '1' ? 'selected' : '' }}>Menos de 1,500 pesos</option>
                     <option value="2" {{ old('ingeco', $consultaIngEco) == '2' ? 'selected' : '' }}>Entre 1,501 y 3,000 pesos</option>
                     <option value="3" {{ old('ingeco', $consultaIngEco) == '3' ? 'selected' : '' }}>Entre 3,001 y 5,000 pesos</option>
@@ -231,7 +231,7 @@
                 <div class="form-group">
                   <label for="tipapo">¿Señale el tipo de apoyo economico con el que cuenta para realizar sus estudios?</label>
                   <select class="form-control" id="tipapo" name="tipapo" required>
-                    <option value="0">Seleccione:</option>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('tipapo', $consultaTipApo) == '1' ? 'selected' : '' }}>Familiar</option>
                     <option value="2" {{ old('tipapo', $consultaTipApo) == '2' ? 'selected' : '' }}>Beca</option>
                     <option value="3" {{ old('tipapo', $consultaTipApo) == '3' ? 'selected' : '' }}>Cotacyt</option>
@@ -246,7 +246,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="monmens">Indique el monto mensual de este apoyo:</label>
-              <input type="number" class="form-control" id="monmens" name="monmens" maxlength="10" value="{{ old('monmens', $consultaMonMens) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+              <input type="number" class="form-control" id="monmens" name="monmens" maxlength="10" value="{{ old('monmens', $consultaMonMens) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
             </div>
           </div>
         </div>
@@ -255,14 +255,14 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="comapo">¿Cómo se entero de este apoyo?</label>
-              <input type="text" class="form-control uppercase-input" id="comapo" maxlength="50" name="comapo" value="{{ old('comapo', $consultaComApo ?? '') }}">
+              <input type="text" class="form-control uppercase-input" id="comapo" maxlength="50" name="comapo" value="{{ old('comapo', $consultaComApo ?? '') }}" required>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="solapo">¿Solicitó anteriormente este apoyo?</label>
-              <select class="form-control" id="solapo" name="solapo">
-                <option value="3">Seleccione:</option>
+              <select class="form-control" id="solapo" name="solapo" required>
+                <option value="">Seleccione:</option>
                 <option value="0" {{ old('solapo', $consultaSolApo) == '0' ? 'selected' : '' }}>No</option>
                 <option value="1" {{ old('solapo', $consultaSolApo) == '1' ? 'selected' : '' }}>Si</option>
               </select>
@@ -273,8 +273,8 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="seoto">¿Se le otorgó?</label>
-              <select class="form-control" id="seoto" name="seoto">
-                <option value="3">Seleccione:</option>
+              <select class="form-control" id="seoto" name="seoto" required>
+                <option value="">Seleccione:</option>
                 <option value="0" {{ old('seoto', $consultaSeOto) == '0' ? 'selected' : '' }}>No</option>
                 <option value="1" {{ old('seoto', $consultaSeOto) == '1' ? 'selected' : '' }}>Si</option>
               </select>
@@ -283,8 +283,8 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="recmen">¿Recibio alguna mensualidad?</label>
-              <select class="form-control" id="recmen" name="recmen">
-                <option value="seleccione">Seleccione:</option>
+              <select class="form-control" id="recmen" name="recmen" required>
+                <option value="">Seleccione:</option>
                 <option value="0" {{ old('recmen', $consultaRecMen) == '0' ? 'selected' : '' }}>No</option>
                 <option value="1" {{ old('recmen', $consultaRecMen) == '1' ? 'selected' : '' }}>Si</option>
               </select>
@@ -293,8 +293,8 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="hermapo">¿Tienes un hermano que recibio o este recibiendo este apoyo?</label>
-              <select class="form-control" id="hermapo" name="hermapo">
-                <option value="seleccione">Seleccione:</option>
+              <select class="form-control" id="hermapo" name="hermapo" required>
+                <option value="">Seleccione:</option>
                 <option value="0" {{ old('hermapo', $consultaHermApo) == '0' ? 'selected' : '' }}>No</option>
                 <option value="1" {{ old('hermapo', $consultaHermApo) == '1' ? 'selected' : '' }}>Si</option>
               </select>
@@ -305,13 +305,13 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="cantherm">¿Cuántos hermanos?</label>
-              <input type="number" class="form-control" id="cantherm" name="cantherm" value="{{ old('cantherm', $consultaCntHerm ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2)" >
+              <input type="number" class="form-control" id="cantherm" name="cantherm" value="{{ old('cantherm', $consultaCntHerm ?? '') }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2)" required>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="firmun">¿Usted y su aval firmaran en el municipio de?</label>
-              <select class="form-control" id="firmun" name="firmun">
+              <select class="form-control" id="firmun" name="firmun" required>
                 <option value="">Seleccione:</option>
                 @foreach($municipios as $IdMunicipio => $NombreMunicipio)
                     <option value="{{ $IdMunicipio }}" {{ ($nombreMunicipio2 == $NombreMunicipio) ? 'selected' : '' }}>
@@ -340,19 +340,19 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control uppercase-input" maxlength="50" id="nombre" name="nombre">
+                    <input type="text" class="form-control uppercase-input" maxlength="50" id="nombre" name="nombre" required>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="paterno">Apellido Paterno:</label>
-                    <input type="text" class="form-control uppercase-input" maxlength="50" id="paterno" name="paterno">
+                    <input type="text" class="form-control uppercase-input" maxlength="50" id="paterno" name="paterno" required>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="materno">Apellido Materno:</label>
-                    <input type="text" class="form-control uppercase-input" maxlength="50" id="materno" name="materno">
+                    <input type="text" class="form-control uppercase-input" maxlength="50" id="materno" name="materno" required>
                   </div>
                 </div>
              </div>
@@ -361,8 +361,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="niveltd">Nivel:</label>
-                  <select class="form-control" id="niveltd" name="niveltd">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="niveltd" name="niveltd" required>
+                    <option value="">Seleccione:</option>
                     <option value="1">Inicial</option>
                     <option value="2">Primaria</option>
                     <option value="3">Secundaria</option>
@@ -375,14 +375,14 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="escuela">Nombre de la Escuela:</label>
-                  <input type="text" class="form-control uppercase-input" maxlength="50" id="escuela" name="escuela">
+                  <input type="text" class="form-control uppercase-input" maxlength="50" id="escuela" name="escuela" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="tipoesc">Tipo:</label>
-                  <select class="form-control" id="tipoesc" name="tipoesc">
-                    <option value="seleccione">Seleccione:</option>
+                  <select class="form-control" id="tipoesc" name="tipoesc" required>
+                    <option value="">Seleccione:</option>
                     <option value="0">Pública</option>
                     <option value="1">Privada</option>
                   </select>
@@ -393,13 +393,13 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="parentesco">Parentesco:</label>
-                  <input type="text" class="form-control uppercase-input" maxlength="15" id="parentesco" name="parentesco">
+                  <input type="text" class="form-control uppercase-input" maxlength="15" id="parentesco" name="parentesco" required>
                 </div>
               </div>
               <div class="col-md-4">
               <div class="form-group">
                 <label for="fechanac">Fecha de nacimiento:</label>
-                <input type="date" class="form-control" id="fechanac" name="fechanac">
+                <input type="date" class="form-control" id="fechanac" name="fechanac" required>
             </div>
               </div>
              </div>

@@ -17,7 +17,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="estado">Estado:</label>
-              <select class="form-control" id="estado" name="estado">
+              <select class="form-control" id="estado" name="estado" required>
                 <option value="">Selecciona un estado</option>
                 @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
                     <option value="{{ $IdEstado }}" {{ ($nombreEstado2 == $NombreEstado) ? 'selected' : '' }}>
@@ -33,7 +33,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="municipio">Municipio donde esta ubicada:</label>
-              <select class="form-control" id="municipio" name="municipio">
+              <select class="form-control" id="municipio" name="municipio" required>
                 <option value="">Selecciona un municipio</option>
                 <option value="{{ $nombreMunicipio ?? '' }}" selected>
                     {{ $nombreMunicipio ?? 'Selecciona un municipio' }}
@@ -50,7 +50,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="escuela">Escuela o facultad:</label>
-              <select class="form-control" id="escuela" name="escuela">
+              <select class="form-control" id="escuela" name="escuela" required>
                 <option value="">Selecciona una escuela</option>
                 <option value="{{ $nombreEscuela ?? '' }}" selected>
                     {{ $nombreEscuela ?? 'Selecciona una escuela' }}
@@ -69,7 +69,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="carrera">Carrera:</label>
-                  <select class="form-control" id="carrera" name="carrera">
+                  <select class="form-control" id="carrera" name="carrera" required>
                     <option value="">Selecciona una carrera</option>
                     @isset($consultaIdCarrera)
                         <option value="{{ $carreras ?? null }}" selected>{{ $nombreCarrera }}</option>
@@ -86,8 +86,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="semestre">Semestre o Cuatrimestre:</label>
-                  <select class="form-control" id="semestre" name="semestre">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="semestre" name="semestre" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('semestre', $consultaSemestre) == '1' ? 'selected' : '' }}>1</option>
                     <option value="2" {{ old('semestre', $consultaSemestre) == '2' ? 'selected' : '' }}>2</option>
                     <option value="3" {{ old('semestre', $consultaSemestre) == '3' ? 'selected' : '' }}>3</option>
@@ -108,8 +108,8 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="pAcademico">Plan Académico:</label>
-                  <select class="form-control" id="pAcademico" name="pAcademico">
-                    <option value="0">Seleccione:</option>
+                  <select class="form-control" id="pAcademico" name="pAcademico" required>
+                    <option value="">Seleccione:</option>
                     <option value="1" {{ old('pAcademico', $consultapAcademico) == '1' ? 'selected' : '' }}>SEMESTRE</option>
                     <option value="2" {{ old('pAcademico', $consultapAcademico) == '2' ? 'selected' : '' }}>TRIMESTRE</option>
                     <option value="3" {{ old('pAcademico', $consultapAcademico) == '3' ? 'selected' : '' }}>AÑO</option>
@@ -122,13 +122,13 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="numControl">Número de Control Escolar:</label>
-                  <input type="text" class="form-control" id="numControl" maxlength="25" name="numControl" value="{{ old('numControl', $consultaNumControl) }}" maxlength="25" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 100)">
+                  <input type="text" class="form-control" id="numControl" maxlength="25" name="numControl" value="{{ old('numControl', $consultaNumControl) }}" maxlength="25" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 100)" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="periodo">Periodo:</label>
-                  <select class="form-control" id="periodo" name="periodo">
+                  <select class="form-control" id="periodo" name="periodo" required>
                     <option value="46">FEBRERO JUNIO 2024</option>
                   </select>
                 </div>
@@ -136,7 +136,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="promUltGrado">Promedio del último grado:</label>
-                  <input type="number" class="form-control" id="promUltGrado" name="promUltGrado" maxlength="3" value="{{ old('promUltGrado', $consultaPromUltGrado) }}" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5)">
+                  <input type="number" class="form-control" id="promUltGrado" name="promUltGrado" maxlength="3" value="{{ old('promUltGrado', $consultaPromUltGrado) }}" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5)" required>
                 </div>
               </div>
             </div>
@@ -144,20 +144,20 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="impInscripcion">Importe de la inscripción:</label>
-                  <input type="text" class="form-control" id="impInscripcion" maxlength="10" name="impInscripcion" value="{{ old('impInscripcion', $consultaImpInscripcion) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                  <input type="text" class="form-control" id="impInscripcion" maxlength="10" name="impInscripcion" value="{{ old('impInscripcion', $consultaImpInscripcion) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="impInscripcionCol">Importe de la colegiatura que cubrirá mensualmente:</label>
-                  <input type="text" class="form-control" id="impInscripcionCol" maxlength="10" name="impInscripcionCol" value="{{ old('impInscripcionCol', $consultaImpInscripcionCol) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                  <input type="text" class="form-control" id="impInscripcionCol" maxlength="10" name="impInscripcionCol" value="{{ old('impInscripcionCol', $consultaImpInscripcionCol) }}" maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="nivel">Nivel:</label>
-                  <select class="form-control" id="nivel" name="nivel">
-                    <option value="7">Seleccione:</option>
+                  <select class="form-control" id="nivel" name="nivel" required>
+                    <option value="">Seleccione:</option>
                     <option value="4" {{ old('nivel', $consultaNivel) == '4' ? 'selected' : '' }}>Bachillerato</option>
                     <option value="5" {{ old('nivel', $consultaNivel) == '5' ? 'selected' : '' }}>Licenciatura</option>
                     <option value="6" {{ old('nivel', $consultaNivel) == '6' ? 'selected' : '' }}>Posgrado</option>
@@ -173,7 +173,7 @@
                       <div class="row">
                         <div class="col-md-4">
                           <div class="form-group">
-                            <select class="form-control" id="mesTermEst" name="mesTermEst">
+                            <select class="form-control" id="mesTermEst" name="mesTermEst" required>
                               <option value="01" {{ old('mesTermEst', $consultaMesTermEst) == '01' ? 'selected' : '' }}>Enero</option>
                               <option value="02" {{ old('mesTermEst', $consultaMesTermEst) == '02' ? 'selected' : '' }}>Febrero</option>
                               <option value="03" {{ old('mesTermEst', $consultaMesTermEst) == '03' ? 'selected' : '' }}>Marzo</option>
@@ -192,7 +192,7 @@
                           <span class="col-sm-1 text-center">del</span>
                           <div class="col-md-4">
                             <div class="form-group">
-                              <select class="form-control" id="añoTermEst" name="añoTermEst">
+                              <select class="form-control" id="añoTermEst" name="añoTermEst" required>
                                 <option value="2017" {{ old('añoTermEst', $consultaAñoTermEst) == '2017' ? 'selected' : '' }}>2017</option>
                                 <option value="2018" {{ old('añoTermEst', $consultaAñoTermEst) == '2018' ? 'selected' : '' }}>2018</option>
                                 <option value="2019" {{ old('añoTermEst', $consultaAñoTermEst) == '2019' ? 'selected' : '' }}>2019</option>
@@ -221,7 +221,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="nivelAcaTitulacion">Nivel académico para titulación:</label>
-                  <select class="form-control" id="nivelAcaTitulacion" name="nivelAcaTitulacion">
+                  <select class="form-control" id="nivelAcaTitulacion" name="nivelAcaTitulacion" required>
                     <option value="0" {{ old('nivelAcaTitulacion', $consultaNivelTitu) == '0' ? 'selected' : '' }}>No aplica</option>
                     <option value="1" {{ old('nivelAcaTitulacion', $consultaNivelTitu) == '1' ? 'selected' : '' }}>Licenciatura</option>
                     <option value="2" {{ old('nivelAcaTitulacion', $consultaNivelTitu) == '2' ? 'selected' : '' }}>Maestría</option>
@@ -231,7 +231,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="tipoTitulacion">Tipo de titulación:</label>
-                  <select class="form-control" id="tipoTitulacion" name="tipoTitulacion">
+                  <select class="form-control" id="tipoTitulacion" name="tipoTitulacion" required>
                     <option value="0" {{ old('tipoTitulacion', $consultaTipoTitu) == '0' ? 'selected' : '' }}>No aplica</option>
                     <option value="1" {{ old('tipoTitulacion', $consultaTipoTitu) == '1' ? 'selected' : '' }}>Curso</option>
                     <option value="2" {{ old('tipoTitulacion', $consultaTipoTitu) == '2' ? 'selected' : '' }}>Tesis</option>

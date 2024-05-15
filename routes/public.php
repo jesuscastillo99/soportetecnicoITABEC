@@ -4,6 +4,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ActivationController;
 use App\Http\Controllers\DatosController;
+use App\Http\Controllers\Form0Controller;
 use App\Http\Controllers\Form1Controller;
 use App\Http\Controllers\Form2Controller;
 use App\Http\Controllers\Form3Controller;
@@ -69,10 +70,9 @@ Route::get('/noticias-admin', function() {
 })->name('noticiasadmin');
 
 //Rutas formulario 0
-Route::get('/form0', function() {
-    return view('layouts-form.form0');
-})->name('form0')->middleware('auth');
+Route::get('/form0', [Form0Controller::class, 'index'])->name('form0')->middleware('auth');
 
+Route::middleware('finalizado')->group(function () {
 //Rutas formulario 1
 
 Route::get('/form1-formulario', [Form1Controller::class, 'index'])->name('form1-formulario')->middleware('auth');
@@ -163,6 +163,8 @@ Route::post('/form10-formularior', [FormsController::class, 'form10Registro1'])-
 Route::get('/form11-formulario', [Form11Controller::class, 'index'])->name('form11-formulario')->middleware('auth');
 
 Route::post('/form11-formulariov', [Form11Controller::class, 'form11Validacion'])->name('form11-validation')->middleware('auth');
+
+});
 //Rutas form 12
 Route::get('/form12', function() {
     return view('layouts-form.form12');

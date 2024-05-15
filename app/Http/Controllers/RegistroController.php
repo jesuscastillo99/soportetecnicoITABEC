@@ -62,7 +62,8 @@ class RegistroController extends Controller
                 $fechaInput = $xml->fn;
                 $fechaCarbon = Carbon::createFromFormat('d/m/Y', $fechaInput);
                 $nuevaFecha = $fechaCarbon->format('Y-m-d');
-                $arraySolicitante = [$curp, $correo, $activo, $act_token, $paterno, $materno, $nombre, $sexo, $nuevaFecha];
+                $finalizado = 0;
+                $arraySolicitante = [$curp, $correo, $activo, $act_token, $paterno, $materno, $nombre, $sexo, $nuevaFecha, $finalizado];
                 $procedimiento = new ContadorParametros();
                 $resultados= $procedimiento->proceStatement($nombreProcedimiento1, $arraySolicitante);
                 //dd($resultados[0]);

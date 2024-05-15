@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use SimpleXMLElement;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Redirect;
 class Form8Controller extends Controller
 {
     public function index(){
@@ -296,6 +297,9 @@ class Form8Controller extends Controller
                     $nombreEstadoR1 = $localidadR1[0]->NombreEstado ?? null;
                     $nombreEstadoR2=NULL;
                     $nombreEstadoNacR2=NULL;
+                    alert()
+                    ->success('CURP ENCONTRADA')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     return view('layouts-form.form8', [
                         'xml1' => $xml1,
                         'estados' => $estados,
@@ -327,6 +331,10 @@ class Form8Controller extends Controller
                   
 
             } else {
+                alert()
+                ->error('CURP NO ENCONTRADA')
+                ->showConfirmButton('Aceptar', '#ab0033');
+                return Redirect::route('form8-formulario');
                 $errorMessage = "Tu curp no se encuentra en el sistema.";
                 return view('layouts-form.form3', ['errorMessage' => $errorMessage]);
             }
@@ -409,7 +417,9 @@ class Form8Controller extends Controller
                     $nombreEstadoR2 = $localidadR2[0]->NombreEstado ?? null;
                     $nombreEstadoR1= NULL;
                     $nombreEstadoNacR1= NULL;
-
+                    alert()
+                    ->success('CURP ENCONTRADA')
+                    ->showConfirmButton('Aceptar', '#ab0033');
                     return view('layouts-form.form8', [
                         'xml2' => $xml2,
                         'estados' => $estados,
@@ -441,6 +451,10 @@ class Form8Controller extends Controller
                   
 
             } else {
+                alert()
+                ->error('CURP NO ENCONTRADA')
+                ->showConfirmButton('Aceptar', '#ab0033');
+                return Redirect::route('form8-formulario');
                 $errorMessage = "Tu curp no se encuentra en el sistema.";
                 return view('layouts-form.form3', ['errorMessage' => $errorMessage]);
             }

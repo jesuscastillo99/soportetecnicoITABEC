@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Usuario;
 class Form11Controller extends Controller
 {
     public function index(){
@@ -26,13 +27,26 @@ class Form11Controller extends Controller
         $nombreproceODP= 'ObtenerDatosPersona';
         $arrayODP = [$curpId];
         $viveconResult = $obtenerId->proceSelect($nombreproceODP, $arrayODP);
-        $vivecon= $viveconResult[0]->vivecon;
-        dd($vivecon);
+        $vivecon= $viveconResult[0]->vivecon ?? null;
+        //Si vive sin padres, se iguala a cero el null
+        if($vivecon==null){
+            $vivecon=12;
+        }
+        //Si vive con la mamá solamente entonces se manda un 10 como variable para ocultar los campos del padre
+        if($vivecon==1){
+            $vivecon=10;
+        }
+
+        //Si vive con el papá solamente se manda un 11 como variable
+        if($vivecon==2){
+            $vivecon=11;
+        }
         $arrayValidar = [$userId];
         $proceValidar = 'ValidarForms';
         $obtenerValidacion = new ContadorParametros();
         $resultValidar = $obtenerValidacion->proceSelect($proceValidar, $arrayValidar);
         $validaciones = $resultValidar[0] ?? null;
+      
         if ($validaciones) {
             $textoConcatenado = '';
             
@@ -51,10 +65,10 @@ class Form11Controller extends Controller
                 $textoConcatenado .= $validaciones->ID2 . " ";
             }
         
-            // Comprobar y concatenar ID3 solo si es una cadena y no numérica
-            if (is_string($validaciones->ID3) && !is_numeric($validaciones->ID3)) {
-                $textoConcatenado .= $validaciones->ID3;
-            }
+            // // Comprobar y concatenar ID3 solo si es una cadena y no numérica
+            // if (is_string($validaciones->ID3) && !is_numeric($validaciones->ID3)) {
+            //     $textoConcatenado .= $validaciones->ID3;
+            // }
 
             // Comprobar y concatenar IDPadre solo si es una cadena y no numérica
             if (is_string($validaciones->IDPadre) && !is_numeric($validaciones->IDPadre)) {
@@ -117,6 +131,9 @@ class Form11Controller extends Controller
         }
 
         if($textoConcatenado==''){
+            $usuario2 = Usuario::find($usuario->idlog);
+            $usuario2->finalizado = 1;
+            $usuario2->save();
             return view('layouts-form.form12');
         } else {
             alert()

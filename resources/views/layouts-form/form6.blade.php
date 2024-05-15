@@ -34,7 +34,7 @@
                           <div class="col-md-4">
                               <div class="form-group">
                                 <label for="curpaval1">CURP AVAL:</label>
-                                <input type="text" class="form-control" id="curpaval1" name="curpaval1">  
+                                <input type="text" class="form-control" id="curpaval1" name="curpaval1" required>  
                                 <p class="text-danger">{{ $errorMessage ?? '' }}</p>
                               </div>
                               @if(session('error'))
@@ -146,7 +146,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="estado">Estado:</label>
-                                <select class="form-control" id="estado" name="estado">
+                                <select class="form-control" id="estado" name="estado" required>
                                   <option value="">Selecciona un estado</option>
                                   @foreach(($estados ?? []) as $IdEstado => $NombreEstado)
                                       <option value="{{ $IdEstado }}" {{ ($nombreEstadoAval == $NombreEstado) ? 'selected' : '' }}>
@@ -162,7 +162,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="municipio">Municipio:</label>
-                                <select class="form-control" id="municipio" name="municipio">
+                                <select class="form-control" id="municipio" name="municipio" required>
                                   <option value="">Selecciona un municipio</option>
                                   <option value="{{ $nombreMunicipioAval ?? '' }}" selected>
                                       {{ $nombreMunicipioAval ?? 'Selecciona un municipio' }}
@@ -179,7 +179,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="localidad">Localidad:</label>
-                                <select class="form-control" id="localidad" name="localidad">
+                                <select class="form-control" id="localidad" name="localidad" required>
                                   <option value="">Selecciona una localidad</option>
                                   @isset($avidlocalidad)
                                       <option value="{{ $avidlocalidad }}" selected>{{ $nombreLocalidadAval }}</option>
@@ -199,19 +199,19 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="calle">Calle del domicilio:</label>
-                              <input type="text" class="form-control uppercase-input" id="calle" maxlength="100" name="calle" value="{{ $consultaavcalle ?? $avcalle ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="calle" maxlength="100" name="calle" value="{{ $consultaavcalle ?? $avcalle ?? '' }}" required>
                             </div>
                            </div>
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="numero">Número del domicilio:</label>
-                              <input type="text" class="form-control" id="numero" name="numero" maxlength="25" value="{{ $consultaavnum ?? $avnum ?? '' }}">
+                              <input type="text" class="form-control" id="numero" name="numero" maxlength="25" value="{{ $consultaavnum ?? $avnum ?? '' }}" required>
                             </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="colonia">Colonia:</label>
-                              <input type="text" class="form-control uppercase-input" id="colonia" maxlength="100" name="colonia" value="{{ $consultaavcolonia ?? $avcolonia ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="colonia" maxlength="100" name="colonia" value="{{ $consultaavcolonia ?? $avcolonia ?? '' }}" required>
                             </div>
                          </div>
                         </div>
@@ -221,21 +221,21 @@
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="entrecalle1">Entre que calles se encuentra:</label>
-                              <input type="text" class="form-control uppercase-input" id="entrecalle1" maxlength="50" name="entrecalle1" value="{{ $consultaavcalle2 ?? $avcalle2 ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="entrecalle1" maxlength="50" name="entrecalle1" value="{{ $consultaavcalle2 ?? $avcalle2 ?? '' }}" required>
                               <label for="y">y</label>
-                              <input type="text" class="form-control uppercase-input" id="entrecalle2" maxlength="50" name="entrecalle2" value="{{ $consultaavcalle3 ?? $avcalle3 ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="entrecalle2" maxlength="50" name="entrecalle2" value="{{ $consultaavcalle3 ?? $avcalle3 ?? '' }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="codpostal">Código Postal:</label>
-                              <input type="text" class="form-control" id="codpostal" maxlength="5" name="codpostal" value="{{ $consultaavcp ?? $avcp ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                              <input type="text" class="form-control" id="codpostal" maxlength="5" name="codpostal" value="{{ $consultaavcp ?? $avcp ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="telefono">Télefono:</label>
-                              <input type="text" class="form-control" id="telefono" maxlength="10" name="telefono" value="{{ $consultaavtelefono ?? $avtelefono ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                              <input type="text" class="form-control" id="telefono" maxlength="10" name="telefono" value="{{ $consultaavtelefono ?? $avtelefono ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
                             </div>
                         </div>
                     </div>
@@ -243,13 +243,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="celular">Celular:</label>
-                              <input type="text" class="form-control" id="celular" maxlength="10" name="celular" value="{{ $consultaavcelular ?? $avcelular ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                              <input type="text" class="form-control" id="celular" maxlength="10" name="celular" value="{{ $consultaavcelular ?? $avcelular ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="relacionacred">Relación con el Acréditado:</label>
-                              <select class="form-control" id="relacionacred" name="relacionacred">
+                              <select class="form-control" id="relacionacred" name="relacionacred" required>
                                   <option value="" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "" ? 'selected' : '' }}>Seleccione:</option>
                                     <option value="1" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "1" ? 'selected' : '' }}>Padre</option>
                                     <option value="2" {{ old('relacionacred', $consultaavrelacred ?? $avrelacred ?? '') == "2" ? 'selected' : '' }}>Madre</option>
@@ -262,7 +262,7 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="casapropia">Tiene Casa Propia:</label>
-                              <select class="form-control" id="casapropia" name="casapropia">
+                              <select class="form-control" id="casapropia" name="casapropia" required>
                                 <option value="1" {{ old('casapropia', $consultaavcasap ?? $avcasap ?? '') == "1" ? 'selected' : '' }}>Si</option>
                                 <option value="2" {{ old('casapropia', $consultaavcasap ?? $avcasap ?? '') == "2" ? 'selected' : '' }}>No</option>
                               </select>
@@ -273,7 +273,7 @@
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="trabaja">¿Trabaja?</label>
-                            <select class="form-control" id="trabaja" name="trabaja">
+                            <select class="form-control" id="trabaja" name="trabaja" required>
                               <option value="1" {{ old('trabaja', $consultaavtrabaja ?? $avtrabaja ?? '') == "1" ? 'selected' : '' }}>Si</option>
                                 <option value="2" {{ old('trabaja', $consultaavtrabaja ?? $avtrabaja ?? '') == "2" ? 'selected' : '' }}>No</option>
                             </select>
@@ -290,20 +290,20 @@
                           <div class="col-md-4">
                               <div class="form-group">
                                 <label for="nomorgt">Nombre de la Organización donde Trabaja:</label>
-                                <input type="text" class="form-control uppercase-input" maxlength="50" id="nomorgt" name="nomorgt" value="{{ $consultaavnombreorg ?? $avnombreorg ?? '' }}">
+                                <input type="text" class="form-control uppercase-input" maxlength="50" id="nomorgt" name="nomorgt" value="{{ $consultaavnombreorg ?? $avnombreorg ?? '' }}" required>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="cargodesem">Cargo que desempeña:</label>
-                                <input type="text" class="form-control uppercase-input" maxlength="50" id="cargodesem" name="cargodesem" value="{{ $consultaavpuesto ?? $avpuesto ?? '' }}">
+                                <input type="text" class="form-control uppercase-input" maxlength="50" id="cargodesem" name="cargodesem" value="{{ $consultaavpuesto ?? $avpuesto ?? '' }}" required>
                               </div>
                             </div>
                            
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <label for="ingmens">Ingreso Mensual:</label>
-                                  <input type="text" class="form-control" id="ingmens" maxlength="10" name="ingmens" value="{{ $consultaavsueldo ?? $avsueldo ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                                  <input type="text" class="form-control" id="ingmens" maxlength="10" name="ingmens" value="{{ $consultaavsueldo ?? $avsueldo ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
                                 </div>
                               </div>
                             </div>
@@ -315,20 +315,20 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                       <label for="callet">Calle:</label>
-                                      <input type="text" class="form-control uppercase-input" maxlength="50" id="callet" name="callet" value="{{ $consultaavcallet ?? $avcallet ?? '' }}">
+                                      <input type="text" class="form-control uppercase-input" maxlength="50" id="callet" name="callet" value="{{ $consultaavcallet ?? $avcallet ?? '' }}" required>
                                     </div>
                                   </div>
       
                                   <div class="col-md-4">
                                    <div class="form-group">
                                    <label for="numerot">Número:</label>
-                                  <input type="text" class="form-control" id="numerot" maxlength="20" name="numerot" value="{{ $consultaavnumerot ?? $avnumerot ?? '' }}">
+                                  <input type="text" class="form-control" id="numerot" maxlength="20" name="numerot" value="{{ $consultaavnumerot ?? $avnumerot ?? '' }}" required>
                                    </div>
                                  </div>
                                <div class="col-md-4">
                                  <div class="form-group">
                                  <label for="coloniat">Colonia:</label>
-                                <input type="text" class="form-control uppercase-input" id="coloniat" maxlength="50" name="coloniat" value="{{ $consultaavcoloniat ?? $avcoloniat ?? '' }}">
+                                <input type="text" class="form-control uppercase-input" id="coloniat" maxlength="50" name="coloniat" value="{{ $consultaavcoloniat ?? $avcoloniat ?? '' }}" required>
                                </div>
                               </div>
                               </div>
@@ -337,16 +337,16 @@
                         <div class="col-md-4">
                             <div class="form-group">
                               <label for="entrecalle1t">Entre que calles se encuentra:</label>
-                              <input type="text" class="form-control uppercase-input" id="ecalle1t" maxlength="50" name="ecalle1t" value="{{ $consultaavcalle2t ?? $avcalle2t ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="ecalle1t" maxlength="50" name="ecalle1t" value="{{ $consultaavcalle2t ?? $avcalle2t ?? '' }}" required>
                               <label for="y">y</label>
-                              <input type="text" class="form-control uppercase-input" id="ecalle2t" maxlength="50" name="ecalle2t" value="{{ $consultaavcalle3t ?? $avcalle3t ?? '' }}">
+                              <input type="text" class="form-control uppercase-input" id="ecalle2t" maxlength="50" name="ecalle2t" value="{{ $consultaavcalle3t ?? $avcalle3t ?? '' }}" required>
                             </div>
                         </div>
                      
                         <div class="col-md-4">
                           <div class="form-group">
-                            <label for="codpostalt">Código Postal:</label>
-                            <input type="text" class="form-control" id="codpostalt" maxlength="5" name="codpostalt" value="{{ $consultaavcpt ?? $avcpt ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)">
+                            <label for="codpostalt">Código Postal:</label> 
+                            <input type="text" class="form-control" id="codpostalt" maxlength="5" name="codpostalt" value="{{ $consultaavcpt ?? $avcpt ?? '' }}" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 15)" required>
                           </div>
                        </div>
                        </div>
