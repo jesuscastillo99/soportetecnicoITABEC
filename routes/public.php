@@ -4,6 +4,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ActivationController;
 use App\Http\Controllers\DatosController;
+use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\Form0Controller;
 use App\Http\Controllers\Form1Controller;
 use App\Http\Controllers\Form2Controller;
@@ -59,6 +60,11 @@ Route::get('/exito', function() {
 //Ruta para validación de correo
 Route::get('/activate/{token}', [ActivationController::class, 'activate'])->name('activate');
 
+//Ruta de acerca de
+Route::get('/acercade', function() {
+    return view('layouts.acercade');
+})->name('acercade');
+
 //Ruta de noticias
 Route::get('/noticias', function() {
     return view('layouts.noticias');
@@ -68,6 +74,12 @@ Route::get('/noticias', function() {
 Route::get('/noticias-admin', function() {
     return view('layouts.noticiasadmin');
 })->name('noticiasadmin');
+
+//Ruta para bitacoras
+Route::get('/bitacoras', [BitacoraController::class, 'index'])->name('bitacoras');
+Route::get('/bitacoras/create', [BitacoraController::class, 'create'])->name('bitacoras.create');
+Route::post('/bitacoras/create/c', [BitacoraController::class, 'store'])->name('bitacoras.store');
+
 
 //Rutas formulario 0
 Route::get('/form0', [Form0Controller::class, 'index'])->name('form0')->middleware('auth');

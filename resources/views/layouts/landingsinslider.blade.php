@@ -40,9 +40,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
                 <ul class="navbar-nav">
-                    <li><a class="nav-link active" href="{{ route('inicio') }}">Inicio</a></li>
-                    <li><a class="nav-link" href="about.html">Acerca de</a></li>
-                    <li><a class="nav-link" href="{{ route('noticias') }}">Noticias</a></li>
+                    <li><a class="nav-link active" href="{{ route('inicio') }}">INICIO</a></li>
+                    <li><a class="nav-link" href="{{ route('bitacoras') }}">VER REGISTROS</a></li>
+                    <li><a class="nav-link" href="{{ route('noticias') }}">NOTICIAS</a></li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>

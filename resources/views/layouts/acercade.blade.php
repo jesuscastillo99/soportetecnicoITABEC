@@ -8,12 +8,12 @@
             <div class="col-md-6 layout_padding_2">
                 <div class="full">
                     <div class="heading_main text_align_left">
-                       <h2>Bienvenido a <span>NOTICIAS</span></h2>
-                    </div>
-                    <div class="full">
-                      <p>En esta sección se mostrarán las noticias.</p>
-                    </div>
-                    <div class="full">
+                        <h2>Bienvenido a <span>ACERCA DE</span></h2>
+                     </div>
+                     <div class="full">
+                       <p>En esta sección se mostrarán la información del instituto.</p>
+                     </div>
+                     <div class="full">
                        
                     </div>
                 </div>

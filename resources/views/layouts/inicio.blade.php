@@ -17,16 +17,15 @@
             <div class="col-md-6 layout_padding_2">
                 <div class="full">
                     <div class="heading_main text_align_left">
-                       <h2>Bienvenido a <span>ITABEC</span></h2>
+                       <h2>Bienvenido al <span>SISTEMA DE REGISTRO DE SOPORTE TÉCNICO</span></h2>
                     </div>
                     <div class="full">
-                      <p>El crédito educativo Es un  préstamo personal, que el Gobierno del Estado  de Tamaulipas, 
-                        otorga a jóvenes con deseos y capacidad para el estudio, que 
-                        no cuentan con  recursos económicos suficientes para  realizar sus 
-                        estudios en los niveles Medio Superior y Superior.</p>
+                      <p>Con este sistema se podrán almacenar, editar y eliminar, los diferentes registros realizados por los ingenieros 
+                        Jesús Alberto Castillo Estrada y Leonardo Alfonso Coronado Pérez en todo el instituto
+                        de ITABEC.</p>
                     </div>
                     <div class="full">
-                       <a class="hvr-radial-out button-theme" href="{{ route('form0') }}">Solicitar crédito</a>
+                       <a class="hvr-radial-out button-theme" href="{{ route('bitacoras.create') }}">Agregar registro</a>
                     </div>
                 </div>
 

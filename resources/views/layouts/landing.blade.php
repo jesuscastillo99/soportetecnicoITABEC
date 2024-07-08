@@ -36,9 +36,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
                 <ul class="navbar-nav">
-                    <li><a class="nav-link active" href="{{ route('inicio') }}">Inicio</a></li>
-                    <li><a class="nav-link" href="about.html">Acerca de</a></li>
-                    <li><a class="nav-link" href="{{ route('noticias') }}">Noticias</a></li>
+                    <li><a class="nav-link active" href="{{ route('inicio') }}">INICIO</a></li>
+                    <li><a class="nav-link" href="{{ route('bitacoras') }}">VER REGISTROS</a></li>
+                    <li><a class="nav-link" href="{{ route('noticias') }}">NOTICIAS</a></li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -175,5 +175,5 @@
     <script src="{{ asset('assets/js/images-loded.min.js')}}"></script>
     <script src="{{ asset('assets/js/custom.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    /* counter js */
+  
 </html>
