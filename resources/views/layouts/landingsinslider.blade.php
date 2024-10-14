@@ -10,6 +10,9 @@
     <title>@yield('title')</title>
     <!-- Bootstrap CSS v5.2.1 -->
     <script src="{{ asset('assets/js/estados.js')}}"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" media="all" href="{{ asset('assets/styles.css')}}">
@@ -25,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('assets/custom.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/style.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    @notifyCss
 </head>
 
 <body>
@@ -41,7 +45,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
                 <ul class="navbar-nav">
                     <li><a class="nav-link active" href="{{ route('inicio') }}">INICIO</a></li>
-                    <li><a class="nav-link" href="{{ route('bitacoras') }}">VER REGISTROS</a></li>
+                    <li><a class="nav-link" href="{{ route('bitacoras') }}">REGISTROS</a></li>
+                    <li><a class="nav-link" href="{{ route('equipos') }}">EQUIPOS</a></li>
                     <li><a class="nav-link" href="{{ route('noticias') }}">NOTICIAS</a></li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -132,6 +137,7 @@
 </body>
 
     <!-- ALL JS FILES -->
+    @notifyJs
     <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{ asset('assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>

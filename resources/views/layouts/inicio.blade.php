@@ -18,6 +18,8 @@
                 <div class="full">
                     <div class="heading_main text_align_left">
                        <h2>Bienvenido al <span>SISTEMA DE REGISTRO DE SOPORTE TÉCNICO</span></h2>
+                       
+                       
                     </div>
                     <div class="full">
                       <p>Con este sistema se podrán almacenar, editar y eliminar, los diferentes registros realizados por los ingenieros 

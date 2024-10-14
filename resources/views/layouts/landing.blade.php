@@ -21,9 +21,11 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/custom.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/style.css')}}" />
+    @notifyCss
 </head>
 
 <body>
+<x-notify::notify />
 <!-- Start header -->
 <header class="top-header">
     <nav class="navbar header-nav navbar-expand-lg">
@@ -37,7 +39,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
                 <ul class="navbar-nav">
                     <li><a class="nav-link active" href="{{ route('inicio') }}">INICIO</a></li>
-                    <li><a class="nav-link" href="{{ route('bitacoras') }}">VER REGISTROS</a></li>
+                    <li><a class="nav-link" href="{{ route('bitacoras') }}">REGISTROS</a></li>
+                    <li><a class="nav-link" href="{{ route('equipos') }}">EQUIPOS</a></li>
                     <li><a class="nav-link" href="{{ route('noticias') }}">NOTICIAS</a></li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -161,6 +164,7 @@
 </body>
 
     <!-- ALL JS FILES -->
+    @notifyJs
     <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{ asset('assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>

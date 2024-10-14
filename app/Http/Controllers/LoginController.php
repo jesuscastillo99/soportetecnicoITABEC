@@ -45,12 +45,13 @@ class LoginController extends Controller
 
             // Autenticar al usuario manualmente
             Auth::login($usuario);
-            alert()
-            ->success('Inicio de sesión exitosa', 'Bienvenido al sistema de crédito educativo')
-            ->showConfirmButton('Comenzar', '#3085d6');
-         
+            // alert()
+            // ->success('Inicio de sesión exitosa', 'Bienvenido al sistema de crédito educativo')
+            // ->showConfirmButton('Comenzar', '#3085d6');
+            notify()->success('Welcome to Laravel Notify ⚡️');
             // Autenticación exitosa
             return redirect()->intended('inicio'); // Redirige al usuario a la página deseada
+            
          
             
     }
