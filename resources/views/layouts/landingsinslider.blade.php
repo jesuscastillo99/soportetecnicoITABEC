@@ -11,8 +11,6 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <script src="{{ asset('assets/js/estados.js')}}"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" media="all" href="{{ asset('assets/styles.css')}}">
@@ -20,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/bootstrap.min.css')}}" />
     <!-- Pogo Slider CSS -->
     <link rel="stylesheet" href="{{ asset('assets/pogo-slider.min.css')}}" />
-    <!-- Site CSS -->
+    <!-- Site CSS --> 
     
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="{{ asset('assets/responsive.css')}}" />

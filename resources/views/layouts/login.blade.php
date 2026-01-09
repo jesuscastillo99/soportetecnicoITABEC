@@ -39,7 +39,6 @@
                             @error('correo')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
-                          
                         </div>
 
                         <div class="text-center pt-1 mb-5 pb-1">
